@@ -1,37 +1,19 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+\input{./package.tex}
 
-\title{Getting Started}
-\author{Federi Tartarini}
-\date{April 2020}
-
-\usepackage{natbib}
-\usepackage{graphicx}
-
+% ------------- Document content ------------- %
 \begin{document}
 
-\maketitle
+% Include the cover page
+\includepdf[]{src/assets/pdfs/cover-page.pdf}
 
-\section{Introduction}
-There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable \cite{databaseII}.
-There is another model which states that this has already happened.
+% Include the main app
+\input{src/app.tex}
 
-\section{Methodology}
-This is the methodology section.
-
-\section{Results}
-This is the results section.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=1.7]{universe}
-    \caption{The Universe}
-    \label{fig:universe}
-\end{figure}
-
-\section{Conclusion}
-``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
-
+% Generate a webography, for more styles
+% see - https://www.overleaf.com/learn/latex/Bibtex_bibliography_styles#Table_of_stylename_values
+\renewcommand\bibname{Webography}
 \bibliographystyle{plain}
 \bibliography{references}
+
 \end{document}
+% ------------- Document content ------------- %
