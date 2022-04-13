@@ -102,22 +102,44 @@ At the end, both are great options. However, we will be using Git which is the V
 Although Docker is widely popular, Podman is also taking its share from the market. Especially on Redhat systems.
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1.5}%
-	\caption{Comparative study between existing methodologies}
+	\caption{Comparative study between Docker and Podman}
 	\centering
 	\medskip
 	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+			| >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
 		\hline
-		\rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                              & \textbf {Podman}                                                                                                                                               \\
+		\rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                                                                                                                    & \textbf {Podman}                                                                                                                                                            \\
 		\hline
-		\textbf {Definition}                & \multicolumn{2}{Muasdlti-column}                                                                                                                                                                                                                                                                               \\
+		\textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker and Podman are both  container management technologies used to build container images and store said images in a registry to then run them as containers in a target environment.}                                                                                                                                                                               \\
 		\hline
-		\textbf {Technology}                & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout. & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps. \\
+		\textbf {Technology}                & Docker uses the containerd daemon which does the pulling of images then hands over the creation process to a low-level runtime named runc.                                                                                          & Podman uses a daemon-less approach using a technology named conmon which does the heavy lifting. It also delegates the container creation to a low-level container runtime. \\
 		\hline
-		\textbf {Architecture}              & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout. & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps. \\
+		\textbf {Specificity}               & Docker Desktop is a great feature for Docker which provides an easy way to build and distribute containers amongst developers.                                                                                                      & The smallest unit in Podman is the pod. A pod is the organizational unit for containers and is directly compatible with Kubernetes.                                         \\
 		\hline
 	\end{tabularx}
 \end{table}
 As a result, we will also be sticking to Docker in this project.
+
+\subsection{Browser automation: Playwright vs Puppeteer}
+Both are Node.js libraries for browser automation. The table below compares these two on different levels.
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1.5}%
+	\caption{Playwright vs Puppeteer highlights}
+	\centering
+	\medskip
+	\begin{tabularx}{1\textwidth} {
+			| >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+		\hline
+		\rowcolor{primary} \textbf {Category} & \textbf {Puppeteer}                                                                                                            & \textbf {Playwright}                                                                                                                                               \\
+		\hline
+		\textbf {Overview}                    & Puppeteer makes it easy to get started with browser automation. This is in part because of how it interfaces with the browser. & Playwright is very similar to Puppeteer in many respects. The API methods are identical in most cases, and Playwright also bundles compatible browsers by default. \\
+		\hline
+		\textbf {Community}                   & Has a large community with lots of active projects.                                                                            & Small but active community.                                                                                                                                        \\
+		\hline
+	\end{tabularx}
+\end{table}
+Since the difference is pretty minor, we will be sticking to the more recent Playwright.

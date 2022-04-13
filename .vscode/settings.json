@@ -1,5 +1,5 @@
 {
-    "latex-workshop.latex.outDir": "out.nosync",
+    "latex-workshop.latex.outDir": "out",
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk",
