@@ -2,6 +2,7 @@
 \setcounter{secnumdepth}{3}
 \newpage
 
+% ----------------------- Introduction ----------------------- %
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
 This chapter will present and study various concepts such as Automation, Web Scraping, Version Control, DevOps, State Machine with an emphasis on the DevOps terminology such as the CI/CD pipelines. We will talk about the most used tools in the market as well as which ones we settled on after making a comparison.
@@ -16,36 +17,42 @@ Web scraping is the process of automatically extracting content and data from a 
 Web scraping simplifies the process of extracting data and the automation process helps repeating the recurring task of extraction. As a result, the combination of scraping data, storing it and automating the whole process is getting very popular, especially with new technologies and tools arising in order to do just that.
 
 \newpage
+
+% ----------------------- DevOps ----------------------- %
 \section{DevOps}
 \addcontentsline{toc}{section}{DevOps}
+
 \subsection{Definition}
-DevOps is the set of practices, techniques and tools used to speed up the Software Development Lifecycle (SDL) by bringing together two historically separate functions of development and operations. 
+DevOps is the set of practices, techniques and tools used to speed up the Software Development Lifecycle (SDL) by bringing together two historically separate functions of development and operations.
 
 \medskip
 Development refers to writing code and software, whereas operations refer to provisioning servers, configuring them as well as deploying the apps to them, amongst other things.
 
 \medskip
 DevOps teams focus on automating all of the above. The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code (IAC).
+
 \subsection{Lifecycle}
 \begin{center}
-\includegraphics[width=9cm, height=5cm]{src/assets/images/devops.png}
+	\includegraphics[width=9cm, height=5cm]{src/assets/images/devops.png}
 \end{center}
 \subsection{Container management}
-Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them? 
+Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
 \subsubsection*{What is a container ?}
 Simply said; container is a packaging format for software applications that are akin to a very lightweight virtual machine which always executes in an isolated environment. What this implies is that said containers can be easily copied to and run on different machines with high reliability, lower costs and high efficiency.
 \subsubsection*{What is container management ?}
 Container management is the process for automating the creation, deployment and scaling of containers. Container management tools such as Docker and Podman facilitate the addition, replacement and organization of containers.
 
+% ----------------------- Mincroservices ----------------------- %
 \section{Microservices}
 \addcontentsline{toc}{section}{Microservices}
+
 \subsection{Definition}
 Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs. These services are owned by small, self-contained teams.
 
 \medskip
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
 \begin{center}
-\includegraphics[width=10cm, height=7cm]{src/assets/images/microservices.png}
+	\includegraphics[width=10cm, height=7cm]{src/assets/images/microservices.png}
 \end{center}
 \subsection{Characteristics of Microservices}
 \begin{itemize}
@@ -63,3 +70,54 @@ Microservices architectures make applications easier to scale and faster to deve
 	\item \textbf{Resilience :} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
 \end{itemize}
 
+% ----------------------- Comparative Analysis ----------------------- %
+\section{Comparative Analysis}
+\addcontentsline{toc}{section}{Comparative Analysis}
+
+In order to get started with our project, we need a wide range of tools that deal with the following areas; version control, orchestration between containers, browser automation as well as scheduled automation. For that, we did a comparative study on some of the tools the market provides.
+
+\subsection{Version Control: Git vs SVN}
+The most used tools for version control are Git and SVN. Here is a table comparing both tools.
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1.5}%
+	\caption{Comparative study between existing methodologies}
+	\centering
+	\medskip
+	\begin{tabularx}{1\textwidth} {
+			| >{\hsize=.5\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+		\hline
+		\rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+		\hline
+		\textbf{Git}       & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+		\hline
+		\textbf{SVN}       & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+		\hline
+	\end{tabularx}
+\end{table}
+At the end, both are great options. However, we will be using Git which is the VCS the company uses.
+
+\subsection{Container management: Docker vs Podman}
+Although Docker is widely popular, Podman is also taking its share from the market. Especially on Redhat systems.
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1.5}%
+	\caption{Comparative study between existing methodologies}
+	\centering
+	\medskip
+	\begin{tabularx}{1\textwidth} {
+			| >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.15\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+		\hline
+		\rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                              & \textbf {Podman}                                                                                                                                               \\
+		\hline
+		\textbf {Definition}                & \multicolumn{2}{Muasdlti-column}                                                                                                                                                                                                                                                                               \\
+		\hline
+		\textbf {Technology}                & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout. & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps. \\
+		\hline
+		\textbf {Architecture}              & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout. & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps. \\
+		\hline
+	\end{tabularx}
+\end{table}
+As a result, we will also be sticking to Docker in this project.
