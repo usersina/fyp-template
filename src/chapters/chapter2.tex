@@ -1,11 +1,13 @@
 \chapter{ State of the art }
-\setcounter{secnumdepth}{3}
 \newpage
 
+\setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
-\section*{Introduction}
+\section{Introduction}
 This chapter will present and study various concepts such as Automation, Web Scraping, Version Control, DevOps, State Machine with an emphasis on the DevOps terminology such as the CI/CD pipelines. We will talk about the most used tools in the market as well as which ones we settled on after making a comparison.
 
+\setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
+% ----------------------- DevOps ----------------------- %
 \section{Automation And Web Scraping concepts}
 \subsection{Automation}
 At its core, automation is leaving menial and recurring tasks to the automaton (or machine) in order to do more meaningful work as a human in the meantime. Implementing automation improves the efficiency, reliability and the speed of tasks that previously took humans a lot of time.
@@ -14,7 +16,6 @@ Web scraping is the process of automatically extracting content and data from a 
 \subsection{Relationship between the two}
 Web scraping simplifies the process of extracting data and the automation process helps repeating the recurring task of extraction. As a result, the combination of scraping data, storing it and automating the whole process is getting very popular, especially with new technologies and tools arising in order to do just that.
 
-\newpage
 
 % ----------------------- DevOps ----------------------- %
 \section{DevOps}
@@ -137,3 +138,8 @@ Both are Node.js libraries for browser automation. The table below compares thes
 	\end{tabularx}
 \end{table}
 Since the difference is pretty minor, we will be sticking to the more recent Playwright.
+
+\setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
+% ----------------------- Conclusion ----------------------- %
+\section{Conclusion}
+This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work. \citep{test1}
