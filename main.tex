@@ -6,14 +6,26 @@
 % Global config
 \input{./config.tex}
 
+
 % Include the cover page
 \includepdf[]{src/assets/pdfs/cover-page.pdf}
+
+% Set page numbering to roman for initial pages
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% Dedication and acknowledgments
+.\input{src/components/acknowledgments.tex}
+.\input{src/components/dedications.tex}
 
 % Tables
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
 \listoffigures % https://tex.stackexchange.com/questions/155177/how-to-add-the-word-figure-to-the-list-of-figures
-\listoftables
+\listoftables % FIXME: This ignores pagenumbering for some reason
+
+% Set page numbering to arabic for main content
+\pagenumbering{arabic}
 
 % Include the main app
 \input{src/app.tex}
