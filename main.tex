@@ -3,14 +3,17 @@
 % ------------- Document content ------------- %
 \begin{document}
 
-% Color palette
-\definecolor{primary}{cmyk}{0, 0.23, 0.98, 0.17}
-\definecolor{secondary}{cmyk}{0.48, 0.16, 0, 0.61}
+% Global config
+\input{./config.tex}
 
 % Include the cover page
 \includepdf[]{src/assets/pdfs/cover-page.pdf}
 
+% Tables
+\renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
+\listoffigures % https://tex.stackexchange.com/questions/155177/how-to-add-the-word-figure-to-the-list-of-figures
+\listoftables
 
 % Include the main app
 \input{src/app.tex}
