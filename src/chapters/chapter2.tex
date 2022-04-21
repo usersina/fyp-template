@@ -31,7 +31,7 @@ DevOps teams focus on automating all of the above. The key terminologies around 
 
 \subsection{Lifecycle}
 \begin{center}
-	\includegraphics[width=9cm, height=5cm]{src/assets/images/devops.png}
+    \includegraphics[width=9cm, height=5cm]{src/assets/images/devops.png}
 \end{center}
 \subsection{Container management}
 Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
@@ -49,22 +49,22 @@ Microservices are an architectural and organizational approach to software devel
 \medskip
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
 \begin{center}
-	\includegraphics[width=10cm, height=7cm]{src/assets/images/microservices.png}
+    \includegraphics[width=10cm, height=7cm]{src/assets/images/microservices.png}
 \end{center}
 \subsection{Characteristics of Microservices}
 \begin{itemize}
-	\item \textbf{Autonomous :} Each component service in a microservices architecture can be developed, deployed, operated, and scaled without affecting the functioning of other services. Services do not need to share any of their code or implementation with other services. Any communication between individual components happens via well-defined APIs.
-	\item \textbf{Specialized :} Each service is designed for a set of capabilities and focuses on solving a specific problem. If developers contribute more code to a service over time and the service becomes complex, it can be broken into smaller services.
+    \item \textbf{Autonomous :} Each component service in a microservices architecture can be developed, deployed, operated, and scaled without affecting the functioning of other services. Services do not need to share any of their code or implementation with other services. Any communication between individual components happens via well-defined APIs.
+    \item \textbf{Specialized :} Each service is designed for a set of capabilities and focuses on solving a specific problem. If developers contribute more code to a service over time and the service becomes complex, it can be broken into smaller services.
 \end{itemize}
 
 \subsection{Benefits of Microservices}
 \begin{itemize}
-	\item \textbf{Agility :} Microservices foster an organization of small, independent teams that take ownership of their services. Teams act within a small and well understood context, and are empowered to work more independently and more quickly.
-	\item \textbf{Flexible Scaling :} Microservices allow each service to be independently scaled to meet demand for the application feature it supports. This enables teams to right-size infrastructure needs, accurately measure the cost of a feature, and maintain availability if a service experiences a spike in demand.
-	\item \textbf{Easy Deployment :} Microservices enable continuous integration and continuous delivery, making it easy to try out new ideas and to roll back if something doesn’t work. The low cost of failure enables experimentation, makes it easier to update code, and accelerates time-to-market for new features.
-	\item \textbf{Technical Freedom :} Microservices architectures don’t follow a “one size fits all” approach. Teams have the freedom to choose the best tool to solve their specific problems. As a consequence, teams building microservices can choose the best tool for each job.
-	\item \textbf{Reusable Code :} Dividing software into small, well-defined modules enables teams to use functions for multiple purposes. A service written for a certain function can be used as a building block for another feature. This allows an application to bootstrap off itself, as developers can create new capabilities without writing code from scratch.
-	\item \textbf{Resilience :} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
+    \item \textbf{Agility :} Microservices foster an organization of small, independent teams that take ownership of their services. Teams act within a small and well understood context, and are empowered to work more independently and more quickly.
+    \item \textbf{Flexible Scaling :} Microservices allow each service to be independently scaled to meet demand for the application feature it supports. This enables teams to right-size infrastructure needs, accurately measure the cost of a feature, and maintain availability if a service experiences a spike in demand.
+    \item \textbf{Easy Deployment :} Microservices enable continuous integration and continuous delivery, making it easy to try out new ideas and to roll back if something doesn’t work. The low cost of failure enables experimentation, makes it easier to update code, and accelerates time-to-market for new features.
+    \item \textbf{Technical Freedom :} Microservices architectures don’t follow a “one size fits all” approach. Teams have the freedom to choose the best tool to solve their specific problems. As a consequence, teams building microservices can choose the best tool for each job.
+    \item \textbf{Reusable Code :} Dividing software into small, well-defined modules enables teams to use functions for multiple purposes. A service written for a certain function can be used as a building block for another feature. This allows an application to bootstrap off itself, as developers can create new capabilities without writing code from scratch.
+    \item \textbf{Resilience :} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
 \end{itemize}
 
 % ----------------------- Comparative Analysis ----------------------- %
@@ -74,68 +74,68 @@ In order to get started with our project, we need a wide range of tools that dea
 \subsection{Version Control: Git vs SVN}
 The most used tools for version control are Git and SVN. Here is a table comparing both tools.
 \begin{table}[H]
-	\renewcommand{\arraystretch}{1.5}%
-	\caption{Comparative study between Git and SVN}
-	\centering
-	\medskip
-	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.5\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X |}
-		\hline
-		\rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
-		\hline
-		\textbf{Git}       & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
-		\hline
-		\textbf{SVN}       & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
-		\hline
-	\end{tabularx}
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between Git and SVN}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.5\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \hline
+        \textbf{Git}       & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \hline
+        \textbf{SVN}       & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \hline
+    \end{tabularx}
 \end{table}
 At the end, both are great options. However, we will be using Git which is the VCS the company uses.
 
 \subsection{Container management: Docker vs Podman}
 Although Docker is widely popular, Podman is also taking its share from the market. Especially on Redhat systems.
 \begin{table}[H]
-	\renewcommand{\arraystretch}{1.5}%
-	\caption{Comparative study between Docker and Podman}
-	\centering
-	\medskip
-	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
-		\hline
-		\rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                                                                                                                    & \textbf {Podman}                                                                                                                                                            \\
-		\hline
-		\textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker and Podman are both  container management technologies used to build container images and store said images in a registry to then run them as containers in a target environment.}                                                                                                                                                                               \\
-		\hline
-		\textbf {Technology}                & Docker uses the containerd daemon which does the pulling of images then hands over the creation process to a low-level runtime named runc.                                                                                          & Podman uses a daemon-less approach using a technology named conmon which does the heavy lifting. It also delegates the container creation to a low-level container runtime. \\
-		\hline
-		\textbf {Specificity}               & Docker Desktop is a great feature for Docker which provides an easy way to build and distribute containers amongst developers.                                                                                                      & The smallest unit in Podman is the pod. A pod is the organizational unit for containers and is directly compatible with Kubernetes.                                         \\
-		\hline
-	\end{tabularx}
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between Docker and Podman}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                                                                                                                    & \textbf {Podman}                                                                                                                                                            \\
+        \hline
+        \textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker and Podman are both  container management technologies used to build container images and store said images in a registry to then run them as containers in a target environment.}                                                                                                                                                                               \\
+        \hline
+        \textbf {Technology}                & Docker uses the containerd daemon which does the pulling of images then hands over the creation process to a low-level runtime named runc.                                                                                          & Podman uses a daemon-less approach using a technology named conmon which does the heavy lifting. It also delegates the container creation to a low-level container runtime. \\
+        \hline
+        \textbf {Specificity}               & Docker Desktop is a great feature for Docker which provides an easy way to build and distribute containers amongst developers.                                                                                                      & The smallest unit in Podman is the pod. A pod is the organizational unit for containers and is directly compatible with Kubernetes.                                         \\
+        \hline
+    \end{tabularx}
 \end{table}
 As a result, we will also be sticking to Docker in this project.
 
 \subsection{Browser automation: Playwright vs Puppeteer}
 Both are Node.js libraries for browser automation. The table below compares these two on different levels.
 \begin{table}[H]
-	\renewcommand{\arraystretch}{1.5}%
-	\caption{Playwright vs Puppeteer highlights}
-	\centering
-	\medskip
-	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
-		\hline
-		\rowcolor{primary} \textbf {Category} & \textbf {Puppeteer}                                                                                                            & \textbf {Playwright}                                                                                                                                               \\
-		\hline
-		\textbf {Overview}                    & Puppeteer makes it easy to get started with browser automation. This is in part because of how it interfaces with the browser. & Playwright is very similar to Puppeteer in many respects. The API methods are identical in most cases, and Playwright also bundles compatible browsers by default. \\
-		\hline
-		\textbf {Community}                   & Has a large community with lots of active projects.                                                                            & Small but active community.                                                                                                                                        \\
-		\hline
-	\end{tabularx}
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Playwright vs Puppeteer highlights}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} \textbf {Category} & \textbf {Puppeteer}                                                                                                            & \textbf {Playwright}                                                                                                                                               \\
+        \hline
+        \textbf {Overview}                    & Puppeteer makes it easy to get started with browser automation. This is in part because of how it interfaces with the browser. & Playwright is very similar to Puppeteer in many respects. The API methods are identical in most cases, and Playwright also bundles compatible browsers by default. \\
+        \hline
+        \textbf {Community}                   & Has a large community with lots of active projects.                                                                            & Small but active community.                                                                                                                                        \\
+        \hline
+    \end{tabularx}
 \end{table}
 Since the difference is pretty minor, we will be sticking to the more recent Playwright.
 
@@ -143,22 +143,22 @@ Since the difference is pretty minor, we will be sticking to the more recent Pla
 \subsection{Database: MySQL vs MongoDB}
 The most used tools for version control are Git and SVN. Here is a table comparing both tools.
 \begin{table}[H]
-	\renewcommand{\arraystretch}{1.5}%
-	\caption{Comparative study between MySQL and MongoDB}
-	\centering
-	\medskip
-	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
-		\hline
-		\rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
-		\hline
-		\textbf{MySQL}     & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
-		\hline
-		\textbf{MongoDB}   & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
-		\hline
-	\end{tabularx}
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between MySQL and MongoDB}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \hline
+        \textbf{MySQL}     & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \hline
+        \textbf{MongoDB}   & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \hline
+    \end{tabularx}
 \end{table}
 Since the old architecture uses MySQL, we will be sticking to it in the new architecture.
 
@@ -166,26 +166,26 @@ Since the old architecture uses MySQL, we will be sticking to it in the new arch
 \subsection{Database: GraphQL vs Rest}
 The most used tools for version control are Git and SVN. Here is a table comparing both tools.
 \begin{table}[H]
-	\renewcommand{\arraystretch}{1.5}%
-	\caption{Comparative study between GraphQL and REST}
-	\centering
-	\medskip
-	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
-			| >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
-		\hline
-		\rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
-		\hline
-		\textbf{GraphQL}   & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
-		\hline
-		\textbf{REST}      & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
-		\hline
-	\end{tabularx}
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between GraphQL and REST}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \hline
+        \textbf{GraphQL}   & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \hline
+        \textbf{REST}      & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \hline
+    \end{tabularx}
 \end{table}
 Since the old architecture uses MySQL, we will be sticking to it in the new architecture.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work. \citep{test1}
+This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work.
