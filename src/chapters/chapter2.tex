@@ -4,17 +4,22 @@
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
-This chapter will present and study various concepts such as Automation, Web Scraping, Version Control, DevOps, State Machine with an emphasis on the DevOps terminology such as the CI/CD pipelines. We will talk about the most used tools in the market as well as which ones we settled on after making a comparison.
+This chapter will present and study various concepts such as Automation, Web Scraping, Version Control, DevOps, State Machine with an emphasis on the DevOps terminology such as the CI/CD pipelines.
+We will talk about the most used tools in the market as well as which ones we settled on after making a comparison.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- DevOps ----------------------- %
 \section{Automation And Web Scraping concepts}
 \subsection{Automation}
-At its core, automation is leaving menial and recurring tasks to the automaton (or machine) in order to do more meaningful work as a human in the meantime. Implementing automation improves the efficiency, reliability and the speed of tasks that previously took humans a lot of time.
+At its core, automation is leaving menial and recurring tasks to the automaton (or machine) in order to do more meaningful work as a human in the meantime.
+Implementing automation improves the efficiency, reliability and the speed of tasks that previously took humans a lot of time.
 \subsection{Web Scraping}
-Web scraping is the process of automatically extracting content and data from a website. Although data extraction is done in a brute way by reading texts from HTML elements, it is used in a variety of legitimate digital businesses like search engines, price comparison sites and market research companies. So contrary to what some might think, web scraping is completely legal.
+Web scraping is the process of automatically extracting content and data from a website.
+Although data extraction is done in a brute way by reading texts from HTML elements, it is used in a variety of legitimate digital businesses like search engines, price comparison sites and market research companies.
+So contrary to what some might think, web scraping is completely legal.
 \subsection{Relationship between the two}
-Web scraping simplifies the process of extracting data and the automation process helps repeating the recurring task of extraction. As a result, the combination of scraping data, storing it and automating the whole process is getting very popular, especially with new technologies and tools arising in order to do just that.
+Web scraping simplifies the process of extracting data and the automation process helps repeating the recurring task of extraction.
+As a result, the combination of scraping data, storing it and automating the whole process is getting very popular, especially with new technologies and tools arising in order to do just that.
 
 
 % ----------------------- DevOps ----------------------- %
@@ -27,7 +32,8 @@ DevOps is the set of practices, techniques and tools used to speed up the Softwa
 Development refers to writing code and software, whereas operations refer to provisioning servers, configuring them as well as deploying the apps to them, amongst other things.
 
 \medskip
-DevOps teams focus on automating all of the above. The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code (IAC).
+DevOps teams focus on automating all of the above.
+The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code (IAC).
 
 \subsection{Lifecycle}
 \begin{center}
@@ -36,15 +42,18 @@ DevOps teams focus on automating all of the above. The key terminologies around 
 \subsection{Container management}
 Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
 \subsubsection*{What is a container ?}
-Simply said; container is a packaging format for software applications that are akin to a very lightweight virtual machine which always executes in an isolated environment. What this implies is that said containers can be easily copied to and run on different machines with high reliability, lower costs and high efficiency.
+Simply said; container is a packaging format for software applications that are akin to a very lightweight virtual machine which always executes in an isolated environment \cite{what-is-a-container}.
+What this implies is that said containers can be easily copied to and run on different machines with high reliability, lower costs and high efficiency.
 \subsubsection*{What is container management ?}
-Container management is the process for automating the creation, deployment and scaling of containers. Container management tools such as Docker and Podman facilitate the addition, replacement and organization of containers.
+Container management is the process for automating the creation, deployment and scaling of containers \cite{container-management}.
+Container management tools such as Docker and Podman facilitate the addition, replacement and organization of containers.
 
 % ----------------------- Mincroservices ----------------------- %
 \section{Microservices}
 
 \subsection{Definition}
-Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs. These services are owned by small, self-contained teams.
+Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs.
+These services are owned by small, self-contained teams. \cite{microservices}
 
 \medskip
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
@@ -117,11 +126,11 @@ Although Docker is widely popular, Podman is also taking its share from the mark
 \end{table}
 As a result, we will also be sticking to Docker in this project.
 
-\subsection{Browser automation: Playwright vs Puppeteer}
+\subsection{Browser automation: Puppeteer vs Playwright}
 Both are Node.js libraries for browser automation. The table below compares these two on different levels.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
-    \caption{Playwright vs Puppeteer highlights}
+    \caption{Puppeteer vs Playwright highlights}
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
@@ -139,35 +148,35 @@ Both are Node.js libraries for browser automation. The table below compares thes
 \end{table}
 Since the difference is pretty minor, we will be sticking to the more recent Playwright.
 
-% TODO:
-\subsection{Database: MySQL vs MongoDB}
-The most used tools for version control are Git and SVN. Here is a table comparing both tools.
+\subsection{Database: MongoDB vs MySQL}
+The old architecture of ILG uses MySQL but we have the choice to use a different database as well, so we did the following study.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
-    \caption{Comparative study between MySQL and MongoDB}
+    \caption{Comparative study between MongoDB and MySQL \cite{mongodb-vs-mysql}}
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
-            | >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+            | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
         \hline
-        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \rowcolor{primary} \textbf {Category} & \textbf {MongoDB}                                                       & \textbf {MySQL}                                                                                    \\
         \hline
-        \textbf{MySQL}     & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \textbf {Overview}                    & An open-source NoSQL that stores data in JSON-like documents.           & An open-source relational database system.                                                         \\
         \hline
-        \textbf{MongoDB}   & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \textbf {Storage}                     & Stores data in documents that belong to a particular class or group.    & Data is stored in tables where each table corresponds to an entity.                                \\
+        \hline
+        \textbf {Type}                        & NoSQL, meaning that data in a collection can have different structures. & Uses SQL (Standard Query Language) meaning that the schema of data cannot be changed once defined. \\
         \hline
     \end{tabularx}
 \end{table}
-Since the old architecture uses MySQL, we will be sticking to it in the new architecture.
+Since the old architecture uses MySQL, we will be sticking to that in the new architecture as well for an easier migration.
 
-% TODO:
 \subsection{Database: GraphQL vs Rest}
 The most used tools for version control are Git and SVN. Here is a table comparing both tools.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
-    \caption{Comparative study between GraphQL and REST}
+    \caption{Comparative study between GraphQL and REST \cite{graphql-vs-rest}}
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
@@ -175,11 +184,11 @@ The most used tools for version control are Git and SVN. Here is a table compari
             | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
             | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
         \hline
-        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \rowcolor{primary} & \textbf {Description}                                                                                                                & \textbf {In depth}                                                                                                                \\
         \hline
-        \textbf{GraphQL}   & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \textbf{GraphQL}   & An open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data.               & Describe only what's needed in queries, so no under or over fetching. It is also Schema and Type safe so it's less prone to bugs. \\
         \hline
-        \textbf{REST}      & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \textbf{REST}      & REST (Representational State Transfer) is an architectural style that conforms to a set of constraints when developing web services. & It was introduced as a successor to SOAP APIs, follows the REST standards and is not constrained to XML.                          \\
         \hline
     \end{tabularx}
 \end{table}
@@ -188,4 +197,4 @@ Since the old architecture uses MySQL, we will be sticking to it in the new arch
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work.
+\lipsum[2]
