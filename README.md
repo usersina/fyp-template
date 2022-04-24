@@ -1,6 +1,8 @@
 # End of Studies Project
 
-This is the end of studies project. Please update this file.
+This is the end of studies project rapport. Please update this file.
+
+### Instructions
 
 ### **References:**
 
