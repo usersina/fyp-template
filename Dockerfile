@@ -9,5 +9,5 @@ RUN mkdir /app
 WORKDIR /app
 COPY --from=builder app/main .
 COPY public/ public/
-EXPOSE 4000
+EXPOSE 3000
 CMD ["/app/main"]
