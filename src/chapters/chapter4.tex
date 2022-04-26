@@ -26,6 +26,8 @@ To make the most out of the ILG and for the sake of scalability, here's the setu
         \hline
         \rowcolor{primary} \textbf{Virtual Machine} & \textbf{Services}             & \textbf{Size} \\
         \hline
+        \textbf{ctl.ilg.incedo.net}                 & Kubernetes cluster controller & XL            \\
+        \hline
         \textbf{data.ilg.incedo.net}                & ilg-data, ilg-api, postgresdb & RM            \\
         \hline
         \textbf{ps.ilg.incedo.net}                  & ilg-front, ilg-scheduler      & RM            \\
@@ -66,7 +68,7 @@ Also note that this section is only relevant in production.
 
 % ----------------------- Software environment ----------------------- %
 \section{Software environment}
-This part is reserved for the presentation of the software used in the realization of the application and includes but is not limited to; programming languages, frameworks, technologies, architectures, etc...
+This part is reserved for the presentation of the software used in the realization of the application and includes but is not limited to; programming languages, frameworks, technologies, etc...
 
 \medskip
 \textbf {For more details, see Chapter 2: State of the art}
@@ -144,7 +146,7 @@ This part is reserved for the presentation of the software used in the realizati
               \includegraphics[width=3cm]{src/assets/logos/renovate_200x200.png}
               \captionof{figure}{Logo of Renovate}
           \end{minipage}
-    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a .YAML format. It is often used in development. \newline
+    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a .YAML format. Used in development. \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=4cm]{src/assets/logos/docker-compose_667x667.png}
@@ -172,6 +174,41 @@ This part is reserved for the presentation of the software used in the realizati
           \end{minipage}
 
           \newpage
+    \item \textbf{MicroK8s:} \newline \cite{microk8s} MicroK8s is a simple production-grade conformant K8s. It is Lightweight and focused. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=3.8cm]{src/assets/logos/microk8s.png}
+              \captionof{figure}{Logo of MicroK8s}
+          \end{minipage}
+    \item \textbf{Kubernetes:} \newline The most famous tool for managing containerized workloads in the cloud. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=3cm]{src/assets/logos/kubernetes_512x512.png}
+              \captionof{figure}{Logo of Kubernetes}
+          \end{minipage}
+    \item \textbf{GitLab agent for Kubernetes:} \newline \cite{gitlab-ka} A secure and reliable way to attach a Kubernetes cluster to GitLab. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=3.8cm]{src/assets/logos/gitlab-kubernetes-agent_512x512.png}
+              \captionof{figure}{Logo of GitLab Agent for Kubernetes}
+          \end{minipage}
+
+          \newpage
+    \item \textbf{Squid Proxy:} \newline \cite{squid} Squid is a caching proxy for the Web that supports HTTP, HTTPS, FTP and more. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=6cm]{src/assets/logos/squid-proxy.png}
+              \captionof{figure}{Logo of Squid Proxy}
+          \end{minipage}
+    \item \textbf{LaTeX:} \newline \cite{latex-project} A high-quality document preparation and typesetting system for technical grade documents. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=4cm]{src/assets/logos/latex_200x200.png}
+              \captionof{figure}{Logo of The LaTeX Project}
+          \end{minipage}
+
+          \newpage
+          %   MSTeams, Asana, Signal?
 \end{itemize}
 
 % ----------------------- Difficulties encountered ----------------------- %
