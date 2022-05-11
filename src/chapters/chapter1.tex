@@ -4,23 +4,45 @@
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
-This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work.
+This chapter introduces the general context of this report.
+We start by presenting the frame of the project as well as the host company.
+Then comes the enumeration of the problems which led to the realization of the project.
+We wrap it up by defining the methodology we’ve followed to carry out our work.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- General framework of the internship ----------------------- %
 \section{General framework of the internship}
-This project was carried out within the frame of obtaining a bachelor’s degree in Computer Science at the Higher Institute of Technological studies of Nabeul. The internship took place fully remotely at Incedo Services GmbH for five months starting from the 1st of February 2022 to the 30th of June 2022 with the purpose of further developing the existing project as well as slowly migrating it to a micro-services architecture.
+This project was carried out within the frame of obtaining a bachelor’s degree in Computer Science at the Higher Institute of Technological studies of Nabeul.
+The internship took place fully remotely at Incedo Services GmbH for five months starting from the 1st of February 2022 to the 30th of June 2022 with the purpose of further developing an existing project of the company as well as migrating it to a micro-services architecture deployed on a self-managed instance of Kubernetes.
 
 % ----------------------- Company overview ----------------------- %
 \section{Company overview}
-This section introduces the host company and its offered services.
+This section introduces the host company and as well as the services it offers.
 \subsection{About Incedo}
-\subsection{Incedo Services}
+We are a young software development and consulting firm located in Stuttgart.
+We help our clients to develop exciting digital products and solutions and we also love to bring our own ideas into life from time to time.
+
+\subsection{Incedo's services}
+\subsubsection*{\underline{Consulting}}
+Incedo helps its clients overcome two main challenges:
+\begin{itemize}
+    \item Develop a product that somebody actually needs and that creates enough value to form a profitable business case.
+    \item Ensuring that (large) IT-projects are finished in time \& budget with a result that satisfies the actual users/clients of the developed software solution.
+\end{itemize}
+
+\subsubsection*{\underline{Development}}
+Incedo develops software for clients, as well as for the company itself for all sorts of clients.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/selection-of-clients.JPG}}
+    \caption{Selection of Incedo clients}
+    \label{fig:selection-of-incedo-clients}
+\end{figure}
 
 % ----------------------- Stating the problem ----------------------- %
 \section{Stating the problem}
-Incedo -having ambitious goals to grow over the next 2 to 4 years- wants to win new clients and strategically develop the existing ones. Winning new clients starts with generating new leads. Previously, Incedo has worked with an Austrian start-up (motion group) that provides automated lead generation through LinkedIn at the cost of 0.85 € per requested contact in LinkedIn. Although one big project was closed and several leads were generated, Incedo started using the LinkedIn Sales Navigator with a more targeted approach, but nevertheless wanted to automate the approach and increase its outreach.
-Having launched the first version of the ILG (Incedo Lead Generator) as a SaaS (Software as Service), Incedo was satisfied for a while. Over the time however, as more and more clients were interested in the ILG, the current architecture couldn’t handle the load properly.
+Incedo -having ambitious goals to grow over the next 2 to 4 years- wants to win new clients and strategically develop the existing ones. Winning new clients starts with generating new leads. Previously, Incedo has worked with an Austrian start-up (motion group) that provides automated lead generation through LinkedIn at the cost of 0.85 € per requested contact. Although one big project was closed and several leads were generated, Incedo started using the LinkedIn Sales Navigator with a more targeted approach, but nevertheless wanted to automate the approach and increase its outreach.
+Having launched the first version of the ILG (Incedo Lead Generator) as a SaaS (Software as Service), Incedo was satisfied for a while. Over the time however, as more and more clients were interested in the ILG, the current architecture couldn’t handle the load properly. Therefore, it was our task to re-design and implement a new scalable architecture instead of the old one.
 
 % ----------------------- Assessment of the case ----------------------- %
 \section{Assessment of the case}
@@ -35,10 +57,7 @@ After studying the existing, we can determine its limitations:
     \item It cannot scale well enough since the whole application is deployed on a single server.
 \end{itemize}
 \subsection{Proposed solution}
-% NOTE: Fix New Paragraph identation
 The solution to these problems is refactoring the whole application to separate sub applications (microservices) where the automation and scraping processes can be scaled independently of the other parts of the application.
-
-\medskip
 This way, it will be easier to maintain and scale the different codebases as well as respond faster to bugs and know exactly what caused them in the first place.
 
 \newpage
@@ -57,4 +76,6 @@ Kanban is based on a continuous workflow structure that keeps teams nimble and r
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-This chapter introduces the general context of this report. We start by presenting the frame of the project as well as the host company. Then comes the enumeration of the problems which led to the realization of the project. We wrap it up by defining the methodology we’ve followed to carry out our work.
+In this chapter, we presented not only the host organization but also the general context of the project and why it's needed.
+We then criticized the current state of the ILG application and discussed the possible development methodologies.
+Lastly, we picked the most ideal choice for us which is Kanban.
