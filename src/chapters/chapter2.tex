@@ -36,9 +36,12 @@ DevOps teams focus on automating all of the above.
 The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code (IAC).
 
 \subsection{Lifecycle}
-\begin{center}
-    \includegraphics[width=9cm, height=5cm]{src/assets/images/devops.png}
-\end{center}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=9cm]{src/assets/images/devops.png}}
+    \caption{DevOps lifecycle}
+    \label{fig:devops-lifecycle}
+\end{figure}
 \subsection{Container management}
 Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
 \subsubsection*{What is a container ?}
@@ -57,9 +60,12 @@ These services are owned by small, self-contained teams. \cite{microservices}
 
 \medskip
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
-\begin{center}
-    \includegraphics[width=10cm, height=7cm]{src/assets/images/microservices.png}
-\end{center}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/microservices.png}}
+    \caption{Breaking a monolithic application into microservices}
+    \label{fig:monolith-to-microservices}
+\end{figure}
 \subsection{Characteristics of Microservices}
 \begin{itemize}
     \item \textbf{Autonomous :} Each component service in a microservices architecture can be developed, deployed, operated, and scaled without affecting the functioning of other services. Services do not need to share any of their code or implementation with other services. Any communication between individual components happens via well-defined APIs.
