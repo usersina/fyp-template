@@ -5,17 +5,59 @@
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
 In this chapter, we will finally discuss the long awaited realization.
-This is the implementation phase where all of the work done in the previous chapters come into picture.
-We will start with the architecture where we setup the necessary hardware and software tools.
-Then we will present some of the difficulties we encountered.
+This is the implementation phase where all of the work done in the previous chapters comes into picture.
+This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the ILG application to a new scalable architecture.
+We will start with the new architecture hardware and software setup, present some of the difficulties we encountered and then list all of the technologies we've used for our work.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
-% ----------------------- Hardware environment ----------------------- %
-\section{Hardware environment}
-These are the servers or nodes that make up the Kubernetes cluster needed for the deployment.
-They can be separated into the core nodes that are created once, and the scalable nodes that can be created indefinitely.
+% ----------------------- Hardware setup ----------------------- %
+\section{Hardware setup}
+Since we agreed to proceed with the self-managed Kubernetes deployment as mentioned in \textbf{Chapter 2: State of the art}, we had to create own cluster nodes or virtual machines.
+The nodes in question can be separated into the core nodes that are created once, and the scalable nodes that can be created indefinitely.
+
+\subsection{Cloud provider}
+To provision the hardware resources that we need for the deployment, we're going  to use the IONOS Cloud provider.
+\cite[Ionos is a web hosting company founded in Germany in 1988 and is currently owned by United Internet.]{ionos-wikipedia}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/images/ionos-logo.png}}
+    \caption{Logo of IONOS}
+    \label{fig:logo-of-ionos-cloud}
+\end{figure}
+
+IONOS Cloud provides -through the Ionos cloudpanel service- an easy way to create and manage virtual machines, firewall rules, private networks and various other infrastructure components.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/ionos-cloudpanel-dashboard.JPG}}
+    \caption{Ionos cloudpanel dashboard}
+    \label{fig:image-of-ionos-cloudpanel-dashboard}
+\end{figure}
+
+
+The two images below show the available VM sizes in the Ionos cloudpanel dashboard that we can pick for our VMs.
+Note that will be referenced in the tables below.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-standard.jpg}}
+    \caption{Standard VM sizes in IONOS}
+    \label{fig:standard-vm-sizes}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-ram-optimized.JPG}}
+    \caption{RAM Optimized VM sizes in IONOS}
+    \label{fig:ram-optimized-vm-sizes}
+\end{figure}
 
 \subsection{Kubernetes Cluster}
+Below are the necessary virtual machines needed to setup a self-managed Kubernetes Cluster.
+Please note that
+\begin{itemize}
+    \item What each of the services represent is already mentioned in \textbf{Chapter X: ---}
+    \item The size column which stands for the specification of the virtual machine is described in the previous section.
+    \item The number of servers for \textbf{scraper}, and \textbf{automation} nodes will be scaled depending on the number of clients as mentioned in \textbf{Chapter 3: Analysis and specification of requirements}.
+\end{itemize}
+
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5} % Padding
     \caption{Core cluster nodes}
@@ -26,13 +68,15 @@ They can be separated into the core nodes that are created once, and the scalabl
             | >{\hsize=1.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
             | >{\hsize=0.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf{Hostname} & \textbf{Services}                            & \textbf{Size} \\
+        \rowcolor{primary} \textbf{Name} & \textbf{Services}                            & \textbf{Size} \\
         \hline
-        \textbf{kube-controller}             & The main Kubernetes cluster controller       & XL            \\
+        \textbf{kube-controller}         & The main Kubernetes cluster controller       & XL            \\
         \hline
-        \textbf{data-node}                   & postgresdb, ilg-data, ilg-api, ilg-scheduler & L             \\
+        \textbf{data-node}               & postgresdb, ilg-data, ilg-api, ilg-scheduler & L             \\
         \hline
-        \textbf{front-node}                  & ilg-front                                    & S             \\
+        \textbf{front-node}              & ilg-front                                    & S             \\
+        \hline
+        \textbf{staging-node}            & postgresdb, all other ilg services           & L             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -47,19 +91,18 @@ They can be separated into the core nodes that are created once, and the scalabl
             | >{\hsize=1.5\hsize\linewidth=\hsize\raggedright\arraybackslash}X
             | >{\hsize=0.3\hsize\linewidth=\hsize\centering\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf{Hostname} & \textbf{Services} & \textbf{Size} \\
+        \rowcolor{primary} \textbf{Name} & \textbf{Services} & \textbf{Size} \\
         \hline
-        \textbf{scraper-node-n}              & ilg-scraper       & RL            \\
+        \textbf{scraper-node-n}          & ilg-scraper       & RL            \\
         \hline
-        \textbf{automation-node-n}           & ilg-automation    & RXL           \\
+        \textbf{automation-node-n}       & ilg-automation    & RXL           \\
         \hline
     \end{tabularx}
 \end{table}
 
-The number of servers for \textbf{scraper}, and \textbf{automation} nodes will be scaled depending on the number of clients as mentioned in \textbf{Chapter 3: Analysis and specification of requirements}.
-\medskip
-
 \subsection{Proxy Servers}
+Proxies are used to ensure all requests to LinkedIn come from a single IP address as mentioned in \textbf{Chapter X: ---}
+
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5} % Padding
     \caption{List of proxy servers}
@@ -70,40 +113,49 @@ The number of servers for \textbf{scraper}, and \textbf{automation} nodes will b
             | >{\hsize=1.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
             | >{\hsize=0.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf{Name} & \textbf{Services}     & \textbf{Size} \\
+        \rowcolor{primary} \textbf{Name} & \textbf{Services}                   & \textbf{Size} \\
         \hline
-        \textbf{Germany 1}               & Upstream proxy server & XS            \\
+        \textbf{usp-n}                   & Upstream proxy server running Squid & XS            \\
         \hline
     \end{tabularx}
 \end{table}
 
-The two images below show the available VM sizes in IONOS cloudpanel.
+\newpage
+% ----------------------- Software setup ----------------------- %
+\section{Software setup}
+After setting up our hardware resources, we end up with raw Linux virtual machines with no configuration whatsoever.
+We have to create and manage our own Kubernetes instance on it to proceed any further.
+For that, we will be using MicroK8s \cite[which is a simple production-grade conformant K8s.]{microk8s}
+But before that, we also need to setup some basic configuration such as a non-root user and so on.
 
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-standard.jpg}}
-    \caption{Standard VM sizes in IONOS}
-    \label{fig:standard-vm-sizes}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-ram-optimized.JPG}}
-    \caption{RAM Optimized VM sizes in IONOS}
-    \label{fig:ram-optimized-vm-sizes}
-\end{figure}
-
-Also note that this section is only relevant in production.
-
-% ----------------------- Software environment ----------------------- %
-\section{Software environment}
-This part is reserved for the presentation of the software used in the realization of the application and includes but is not limited to; programming languages, frameworks, technologies, etc...
-
-\medskip
-For a comparative analysis on the most crucial ones, see \textbf {Chapter 2: State of the art}.
+\subsection{Manual configuration}
+For a single virtual machine right after its creation, we have to:
 
 \begin{itemize}
-    \newpage
+    \item Create a user with sudo permissions
+    \item Install the base package we will be using
+    \item Edit the hosts file so that the VM recognizes other VMs by their hostnames
+    \item Install MicroK8s to have a single cluster node running on the VM
+\end{itemize}
+
+After that, we will have to join the nodes together so that we have our setup up and running.
+
+\subsection{Automating the process}
+
+
+\newpage
+% ----------------------- Application pipeline ----------------------- %
+% CI Continuous Integration
+% CD Continuous Delivery 
+% ----------------------- Technologies ----------------------- %
+\section{Technologies}
+This part is reserved for the presentation of all of the software used in the realization of the project and includes but is not limited to; programming languages, frameworks, technologies, etc...
+
+\medskip
+For a comparative analysis on some of our choices, see \textbf {Chapter 2: State of the art}.
+TODO: Transform into a table
+
+\begin{itemize}
     \item \textbf{Git:} \newline
           \begin{minipage}{\linewidth}
               \centering
@@ -249,13 +301,13 @@ For a comparative analysis on the most crucial ones, see \textbf {Chapter 2: Sta
 
 % ----------------------- Difficulties encountered ----------------------- %
 \section{Difficulties encountered}
-This not persay a technical difficulty as it is more of a limitation from the side of the IONOS cloud provider the organization relies on.
+This not persay a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
 To have a full DevOps approach, even the infrastructure should be managed in code -also known as IAC (Infrastructure As Code)- using tools such as Terraform.
-However, the cloudpanel version that we were using does not provide that functionality.
+However, Ionos cloudpanel does not provide that functionality.
 Therefore we had to scrape off the idea and simply create the virtual machines fron the UI everytime we need them.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
 A successfull project comes from a successfull development environment as well as a clean production environment.
-For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way.
+For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and script which all comform to the modern ways of how DevOps should be done.
