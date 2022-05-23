@@ -35,29 +35,29 @@ In this section, we will dive deep into the conception and the logic behind the 
 	\centering
 	\medskip
 	\begin{tabularx}{1\textwidth} {
-					| >{\hsize=.75\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-					| >{\hsize=1.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-					| >{\hsize=0.45\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
-			\hline
-			\rowcolor{primary} \textbf {Name} & \textbf {Description}                                                                                                                                                                                                                    & \textbf {Scalabity}                                                                                                                                                            \\
-	  	\hline
-			\textbf {ilg-data}                & GraphQL Database access layer used to feed all needed data for other services from the Postgres DB.  & No \\
-			\hline
-			\textbf {ilg-api}               & RESTful api to serve data to the React app dashboard.         & No \\
-			\hline
-			\textbf {ilg-front}                & a React app dashboard application served throw NGINX.       & No \\
-			\hline
-			\textbf {ilg-scheduler}                & Service thats responsible for scheduling and orchestrating the tasks queues and notifications.    & No \\
-			\hline
-			\textbf {ilg-scraper}                & Service thats responsible for scraping leads of campaigns links from LinkedIn Sales Navigator.             & Yes \\
-			\hline
-			\textbf {ilg-automation}                & Service thats responsible for handling LinkedIn accounts inboxs/threads and sendings invites to leads.                                                                                          & Yes \\
-			\hline
+			| >{\hsize=.75\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=0.45\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+		\hline
+		\rowcolor{primary} \textbf {Name} & \textbf {Description}                                                                                  & \textbf {Scalable} \\
+		\hline
+		\textbf {ilg-data}                & GraphQL Database access layer used to feed all needed data for other services from the Postgres DB.    & No                 \\
+		\hline
+		\textbf {ilg-api}                 & RESTful api to serve data to the React app dashboard.                                                  & No                 \\
+		\hline
+		\textbf {ilg-front}               & a React app dashboard application served throw NGINX.                                                  & No                 \\
+		\hline
+		\textbf {ilg-scheduler}           & Service thats responsible for scheduling and orchestrating the tasks queues and notifications.         & No                 \\
+		\hline
+		\textbf {ilg-scraper}             & Service thats responsible for scraping leads of campaigns links from LinkedIn Sales Navigator.         & Yes                \\
+		\hline
+		\textbf {ilg-automation}          & Service thats responsible for handling LinkedIn accounts inboxs/threads and sendings invites to leads. & Yes                \\
+		\hline
 	\end{tabularx}
 \end{table}
 \newpage
 \subsubsection{Cloud Infrastructure}
-Since we are using a Kubernetes Cluster for our Cloud Infrastructure, we decided to distribute our different microservices into their corresponding nodes (VMs) depending on their shared components and scalabity. So here is an overview of the current Cloud Infrastructure of the application : 
+Since we are using a Kubernetes Cluster for our Cloud Infrastructure, we decided to distribute our different microservices into their corresponding nodes (VMs) depending on their shared components and scalabity. So here is an overview of the current Cloud Infrastructure of the application :
 \linebreak
 \makebox[\textwidth]{\includegraphics[width=24cm]{src/assets/diagrams/cloud_infra.jpeg}}
 \subsection{Dashboard}
@@ -75,21 +75,21 @@ Task queues let applications perform work, called tasks, asynchronously outside 
 	\centering
 	\medskip
 	\begin{tabularx}{1\textwidth} {
-					| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-					| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-					| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-					| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
-			\hline
-			\rowcolor{primary} \textbf {Name} & \textbf {Description}   & \textbf {Producer} & \textbf {Consumer}                                                                                                                                                            \\
-			\hline
-			\textbf {campaign-scrape}     & Scrape list of leads from campaign search list  & ilg-scheduler & ilg-scraper  \\
-			\hline
-			\textbf {lead-scrape}     & Scrape lead information and save them in the database  & ilg-scheduler & ilg-scraper  \\
-			\hline
-			\textbf {handle-inbox}     & Hanle conversation threads of leads and send follow ups if needed  & ilg-scheduler & ilg-automation  \\
-			\hline
-			\textbf {send-invite}     & Send connection invite to leads  & ilg-scheduler & ilg-automation  \\
-			\hline
+			| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+			| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+		\hline
+		\rowcolor{primary} \textbf {Name} & \textbf {Description}                                             & \textbf {Producer} & \textbf {Consumer} \\
+		\hline
+		\textbf {campaign-scrape}         & Scrape list of leads from campaign search list                    & ilg-scheduler      & ilg-scraper        \\
+		\hline
+		\textbf {lead-scrape}             & Scrape lead information and save them in the database             & ilg-scheduler      & ilg-scraper        \\
+		\hline
+		\textbf {handle-inbox}            & Hanle conversation threads of leads and send follow ups if needed & ilg-scheduler      & ilg-automation     \\
+		\hline
+		\textbf {send-invite}             & Send connection invite to leads                                   & ilg-scheduler      & ilg-automation     \\
+		\hline
 	\end{tabularx}
 \end{table}
 \subsubsection{Scheduling tasks}
