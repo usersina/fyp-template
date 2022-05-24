@@ -53,7 +53,7 @@ Note that will be referenced in the tables below.
 Below are the necessary virtual machines needed to setup a self-managed Kubernetes Cluster.
 Please note that
 \begin{itemize}
-    \item What each of the services represent is already mentioned in \textbf{Chapter X: ---}
+    \item What each of the services represent is already mentioned in \textbf{Chapter 3: Analysis and specification of requirements}
     \item The size column which stands for the specification of the virtual machine is described in the previous section.
     \item The number of servers for \textbf{scraper}, and \textbf{automation} nodes will be scaled depending on the number of clients as mentioned in \textbf{Chapter 3: Analysis and specification of requirements}.
 \end{itemize}
@@ -133,15 +133,15 @@ For a single virtual machine, we have to do the following setup:
 
 \begin{itemize}
     \item Create a user with sudo permissions
-    \item Install the base package we will be using
+    \item Install the base packages we will be using
     \item Edit the hosts file so that the VM recognizes other VMs by their hostnames
     \item Install MicroK8s to have a single cluster node running on the VM
-    \item Join the VM or node the master node
+    \item Join the VM with the master node to have a multi-node cluster.
 \end{itemize}
 
 \subsection{Automating the process}
-Manually configuring the above can be extremely time consuming, unefficient and error prone when done manually.
-Therefore, we've created certain {\bf Ansible} scripts or playbooks that do just that. In the end, we simply edit a configuration file and directly run the script.
+Manually configuring the above can be extremely tedious, unefficient and error prone.
+Therefore, we've created {\bf Ansible} scripts or playbooks that do just that. In the end, we simply edit a configuration file and directly run the script.
 This has a huge advantange especially when
 \begin{itemize}
     \item We want to create a development environment for easy prototyping.
@@ -161,11 +161,11 @@ This has a huge advantange especially when
     \caption{The Ansible hosts configuration}
     \label{fig:image-of-ansible-hosts}
 \end{figure}
-Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from the figure above.
+Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from \textbf {Figure 10}.
 
 % ----------------------- Application pipeline ----------------------- %
 \section{Deployment process}
-This section will explain the approach we adopted to continously integrate, deploy and deliver our application as per the best practices previoulsy mentioned in \textbf{Chapter 3: State of the art}.
+This section will explain the approach we adopted to continously integrate, deploy and deliver our application as per the best practices of DevOps previoulsy mentioned in \textbf{Chapter 3: State of the art}.
 The deployment is currently supported on two different environments; the staging environment where we make sure our application works as intended, and of course the production environment.
 
 \subsection{Adopted strategy}
@@ -174,14 +174,13 @@ For that reason we use the following steps to deploy our application.
 \begin{itemize}
     \item On code changes on any microservice, we create a new Docker image that we push to a custom container registry.
     \item Once the build is finished, we trigger a multi-project pipeline to a central repository we will call ilg-controller.
-    \item The central repository will interact with our Kubernetes cluster to make the final deployment to the correct environment and using the correct Docker image.
+    \item The central repository will interact with our Kubernetes cluster to make the final deployment to the correct environment using a custom Helm package that we create.
 \end{itemize}
 
-This is further explained in the sections Continuous Integration and Continuous Deployment below.
+This is further explained in detail in the following sub sections.
 
 \subsection{Linking the cluster to GitLab}
-Since we have a Kubernetes cluster and we also use GitLab, we will link the two using the GitLab Kubernetes Agent.
-To keep it well organized, we will install the agent with Helm like GitLab recommends.
+Since we have a Kubernetes cluster and we also use GitLab, we will link the two using the GitLab Kubernetes Agent, or KAS for short.
 
 \begin{figure}[H]
     \centering
@@ -193,19 +192,54 @@ To keep it well organized, we will install the agent with Helm like GitLab recom
 % CI Continuous Integration
 \subsection{Continuous Integration}
 When developers make code changes to the main branch of any microservice, tests are automatically executed.
-If the tests are validated, a new Docker image that incorporates the changes the developers made will be pushed to the container registry.
+If the tests are validated, a new Docker image that incorporates the changes the developers made will be pushed to the container registry and our deployment pipeline will be triggered.
 In other words, the new code will be integrated and that actually marks the end of this step.
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/ci-pipeline.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=11cm]{src/assets/images/ci-pipeline-extract.JPG}}
     \caption{Extract from the CI pipeline}
     \label{fig:extract-from-ci-pipeline}
 \end{figure}
 
 % CD Continuous Deployment
 \subsection{Continuous Deployment}
+Our ilg-controller repository (where KAS is configured) will choose the correct microservice to deploy depending on the trigger input.
+It then sets the necessary environment variables for it and installs it from a custom Helm package we've created for the deployment.
 
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=11cm]{src/assets/images/cd-makefile-extract.JPG}}
+    \caption{Extract from the deployment Makefile}
+    \label{fig:extract-from-cd-makefile}
+\end{figure}
 % NOTE: Continuous delivery is a partly manual process where developers can deploy any changes to customers by simply clicking a button, while continuous deployment emphasizes automating the entire the process.
+
+% Custom Helm Package
+\subsection{Custom Helm Package}
+Since we agreed to use Helm (refer to \textbf{Chapter 2: State of the art}), we've created a package -or in terms of Helm- a chart of our own to manage the Kubernetes cluster resources.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/helm-chart-code-extract.JPG}}
+    \caption{Extract from the custom Helm Chart}
+    \label{fig:extract-from-custom-helm-chart}
+\end{figure}
+
+We even integrate a CI/CD pipeline for the Helm chart itself so that new packages are built automatically whenever we make changes to the manifest files.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/build-pacakge-stage.JPG}}
+    \caption{Extract from the custom Helm package's pipeline}
+    \label{fig:build-package-stage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/gitlab-package-registry.JPG}}
+    \caption{GitLab's package registry}
+    \label{fig:gitlab-package-registry}
+\end{figure}
 
 \newpage
 % ----------------------- Technologies ----------------------- %
@@ -214,7 +248,7 @@ This part is reserved for the presentation of all of the software used in the re
 
 \medskip
 For a comparative analysis on some of our choices, see \textbf {Chapter 2: State of the art}.
-TODO: Transform into a table
+% NOTE: Transform into a table if total page number goes over 70 or so
 
 \begin{itemize}
     \item \textbf{Git:} \newline
@@ -349,14 +383,20 @@ TODO: Transform into a table
               \includegraphics[width=3.8cm]{src/assets/logos/gitlab-kubernetes-agent_512x512.png}
               \captionof{figure}{Logo of GitLab Agent for Kubernetes}
           \end{minipage}
+    \item \textbf{Helm:} \newline Helm is the most popular package manager for Kubernetes. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=4cm]{src/assets/logos/helm_512x512.png}
+              \captionof{figure}{Logo of Helm}
+          \end{minipage}
+
+          \newpage
     \item \textbf{LaTeX:} \newline \cite{latex-project} A high-quality document preparation and typesetting system for technical grade documents. \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=4cm]{src/assets/logos/latex_200x200.png}
               \captionof{figure}{Logo of The LaTeX Project}
           \end{minipage}
-
-          \newpage
           %   MSTeams, Asana, Signal?
 \end{itemize}
 
