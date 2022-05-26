@@ -32,18 +32,24 @@ Development refers to writing code and software, whereas operations refer to pro
 
 \medskip
 DevOps teams focus on automating all of the above.
-The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code (IAC).
+The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code and automation.
 
 \subsection{Lifecycle}
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=9cm]{src/assets/images/devops.png}}
-    \caption{DevOps lifecycle}
+    \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/devops-lifecycle.png}}
+    \caption{DevOps and the application lifecycle}
     \label{fig:devops-lifecycle}
 \end{figure}
-TODO: \lipsum[2]
-A continuous integration and continuous deployment (CI/CD) pipeline is a series of steps that must be performed in order to deliver a new version of software.
-CI/CD pipelines are a practice focused on improving software delivery throughout the software development life cycle via automation. \cite{cicd-definition}
+
+DevOps -according to Azure- is the main influencer of the application lifecycle throughout its plan, develop, deliver, and operate phases. All of the phaes rely on one another and they are not role-specific. In a true DevOps culture, each role is involved in each phase to some extent. \cite{devops}
+
+\begin{itemize}
+    \item \textbf{Plan:} In this first stage, DevOps teams define and describe the main features of the system being created. They accomplish that by many ways. Some of which are creating backlogs, tracking bugs, using Kanban boards and visualizing progress with dashboards.
+    \item \textbf{Develop:} This step includes all aspects of coding, testing, reviewing and code integration. It also includes creating build artifacts that can be deployed into various environments. Automation of mundane and manual tasks plays a heavy role in this phase through automated testing and continuous integration.
+    \item \textbf{Deliver:} This is the process of deploying application into various environments such as staging or production consistently and reliably. It also includes deploying and configuring the infrastructure that makes up the environments. The DevOps team defines a release management process with automated gates or checkpoints the move the applications between stages in order to delploy in an efficient, scalable, repeatable and controllable way.
+    \item \textbf{Operate:} The operate phase involves maintaining, monitoring and troubleshooting the application in the production environment. The purpose of this phase is ensuring high availability, system reliability and zero downtime. This requires alerting and full visibility into the application.
+\end{itemize}
 
 \subsection{Container management}
 Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
