@@ -104,14 +104,14 @@ The most used tools for version control are Git and SVN. Here is a table compari
     \medskip
     \begin{tabularx}{1\textwidth} {
             | >{\hsize=.5\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.25\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+            | >{\hsize=1.25\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.25\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {Advantages}                                                                                                                                                           \\
+        \rowcolor{primary} & \textbf {Description}                                                                                                                                    & \textbf {Advantages}                                                                                                                                                                     \\
         \hline
-        \textbf{Git}       & Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \textbf{Git}       & \noindent Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & \noindent Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
         \hline
-        \textbf{SVN}       & SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \textbf{SVN}       & \noindent SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & \noindent SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
         \hline
     \end{tabularx}
 \end{table}
@@ -125,17 +125,17 @@ Although Docker is widely popular, Podman is also taking its share from the mark
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
-            | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+            | >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                                                                                                                    & \textbf {Podman}                                                                                                                                                            \\
+        \rowcolor{primary} \textbf {Aspect} & \textbf {Docker}                                                                                                                                                                                                                    & \textbf {Podman}                                                                                                                                                                      \\
         \hline
-        \textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker and Podman are both  container management technologies used to build container images and store said images in a registry to then run them as containers in a target environment.}                                                                                                                                                                               \\
+        \textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker and Podman are both  container management technologies used to build container images and store said images in a registry to then run them as containers in a target environment.}                                                                                                                                                                                         \\
         \hline
-        \textbf {Technology}                & Docker uses the containerd daemon which does the pulling of images then hands over the creation process to a low-level runtime named runc.                                                                                          & Podman uses a daemon-less approach using a technology named conmon which does the heavy lifting. It also delegates the container creation to a low-level container runtime. \\
+        \textbf {Technology}                & \noindent Docker uses the containerd daemon which does the pulling of images then hands over the creation process to a low-level runtime named runc.                                                                                & \noindent Podman uses a daemon-less approach using a technology named conmon which does the heavy lifting. It also delegates the container creation to a low-level container runtime. \\
         \hline
-        \textbf {Specificity}               & Docker Desktop is a great feature for Docker which provides an easy way to build and distribute containers amongst developers.                                                                                                      & The smallest unit in Podman is the pod. A pod is the organizational unit for containers and is directly compatible with Kubernetes.                                         \\
+        \textbf {Specificity}               & \noindent Docker Desktop is a great feature for Docker which provides an easy way to build and distribute containers amongst developers.                                                                                            & \noindent The smallest unit in Podman is the pod. A pod is the organizational unit for containers and is directly compatible with Kubernetes.                                         \\
         \hline
     \end{tabularx}
 \end{table}
@@ -150,14 +150,14 @@ Both are Node.js libraries for browser automation. The table below compares thes
     \medskip
     \begin{tabularx}{1\textwidth} {
             | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf {Category} & \textbf {Puppeteer}                                                                                                            & \textbf {Playwright}                                                                                                                                               \\
+        \rowcolor{primary} \textbf {Category} & \textbf {Puppeteer}                                                                                                                      & \textbf {Playwright}                                                                                                                                                         \\
         \hline
-        \textbf {Overview}                    & Puppeteer makes it easy to get started with browser automation. This is in part because of how it interfaces with the browser. & Playwright is very similar to Puppeteer in many respects. The API methods are identical in most cases, and Playwright also bundles compatible browsers by default. \\
+        \textbf {Overview}                    & \noindent Puppeteer makes it easy to get started with browser automation. This is in part because of how it interfaces with the browser. & \noindent Playwright is very similar to Puppeteer in many respects. The API methods are identical in most cases, and Playwright also bundles compatible browsers by default. \\
         \hline
-        \textbf {Community}                   & Has a large community with lots of active projects.                                                                            & Small but active community.                                                                                                                                        \\
+        \textbf {Community}                   & \noindent Has a large community with lots of active projects.                                                                            & \noindent Small but active community.                                                                                                                                        \\
         \hline
     \end{tabularx}
 \end{table}
@@ -171,17 +171,17 @@ The old architecture of ILG uses MySQL but we have the choice to use a different
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
-            | >{\hsize=.7\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-            | >{\hsize=1.15\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+            | >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf {Category} & \textbf {MongoDB}                                                       & \textbf {MySQL}                                                                                    \\
+        \rowcolor{primary} \textbf {Category} & \textbf {MongoDB}                                                                 & \textbf {MySQL}                                                                                              \\
         \hline
-        \textbf {Overview}                    & An open-source NoSQL that stores data in JSON-like documents.           & An open-source relational database system.                                                         \\
+        \textbf {Overview}                    & \noindent An open-source NoSQL that stores data in JSON-like documents.           & \noindent An open-source relational database system.                                                         \\
         \hline
-        \textbf {Storage}                     & Stores data in documents that belong to a particular class or group.    & Data is stored in tables where each table corresponds to an entity.                                \\
+        \textbf {Storage}                     & \noindent Stores data in documents that belong to a particular class or group.    & \noindent Data is stored in tables where each table corresponds to an entity.                                \\
         \hline
-        \textbf {Type}                        & NoSQL, meaning that data in a collection can have different structures. & Uses SQL (Standard Query Language) meaning that the schema of data cannot be changed once defined. \\
+        \textbf {Type}                        & \noindent NoSQL, meaning that data in a collection can have different structures. & \noindent Uses SQL (Standard Query Language) meaning that the schema of data cannot be changed once defined. \\
         \hline
     \end{tabularx}
 \end{table}
@@ -196,21 +196,54 @@ The most used tools for version control are Git and SVN. Here is a table compari
     \medskip
     \begin{tabularx}{1\textwidth} {
             | >{\hsize=.6\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X
-            | >{\hsize=1.2\hsize\linewidth=\hsize\centering\arraybackslash}X |}
+            | >{\hsize=1.2\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.2\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} & \textbf {Description}                                                                                                                & \textbf {In depth}                                                                                                                \\
+        \rowcolor{primary} & \textbf {Description}                                                                                                                          & \textbf {In depth}                                                                                                                          \\
         \hline
-        \textbf{GraphQL}   & An open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data.               & Describe only what's needed in queries, so no under or over fetching. It is also Schema and Type safe so it's less prone to bugs. \\
-        \hline
-        \textbf{REST}      & REST (Representational State Transfer) is an architectural style that conforms to a set of constraints when developing web services. & It was introduced as a successor to SOAP APIs, follows the REST standards and is not constrained to XML.                          \\
+        \textbf{GraphQL}   & \noindent An open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data.               & \noindent Describe only what's needed in queries, so no under or over fetching. It is also Schema and Type safe so it's less prone to bugs. \\
+        \hline\noindent
+        \textbf{REST}      & \noindent REST (Representational State Transfer) is an architectural style that conforms to a set of constraints when developing web services. & \noindent It was introduced as a successor to SOAP APIs, follows the REST standards and is not constrained to XML.                          \\
         \hline
     \end{tabularx}
 \end{table}
 Since the old architecture uses MySQL, we will be sticking to it in the new architecture.
 
-\subsection{Deployment: Kubernetes vs Docker Compose}
-TODO: The old architecture uses Docker Compose, but we suggested Kubernetes instead.
+\subsection{Deployment: Docker Swarm vs Kubernetes}
+The old deployment uses Docker Compose, but we had to to a comparative study instead of the available tools on the market since docker-compose is not very optimized for production.
+Our research led us to both Docker Swarm and Kubernetes.
+
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between Docker Swarm and Kubernetes}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} \textbf {Aspect} & \textbf{Docker Swarm}                                                                                                                                                                                                                                                               & \textbf{Kubernetes}                                                      \\
+        \hline
+        \textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker Swarm is a lightweight, easy-to-use orchestration tool with limited offerings compared to Kubernetes. In contrast, Kubernetes is complex but powerful and it provides self-healing, and auto-scaling capabilities out of the box.}                                                                            \\
+        \hline
+        \textbf {Advantages}                & \begin{itemize}[leftmargin=*, topsep=0pt, itemsep=1pt, parsep=2pt]
+                                                  \item Straightforward to install
+                                                  \item Takes less time to learn
+                                                  \item Works with the Docker CLI
+                                              \end{itemize}                                                                                                                                                                                                                  & \begin{itemize}[leftmargin=*, topsep=0pt, itemsep=1pt, parsep=2pt]
+                                                                                                                                                                                                                                                                                   \item Can sustain and manage large architectures and complex workloads
+                                                                                                                                                                                                                                                                                   \item Has a self-healing capacity that supports automatic scaling.
+                                                                                                                                                                                                                                                                                   \item Supports every operating system.
+                                                                                                                                                                                                                                                                                   \item Has a large open-source community with Google's backup.
+                                                                                                                                                                                                                                                                                   \item The most popular distributed system orchestrator in the world.
+                                                                                                                                                                                                                                                                               \end{itemize}                                                         \\
+        \hline
+        \textbf {Disadvantages}             & \noindent It has been abandoned by Docker Inc. and is no longer maintained.                                                                                                                                                                                                         & \noindent It has a steep learning curve and requires separate CLI tools. \\
+        \hline
+    \end{tabularx}
+\end{table}
+Therefore, we will be deploying our application stack to Kubernetes since the potential is huge compared to the deprecated Docker Swarp.
 
 \subsection{Deployment management: Kubectl vs Helm}
 TODO: The old architecture uses Docker Compose, but we suggested Kubernetes instead.
