@@ -101,8 +101,6 @@ Here is an overview of the different services of the application before we dive 
 Since we are using a Kubernetes Cluster for our Cloud Infrastructure, we decided to distribute our different microservices into their corresponding nodes (VMs) depending on their shared components and scalabity. So here is an overview of the current Cloud Infrastructure of the application :
 \linebreak
 \makebox[\textwidth]{\includegraphics[width=24cm]{src/assets/diagrams/cloud_infra.jpeg}}
-\subsection{Dashboard}
-\subsubsection{Conception of the features}
 \newpage
 \subsection{Tasks \& Queues}
 \subsubsection{Thoery of tasks and queues}
@@ -144,20 +142,27 @@ Here are the different types of the system tasks :
 Scheduling the different types of tasks is mainly done by the ilg-scheduler service periodically on daily basis. and we use our database thats acceciabble by ilg-data, as the store of those task queues with all of their corresponding informations and state. 
 \linebreak
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/producer_consumer.png}}
-\subsection{Automation \& Scraper}
-\subsubsection{Automation flow}
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/send_invite_sequence.png}}
 \newpage
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/handle_inbox_sequence.png}}
+\subsection{Scraper \& Automation}
+Both the scraper and the automation services are responsible for consuming the tasks of the system on daily basis for generating the leads of a campaign.
 \subsubsection{Scraper flow}
+Here is the sequence diagrams of the \textbf{campaign-scrape} and \textbf{lead-scrape} tasks that the scrape service is responsible for :
+\linebreak
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/campaign_scraper_sequence.png}}
 \newpage
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/lead_scraper_sequence.png}}
-\subsubsection{Horizontally Scaling}
+\newpage
+\subsubsection{Automation flow}
+Here is the sequence diagrams of the \textbf{send-invite} and \textbf{handle-inbox} tasks that the automation service is responsible for :
+\linebreak
+\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/send_invite_sequence.png}}
+\newpage
+\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/handle_inbox_sequence.png}}
 \newpage
 \subsection{Data Layer API}
-\subsubsection{Schema}
+\subsubsection{Schema ( Entity Relationship Diagram )}
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/er.png}}
+\newpage
 \subsubsection{Different interfaces}
 REST and GraphQL
 \newpage
