@@ -159,14 +159,19 @@ Here is the sequence diagrams of the \textbf{send-invite} and \textbf{handle-inb
 \newpage
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/handle_inbox_sequence.png}}
 \newpage
-\subsection{Data Layer API}
+\subsection{Data Layers}
 \subsubsection{Schema ( Entity Relationship Diagram )}
+Here is the entity relationship diagram of the application database schema :
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/er.png}}
 \newpage
 \subsubsection{Different interfaces}
-REST and GraphQL
+Mainly we have two interfaces to access the database from all other services of the application :
+\begin{itemize}
+  \item \textbf{GraphQL API Layer}: this interface is used by all the internal services of the application to access the data. so this layer is only reachable within the \textbf{internal private virtual network} and \textbf{not exposed for public}.
+  \item \textbf{RESTful API Layer}: this interface is used by the frontend application to access the data. so this layer is \textbf{ exposed for private} but of course secuired by am authentifition and authorization systems.
+\end{itemize}
 \newpage
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-\lipsum[2]
+In this chapter, we discussed the main features of the application and its different layers and services. so now with everything clear and explained, we can start discussing the realization part and our final products in the next chapter.
