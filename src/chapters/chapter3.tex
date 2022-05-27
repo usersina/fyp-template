@@ -14,14 +14,52 @@ Our requirements are divided into two parts, the clients portal of the applicati
 \subsubsection{Requirements}
 Here is a global use case diagram that specifies the dashboard requirements :
 \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/diagrams/usecase.png}}
+\newpage
+\subsubsection{Actors}
+Mainly, there are 3 types of actors of the system:
+\begin{itemize}
+  \item \textbf{Super Admin}: the main administrator of the system.
+  \item \textbf{Admin}: the administrator of the system but with lower priviledges then the SuperAdmin.
+  \item \textbf{User}: the main user of the system, who can benefits from the different features the system offers, usually a represontative from the client. 
+\end{itemize}
 \subsubsection{User management}
+Here are the main requirements of user management for different type of actors:
+\begin{itemize}
+  \item As a \textbf{Super Admin}, i can create, modify or delete users and admins accounts.
+  \item As an \textbf{Admin}, i can create, modify or delete user's accounts (clients).
+  \item As an \textbf{Admin}, i can add or remove credit from user's accounts (clients).
+	\item As an \textbf{Admin}, i can view my user's accounts, their used and bought credits.
+\end{itemize}
 \subsubsection{Campaign management}
+Here are the main requirements of user management for different type of actors:
+\begin{itemize}
+  \item As a \textbf{User}, i can create my campaigns specifiying the LinkedIn account credentials to be used, the campaign list, salutatiom messages, invite messages, follow up messages and the number of invites per day.
+  \item As a \textbf{User}, i can update my campaigns details such as the LinkedIn account credentials, the campaign list, salutatiom messages, invite messages, follow up messages and the number of invites per day.
+  \item As a \textbf{User}, i can delete my campaigns.
+  \item As a \textbf{User}, i can activate my campaigns.
+  \item As a \textbf{User}, i can stop my campaigns.
+  \item As a \textbf{User}, i can export informations about the scraped leads as a CSV file.
+\end{itemize}
 \subsubsection{Campaign monitoring}
+\begin{itemize}
+  \item As a \textbf{Super Admin}, i can view all the campaigns records, on day by day basis or in a specific range of dates with informations such as number of invites sent, number of follow ups sent and the number of withdrawn invites.
+  \item As a \textbf{User}, i can view my campaigns analytics with informations such as requested, connected, replied leads, and convertion rates.
+\end{itemize}
 % TODO : CHANGE_ME
 \subsection{Lead generating}
 \subsubsection{Requirements}
+The lead generating is the process of \textbf{scraping} the LinkedIn accounts and \textbf{generating} leads by sending theme customized invite and follow ups messages depending on the user's campaign preferences. So here is the requirements of both parts :
 \subsubsection{Scraping leads}
-\subsubsection{Contacting Leads}
+\begin{itemize}
+  \item Each day, the system generate a defined number leads profiles from a campaign (search) list.
+  \item Each day, Scrape and save a defined number of leads profiles to get all their available professional informations.
+\end{itemize}
+\subsubsection{Generating leads}
+\begin{itemize}
+  \item Each day, The system sends a defined number from the user preference range of connection invites to the scraped leads. 
+  \item The system sends out first follow up message to leads that accepted the connection request and did not yet reply, the first follow up message is sent the earliest 24 hours after the connection request has been sent.
+  \item Second follow up message is sent out on the day after the first follow up message was sent if the lead stil not yet replied. 
+\end{itemize}
 
 % TODO : CHANGE_ME
 \newpage
@@ -65,10 +103,16 @@ Since we are using a Kubernetes Cluster for our Cloud Infrastructure, we decided
 \newpage
 \subsection{Tasks \& Queues}
 \subsubsection{Thoery of tasks and queues}
-Task queues let applications perform work, called tasks, asynchronously outside of a user request. If an app needs to execute work in the background, it adds tasks to task queues. The tasks are executed later, by worker services. The Task Queue service is designed for asynchronous work.
+Task queues let applications perform work, called tasks, asynchronously outside of a user request. If an app needs to execute work in the background,
+ it adds tasks to task queues. The tasks are executed later, by worker services. The Task Queue service is designed for asynchronous work.
 \linebreak
-\makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/diagrams/task-queue.png}}
+All the lead generating features are implemented as a task queue.
+\linebreak
+\linebreak
+\makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/diagrams/task-queue.png}}
+\newpage
 \subsubsection{Tasks queues types}
+Here are the different types of the system tasks :
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1.5}%
 	\caption{All the application's tasks/jobs}
@@ -92,7 +136,10 @@ Task queues let applications perform work, called tasks, asynchronously outside 
 		\hline
 	\end{tabularx}
 \end{table}
+\newpage
 \subsubsection{Scheduling tasks}
+Scheduling the different types of tasks is mainly done by the ilg-scheduler service periodically on daily basis. and we use our database thats acceciabble by ilg-data, as the store of those task queues with all of their corresponding informations and state. 
+\linebreak
 \makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/producer_consumer.png}}
 \subsection{Automation \& Scraper}
 \subsubsection{Automation flow}
