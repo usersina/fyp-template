@@ -4,7 +4,7 @@
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
-This chapter will present and study various concepts such as Automation, Web Scraping, Version Control, DevOps, State Machine with an emphasis on the DevOps terminology such as the CI/CD pipelines.
+This chapter will present and study various concepts such as browser automation, web scraping, version control and DevOps with an emphasis on key DevOps terminologies.
 We will talk about the most used tools in the market as well as which ones we settled on after making a comparison.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
@@ -59,6 +59,10 @@ What this implies is that said containers can be easily copied to and run on dif
 \subsubsection*{What is container management ?}
 Container management is the process for automating the creation, deployment and scaling of containers \cite{container-management}.
 Container management tools such as Docker and Podman facilitate the addition, replacement and organization of containers.
+
+\subsection{CI/CD pipelines}
+A continuous integration and continuous deployment (CI/CD) pipeline is a series of steps that must be performed in order to deliver a new version of software.
+CI/CD pipelines are a practice focused on improving software delivery throughout the software development life cycle via automation. \cite{cicd-definition}
 
 % ----------------------- Mincroservices ----------------------- %
 \section{Microservices}
@@ -223,32 +227,53 @@ Our research led us to both Docker Swarm and Kubernetes.
             | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
             | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf {Aspect} & \textbf{Docker Swarm}                                                                                                                                                                                                                                                               & \textbf{Kubernetes}                                                      \\
+        \rowcolor{primary} \textbf {Aspect} & \textbf{Docker Swarm}                                                                                                                                                                                                                                                              & \textbf{Kubernetes}                                                      \\
         \hline
-        \textbf {Definition}                & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker Swarm is a lightweight, easy-to-use orchestration tool with limited offerings compared to Kubernetes. In contrast, Kubernetes is complex but powerful and it provides self-healing, and auto-scaling capabilities out of the box.}                                                                            \\
+        \textbf {Overview}                  & \multicolumn{2}{|>{\hsize=2.35\hsize}X|} {Docker Swarm is a lightweight, easy-to-use orchestration tool with limited offerings compared to Kubernetes. In contrast, Kubernetes is complex but powerful and it provides self-healing and auto-scaling capabilities out of the box.}                                                                            \\
         \hline
         \textbf {Advantages}                & \begin{itemize}[leftmargin=*, topsep=0pt, itemsep=1pt, parsep=2pt]
                                                   \item Straightforward to install
                                                   \item Takes less time to learn
                                                   \item Works with the Docker CLI
-                                              \end{itemize}                                                                                                                                                                                                                  & \begin{itemize}[leftmargin=*, topsep=0pt, itemsep=1pt, parsep=2pt]
-                                                                                                                                                                                                                                                                                   \item Can sustain and manage large architectures and complex workloads
-                                                                                                                                                                                                                                                                                   \item Has a self-healing capacity that supports automatic scaling.
-                                                                                                                                                                                                                                                                                   \item Supports every operating system.
-                                                                                                                                                                                                                                                                                   \item Has a large open-source community with Google's backup.
-                                                                                                                                                                                                                                                                                   \item The most popular distributed system orchestrator in the world.
-                                                                                                                                                                                                                                                                               \end{itemize}                                                         \\
+                                              \end{itemize}                                                                                                                                                                                                                 & \begin{itemize}[leftmargin=*, topsep=0pt, itemsep=1pt, parsep=2pt]
+                                                                                                                                                                                                                                                                                  \item Can sustain and manage large architectures and complex workloads
+                                                                                                                                                                                                                                                                                  \item Has a self-healing capacity that supports automatic scaling.
+                                                                                                                                                                                                                                                                                  \item Supports every operating system.
+                                                                                                                                                                                                                                                                                  \item Has a large open-source community with Google's backup.
+                                                                                                                                                                                                                                                                                  \item The most popular distributed system orchestrator in the world.
+                                                                                                                                                                                                                                                                              \end{itemize}                                                         \\
         \hline
-        \textbf {Disadvantages}             & \noindent It has been abandoned by Docker Inc. and is no longer maintained.                                                                                                                                                                                                         & \noindent It has a steep learning curve and requires separate CLI tools. \\
+        \textbf {Disadvantages}             & \noindent It has been abandoned by Docker Inc. and is no longer maintained.                                                                                                                                                                                                        & \noindent It has a steep learning curve and requires separate CLI tools. \\
         \hline
     \end{tabularx}
 \end{table}
-Therefore, we will be deploying our application stack to Kubernetes since the potential is huge compared to the deprecated Docker Swarp.
+Therefore, we will be deploying our application stack to Kubernetes since the potential is huge compared to the deprecated Docker Swarm.
 
 \subsection{Deployment management: Kubectl vs Helm}
-TODO: The old architecture uses Docker Compose, but we suggested Kubernetes instead.
+Since we're using Kubernetes, we have the option to deploy our microservices either with kubectl or with helm.
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.5}%
+    \caption{Comparative study between Kubectl and Helm}
+    \centering
+    \medskip
+    \begin{tabularx}{1\textwidth} {
+            | >{\hsize=.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
+            | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
+        \hline
+        \rowcolor{primary} \textbf {Aspect} & \textbf{Kubectl}                                                                                                                                                                                                                     & \textbf{Helm}                                                                                                                                                                                                                                           \\
+        \hline
+        \textbf {Overview}                  & \noindent Kubectl is the official Kubernetes command-line tool that allows running commands against Kubernetes clusters.                                                                                                             & \noindent Helm -in a nutshell- is the package manager for Kubernetes.                                                                                                                                                                                   \\
+        \hline
+        \textbf {In depth}                  & \noindent Kubectl can be used to deploy applications, inspect and manage cluster resources and also view logs. It also provides many other advanced functionality such as node tainting or setting up strategies for load balancing. & \noindent Helm helps in defining, installing and upgrading the most complex Kubernetes applications. Helm templates also provide a very clean way to avoid code duplication between similar resources in applications, such as services or deployments. \\
+        \hline
+    \end{tabularx}
+\end{table}
+Thouroughly studying our use case, we agreed to create a uniform Helm package to ship our microservices.
+We also deemed it necessary to have some common configuration that we simply apply with kubectl such as Ingress rules for convenience.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-\lipsum[2]
+In this chapter, we discussed the main concepts relevant to our project such as web scraping, automation and DevOps.
+Then we talked about some of the tools in the market and discussed some of our choices.
