@@ -7,7 +7,8 @@
 In this chapter, we will finally discuss the long awaited realization.
 This is the implementation phase where all of the work done in the previous chapters comes into picture.
 This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the ILG application to a new scalable architecture.
-We will start with the new architecture hardware and software setup, present some of the difficulties we encountered and then list all of the technologies we've used for our work.
+We will start with the new architecture hardware and software setup, talk a little bit about monitoring the application.
+Later on, we will present some of the difficulties we encountered and then list all of the technologies we've used for our work.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- Hardware setup ----------------------- %
@@ -240,8 +241,25 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
     \caption{GitLab's package registry}
     \label{fig:gitlab-package-registry}
 \end{figure}
+\newpage
+
+% ----------------------- Monitoring ----------------------- %
+\section{Monitoring}
+In order to make the most out of our Kubernetes setup, we also setup basic monitoring for our whole application stack.
+The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices. By using and configuring the Kubernetes community's Helm pacakges, we can very easily deploy what's called the Kubernetes Prometheus Stack which will give us access to many things, one of which is the Grafana dashboard.
+
+\medskip
+We won't go into too much details into the architecture of Grafana and Prometheus since that's beyond the scope of this report.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/grafana-nodes-monitoring.JPG}}
+    \caption{Monitoring the cluster nodes with Grafana}
+    \label{fig:grafana-node-monitoring}
+\end{figure}
 
 \newpage
+
 % ----------------------- Technologies ----------------------- %
 \section{Technologies}
 This part is reserved for the presentation of all of the software used in the realization of the project and includes but is not limited to; programming languages, frameworks, technologies, etc...
