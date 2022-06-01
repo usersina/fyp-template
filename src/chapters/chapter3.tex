@@ -4,71 +4,96 @@
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
-In this chapter, we are going to analyze the specification and the requirements of the application, mostly this chapter will contains the product main features and their conception so we will have our expectation for the end result.
-\setcounter{secnumdepth}{3} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
+In this chapter, we are going to analyze the specification and the requirements of the application.
+This chapter will describe the product's main features and their conception that should be met for the end result.
 
+\setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- Requirements ----------------------- %
 \section{Requirements}
-Our requirements are divided into two parts, the clients portal of the application called Dashboard, and the lead generating and handling happening in the background.
+Our requirements are divided into two parts:
+\begin{itemize}
+	\item The public client portal of the application or dashboard.
+	\item The lead generating happening in the background.
+\end{itemize}
+
 \subsection{Dashboard}
+
 \subsubsection{Requirements}
-Here is a global use case diagram that specifies the dashboard requirements :
-\makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/diagrams/usecase.png}}
-\newpage
+Here is a global use case diagram that specifies the dashboard requirements:
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/diagrams/usecase.png}}
+	\caption{Use case diagram}
+	\label{fig:use-case-diagram}
+\end{figure}
+
 \subsubsection{Actors}
 Mainly, there are 3 types of actors of the system:
 \begin{itemize}
-  \item \textbf{Super Admin}: the main administrator of the system.
-  \item \textbf{Admin}: the administrator of the system but with lower priviledges then the SuperAdmin.
-  \item \textbf{User}: the main user of the system, who can benefits from the different features the system offers, usually a represontative from the client. 
-\end{itemize}
-\subsubsection{User management}
-Here are the main requirements of user management for different type of actors:
-\begin{itemize}
-  \item As a \textbf{Super Admin}, i can create, modify or delete users and admins accounts.
-  \item As an \textbf{Admin}, i can create, modify or delete user's accounts (clients).
-  \item As an \textbf{Admin}, i can add or remove credit from user's accounts (clients).
-	\item As an \textbf{Admin}, i can view my user's accounts, their used and bought credits.
-\end{itemize}
-\subsubsection{Campaign management}
-Here are the main requirements of user management for different type of actors:
-\begin{itemize}
-  \item As a \textbf{User}, i can create my campaigns specifiying the LinkedIn account credentials to be used, the campaign list, salutatiom messages, invite messages, follow up messages and the number of invites per day.
-  \item As a \textbf{User}, i can update my campaigns details such as the LinkedIn account credentials, the campaign list, salutatiom messages, invite messages, follow up messages and the number of invites per day.
-  \item As a \textbf{User}, i can delete my campaigns.
-  \item As a \textbf{User}, i can activate my campaigns.
-  \item As a \textbf{User}, i can stop my campaigns.
-  \item As a \textbf{User}, i can export informations about the scraped leads as a CSV file.
-\end{itemize}
-\subsubsection{Campaign monitoring}
-\begin{itemize}
-  \item As a \textbf{Super Admin}, i can view all the campaigns records, on day by day basis or in a specific range of dates with informations such as number of invites sent, number of follow ups sent and the number of withdrawn invites.
-  \item As a \textbf{User}, i can view my campaigns analytics with informations such as requested, connected, replied leads, and convertion rates.
-\end{itemize}
-% TODO : CHANGE_ME
-\subsection{Lead generating}
-\subsubsection{Requirements}
-The lead generating is the process of \textbf{scraping} the LinkedIn accounts and \textbf{generating} leads by sending theme customized invite and follow ups messages depending on the user's campaign preferences. So here is the requirements of both parts :
-\subsubsection{Scraping leads}
-\begin{itemize}
-  \item Each day, the system generate a defined number leads profiles from a campaign (search) list.
-  \item Each day, Scrape and save a defined number of leads profiles to get all their available professional informations.
-\end{itemize}
-\subsubsection{Generating leads}
-\begin{itemize}
-  \item Each day, The system sends a defined number from the user preference range of connection invites to the scraped leads. 
-  \item The system sends out first follow up message to leads that accepted the connection request and did not yet reply, the first follow up message is sent the earliest 24 hours after the connection request has been sent.
-  \item Second follow up message is sent out on the day after the first follow up message was sent if the lead stil not yet replied. 
+	\item \textbf{Super Admin}: The main administrator with full access permissions to the system.
+	\item \textbf{Admin:} The administrator of the system with slightly less privileges than the Super Admin.
+	\item \textbf{User:} The main user of the system, who benefits from the different features the system offers, usually a client representative.
 \end{itemize}
 
-% TODO : CHANGE_ME
+\subsubsection{User management}
+Here are the main requirements of user management for the different type of actors:
+\begin{itemize}
+	\item As a \textbf{Super Admin}, I can create, modify or delete users and admins accounts.
+	\item As an \textbf{Admin}, I can create, modify or delete user's accounts (clients).
+	\item As an \textbf{Admin}, I can add or remove credit from user's accounts (clients).
+	\item As an \textbf{Admin}, I can view my user's accounts, their used and bought credits.
+\end{itemize}
+
+\subsubsection{Campaign management}
+Here are the main requirements of campaign management for the different type of actors:
+\begin{itemize}
+	\item As a \textbf{User}, I can create my campaign specifying the LinkedIn account credentials to be used, the campaign list, salutation messages, invite messages, follow up messages and the number of invites per day.
+	\item As a \textbf{User}, I can update my campaigns details such as the LinkedIn account credentials, the campaign list, salutation messages, invite messages, follow up messages and the number of invites per day.
+	\item As a \textbf{User}, I can delete my campaigns.
+	\item As a \textbf{User}, I can activate my campaigns.
+	\item As a \textbf{User}, I can stop my campaigns.
+	\item As a \textbf{User}, I can export information about the scraped leads as a CSV file.
+\end{itemize}
+
+\subsubsection{Campaign monitoring}
+\begin{itemize}
+	\item As a \textbf{Super Admin}, I can view the campaigns' records, on day by day basis or in a specific range of dates with information such as number of invites sent, number of follow ups sent and the number of withdrawn invites.
+	\item As a \textbf{User}, I can view my campaigns' analytics with information such as requested, connected, replied leads, and conversion rates.
+\end{itemize}
+
+\subsection{Lead generating}
+
+\subsubsection{Requirements}
+The lead generating is the process of \textbf{scraping} the LinkedIn accounts and \textbf{generating} leads by sending them customized invites and follow ups messages through the LinkedIn UI depending on the user's campaign preferences.
+So here is the requirements of both parts:
+
+\subsubsection{Scraping leads}
+\begin{itemize}
+	\item Each day, the system generates a list of URLs to scrape from a campaign (search) list and saves them as tasks in the database where each list item corresponds to a lead's profile URL.
+	\item Each day, the leads' information are scraped from the previously generated URLs. Each scraped URL corresponds to one lead and is saved as an entry in the database.
+\end{itemize}
+
+\subsubsection{Generating leads}
+\begin{itemize}
+	\item Each day, the system sends a certain number of invites to the scraped leads. The number is between a range the user specifies in the UI.
+	\item The system sends out the first follow up message to leads that accepted the connection request but did not yet reply. The first follow up message is sent at the earliest 24 hours after the connection request has been sent.
+	\item The second follow up message is sent out on the day after the first follow up message was sent if the lead did not reply yet.
+\end{itemize}
+
 \newpage
+
+% ----------------------- Conception ----------------------- %
 \section{Conception}
-In this section, we will dive deep into the conception and the logic behind the parts of the application :
+In this section, we will dive deep into the conception and the logic behind the parts of the application:
+
 \subsection{Architecture}
-Here is an overview of the different services of the application before we dive into the details of each service :
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=17cm]{src/assets/diagrams/overview.png}}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=17cm]{src/assets/diagrams/overview.png}}
+	\caption{Overview of the ILG services}
+	\label{fig:services-overview}
+\end{figure}
+
 \subsubsection{Microservices}
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1.5}%
@@ -76,102 +101,140 @@ Here is an overview of the different services of the application before we dive 
 	\centering
 	\medskip
 	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=.75\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=0.45\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+			| >{\hsize=.8\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.75\hsize\linewidth=\hsize\justifying\arraybackslash}X
+			| >{\hsize=0.45\hsize\linewidth=\hsize\centering\arraybackslash}X |}
 		\hline
-		\rowcolor{primary} \textbf {Name} & \textbf {Description}                                                                                  & \textbf {Scalable} \\
+		\rowcolor{primary} \textbf{Name} & \noindent \textbf{Description}                                                                                                  & \textbf{Scalable} \\
 		\hline
-		\textbf {ilg-data}                & GraphQL Database access layer used to feed all needed data for other services from the Postgres DB.    & No                 \\
+		\textbf {ilg-data}               & \noindent A GraphQL data access layer used to feed all needed data for other services from the PostgreSQL database.             & No                \\
 		\hline
-		\textbf {ilg-api}                 & RESTful api to serve data to the React app dashboard.                                                  & No                 \\
+		\textbf {ilg-api}                & \noindent A RESTful api used to serve data to the React app dashboard.                                                          & No                \\
 		\hline
-		\textbf {ilg-front}               & a React app dashboard application served throw NGINX.                                                  & No                 \\
+		\textbf {ilg-front}              & \noindent A React app dashboard application served through NGINX.                                                               & No                \\
 		\hline
-		\textbf {ilg-scheduler}           & Service thats responsible for scheduling and orchestrating the tasks queues and notifications.         & No                 \\
+		\textbf {ilg-scheduler}          & \noindent The service that's responsible for scheduling and orchestrating the tasks queues and notifications.                   & No                \\
 		\hline
-		\textbf {ilg-scraper}             & Service thats responsible for scraping leads of campaigns links from LinkedIn Sales Navigator.         & Yes                \\
+		\textbf {ilg-scraper}            & \noindent The service that's responsible for scraping leads from the campaign links generated from LinkedIn Sales Navigator.    & Yes               \\
 		\hline
-		\textbf {ilg-automation}          & Service thats responsible for handling LinkedIn accounts inboxs/threads and sendings invites to leads. & Yes                \\
+		\textbf {ilg-automation}         & \noindent The service that's responsible for handling LinkedIn accounts' inboxes, threads and for sending invites to the leads. & Yes               \\
 		\hline
 	\end{tabularx}
 \end{table}
-\newpage
+
 \subsubsection{Cloud Infrastructure}
-Since we are using a Kubernetes Cluster for our Cloud Infrastructure, we decided to distribute our different microservices into their corresponding nodes (VMs) depending on their shared components and scalabity. So here is an overview of the current Cloud Infrastructure of the application :
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=24cm]{src/assets/diagrams/cloud_infra.jpeg}}
-\newpage
+Since we are deploying to a Kubernetes cluster, we decided to distribute our different microservices into their corresponding nodes or virtual machines depending on their shared components and scalability.
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=22cm]{src/assets/diagrams/cloud_infra.jpeg}}
+	\caption{Cloud infrastructure of the application}
+	\label{fig:cloud-infrastructure}
+\end{figure}
+
 \subsection{Tasks \& Queues}
-\subsubsection{Thoery of tasks and queues}
-Task queues let applications perform work, called tasks, asynchronously outside of a user request. If an app needs to execute work in the background,
- it adds tasks to task queues. The tasks are executed later, by worker services. The Task Queue service is designed for asynchronous work.
-\linebreak
-All the lead generating features are implemented as a task queue.
-\linebreak
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/diagrams/task-queue.png}}
-\newpage
-\subsubsection{Tasks queues types}
-Here are the different types of the system tasks :
+
+\subsubsection*{\underline{In theory}}
+Task queues allow services to perform work in the form of asynchronous tasks outside of a user request.
+If an app needs to execute work in the background, it adds the tasks it needs to the task queues. The tasks are executed later, by worker services. The Task Queue service is designed for asynchronous work.
+Every lead scraping or generating tasks are implemented as a task queue.
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/diagrams/task-queue.png}}
+	\caption{Task queues}
+	\label{fig:task-queue}
+\end{figure}
+
+\subsubsection*{\underline{Tasks queues types}}
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1.5}%
-	\caption{All the application's tasks/jobs}
+	\caption{The application's tasks or jobs}
 	\centering
 	\medskip
 	\begin{tabularx}{1\textwidth} {
-			| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=1.2\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X
-			| >{\hsize=0.8\hsize\linewidth=\hsize\raggedright\arraybackslash}X |}
+			| >{\hsize=0.7\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.3\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
 		\hline
-		\rowcolor{primary} \textbf {Name} & \textbf {Description}                                             & \textbf {Producer} & \textbf {Consumer} \\
+		\rowcolor{primary} \textbf{Name} & \noindent \textbf{Description}                                                                  \\
 		\hline
-		\textbf {campaign-scrape}         & Scrape list of leads from campaign search list                    & ilg-scheduler      & ilg-scraper        \\
+		\textbf {campaign-scrape}        & \noindent Scrapes a list of leads from a campaign search list or URL.                           \\
 		\hline
-		\textbf {lead-scrape}             & Scrape lead information and save them in the database             & ilg-scraper        & ilg-scraper        \\
+		\textbf {lead-scrape}            & \noindent Scrapes the lead information from a URL and saves it in the database.                 \\
 		\hline
-		\textbf {handle-inbox}            & Hanle conversation threads of leads and send follow ups if needed & ilg-scheduler      & ilg-automation     \\
+		\textbf {handle-inbox}           & \noindent Opens the conversation inbox of leads and sends them follow up messages if necessary. \\
 		\hline
-		\textbf {send-invite}             & Send connection invite to leads                                   & ilg-scheduler      & ilg-automation     \\
+		\textbf {send-invite}            & \noindent Sends a connection invite to leads through LinkedIn.                                  \\
 		\hline
 	\end{tabularx}
 \end{table}
-\newpage
-\subsubsection{Scheduling tasks}
-Scheduling the different types of tasks is mainly done by the ilg-scheduler service periodically on daily basis. and we use our database thats acceciabble by ilg-data, as the store of those task queues with all of their corresponding informations and state. 
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/producer_consumer.png}}
-\newpage
+
+\subsubsection*{\underline{Scheduling tasks}}
+Scheduling the different types of tasks is mainly done by the ilg-scheduler service on a daily basis according to a specific cron job we specify in code.
+We use the database that's accessible by ilg-data, as the store of those task queues with all of their corresponding information and state.
+The diagram below illustrates the different producers and consumers of the tasks in more details.
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/producer_consumer.png}}
+	\caption{Diagram detailing the producers and the consumers}
+	\label{fig:producer-consumer-diagram}
+\end{figure}
+
 \subsection{Scraper \& Automation}
-Both the scraper and the automation services are responsible for consuming the tasks of the system on daily basis for generating the leads of a campaign.
-\subsubsection{Scraper flow}
-Here is the sequence diagrams of the \textbf{campaign-scrape} and \textbf{lead-scrape} tasks that the scrape service is responsible for :
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/campaign_scraper_sequence.png}}
+The ilg-scraper and ilg-automation services are responsible for consuming the tasks generated on a daily basis by the system.
+Their main purpose is to generate leads for the various campaigns.
+
+\subsubsection*{\underline{Scraper service flow}}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/campaign_scraper_sequence.png}}
+	\caption{Campaign scraper sequence diagram}
+	\label{fig:campaign-scraper-sequence-diagram}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/lead_scraper_sequence.png}}
+	\caption{Lead scraper sequence diagram}
+	\label{fig:lead-scraper-sequence-diagram}
+\end{figure}
 \newpage
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/lead_scraper_sequence.png}}
+
+\subsubsection*{\underline{Automation service flow}}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/send_invite_sequence.png}}
+	\caption{Diagram detailing the producers and the consumers}
+	\label{fig:send-invite-sequence-diagram}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/handle_inbox_sequence.png}}
+	\caption{Diagram detailing the producers and the consumers}
+	\label{fig:handle-inbox-sequence-diagram}
+\end{figure}
 \newpage
-\subsubsection{Automation flow}
-Here is the sequence diagrams of the \textbf{send-invite} and \textbf{handle-inbox} tasks that the automation service is responsible for :
-\linebreak
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/send_invite_sequence.png}}
-\newpage
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/handle_inbox_sequence.png}}
-\newpage
+
 \subsection{Data Layers}
-\subsubsection{Schema ( Entity Relationship Diagram )}
-Here is the entity relationship diagram of the application database schema :
-\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/er.png}}
+\subsubsection*{\underline{Schema or Entity Relationship Diagram (ERD)}}
+\begin{figure}[H]
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=16cm]{src/assets/diagrams/er.png}}
+	\caption{Entity Relationship Diagram}
+	\label{fig:entity-relationship-diagram}
+\end{figure}
 \newpage
-\subsubsection{Different interfaces}
-Mainly we have two interfaces to access the database from all other services of the application :
+
+\subsubsection*{\underline{Communication between services}}
+For the intra-communication between the various services, two interfaces are provided:
 \begin{itemize}
-  \item \textbf{GraphQL API Layer}: this interface is used by all the internal services of the application to access the data. so this layer is only reachable within the \textbf{internal private virtual network} and \textbf{not exposed for public}.
-  \item \textbf{RESTful API Layer}: this interface is used by the frontend application to access the data. so this layer is \textbf{ exposed for private} but of course secuired by am authentifition and authorization systems.
+	\item \textbf{GraphQL API Layer:}
+	      This interface is used by all the internal services of the application to access the data.
+	      In other words, this layer is only reachable within the \textbf{internal private virtual network} and it is \textbf{not exposed publicly}.
+	\item \textbf{RESTful API Layer:}
+	      This interface is used by the frontend service to access the data. In other words, this layer is \textbf{exposed publicly}.
+	      It is of course secured by a JWT token level authentication.
 \end{itemize}
-\newpage
+
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-In this chapter, we discussed the main features of the application and its different layers and services. so now with everything clear and explained, we can start discussing the realization part and our final products in the next chapter.
+In this chapter, we discussed the main features of the application and its different layers and services.
+In what follows, we will discuss the realization part with heavy focus on DevOps and the actual implementation of the new architecture.
