@@ -2,15 +2,12 @@
 The Incedo Lead Generator or ILG for short is a proprietary software solution of Incedo Services GmbH that's offered in a software as a service modal or SaaS.
 It scrapes LinkedIn and uses it as a medium to directly automate the generating of leads from a campaign using the LinkedIn sales navigator feature.
 
-\medskip
-\noindent To start off, we have two big roles to play.
+To start off, we have two big roles to play.
 \textbf{The first} one is to develop new features for the existing software solution while continuously monitoring the changes LinkedIn makes (since we rely on scraping).
 \textbf{The second} and the most important one is to migrate ILG from a monolithic application to a \textbf{microservices} architecture in order to make it infinitely scalable. We also have to find the ideal environment to deploy our newly created microservices to, in order to ensure their intra-communication.
 
-\medskip
-\noindent We start by breaking our application into various NestJS microservices, build the corresponding docker images then create a shared Helm package for the microservices. Second of all, we setup our own \textbf{self-managed Kubernetes cluster with MicroK8s and ansible scripts}, configure it appropriately to support our specific use-case, then deploy our application stack to both staging and production.
+We start by breaking our application into various NestJS microservices, build the corresponding docker images then create a shared Helm package for the microservices. Second of all, we setup our own \textbf{self-managed Kubernetes cluster with MicroK8s and ansible scripts}, configure it appropriately to support our specific use-case, then deploy our application stack to both staging and production.
 
-\medskip
-\noindent Lastly, using \textbf{GitLab's CI/CD pipelines} and also \textbf{GNU's Makefiles} allows us to automate the whole process from start to finish. So that in the end, one commit on the main branch is enough to deliver our changes to the clients, which is the standard that \textbf{DevOps compliant} applications should follow.
+Lastly, using \textbf{GitLab's CI/CD pipelines} and also \textbf{GNU's Makefiles} allows us to automate the whole process from start to finish. So that in the end, one commit on the main branch is enough to deliver our changes to the clients, which is the standard that \textbf{DevOps compliant} applications should follow.
 
 \newpage
