@@ -11,6 +11,10 @@ This is the end of studies project rapport.
 - [ ] (If relevant) If too many acronyms are used, add a list for it before the beginning of the general introduction.
 - [ ] (If relevant) If too many code blocks many other diagrams are used, create an appendices list with custom numbering at the end of this report.
 
+### Helpers:
+
+- [Word Counter Tool](https://string-functions.com/wordcount.aspx)
+
 ### **References:**
 
 - https://www.overleaf.com/project/6213ba5a4d9e9a0b44ea27e0
