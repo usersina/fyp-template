@@ -13,10 +13,12 @@ We will talk about the most used tools in the market as well as which ones we se
 \subsection{Automation}
 At its core, automation is leaving menial and recurring tasks to the automaton (or machine) in order to do more meaningful work as a human in the meantime.
 Implementing automation improves the efficiency, reliability and the speed of tasks that previously took humans a lot of time.
+
 \subsection{Web Scraping}
 Web scraping is the process of automatically extracting content and data from a website.
 Although data extraction is done in a brute way by reading texts from HTML elements, it is used in a variety of legitimate digital businesses like search engines, price comparison sites and market research companies.
 So contrary to what some might think, web scraping is completely legal.
+
 \subsection{Relationship between the two}
 Web scraping simplifies the process of extracting data and the automation process helps repeating the recurring task of extraction.
 As a result, the combination of scraping data, storing it and automating the whole process is getting very popular, especially with new technologies and tools arising in order to do just that.
@@ -27,10 +29,8 @@ As a result, the combination of scraping data, storing it and automating the who
 \subsection{Definition}
 DevOps is the set of practices, techniques and tools used to speed up the Software Development Lifecycle (SDL) by bringing together two historically separate functions of development and operations.
 
-\medskip
 Development refers to writing code and software, whereas operations refer to provisioning servers, configuring them as well as deploying the apps to them, amongst other things.
 
-\medskip
 DevOps teams focus on automating all of the above.
 The key terminologies around DevOps are Continuous Integration, Continuous Delivery and Infrastructure As Code and automation.
 
@@ -42,20 +42,22 @@ The key terminologies around DevOps are Continuous Integration, Continuous Deliv
     \label{fig:devops-lifecycle}
 \end{figure}
 
-DevOps -according to Azure- is the main influencer of the application lifecycle throughout its plan, develop, deliver, and operate phases. All of the phaes rely on one another and they are not role-specific. In a true DevOps culture, each role is involved in each phase to some extent. \cite{devops}
+DevOps -according to Microsoft Azure- is the main influencer of the application lifecycle throughout its plan, develop, deliver, and operate phases. All of the phases rely on one another and they are not role-specific. In a true DevOps culture, each role is involved in each phase to some extent. \cite{devops}
 
 \begin{itemize}
     \item \textbf{Plan:} In this first stage, DevOps teams define and describe the main features of the system being created. They accomplish that by many ways. Some of which are creating backlogs, tracking bugs, using Kanban boards and visualizing progress with dashboards.
     \item \textbf{Develop:} This step includes all aspects of coding, testing, reviewing and code integration. It also includes creating build artifacts that can be deployed into various environments. Automation of mundane and manual tasks plays a heavy role in this phase through automated testing and continuous integration.
-    \item \textbf{Deliver:} This is the process of deploying application into various environments such as staging or production consistently and reliably. It also includes deploying and configuring the infrastructure that makes up the environments. The DevOps team defines a release management process with automated gates or checkpoints the move the applications between stages in order to delploy in an efficient, scalable, repeatable and controllable way.
+    \item \textbf{Deliver:} This is the process of deploying application into various environments such as staging or production consistently and reliably. It also includes deploying and configuring the infrastructure that makes up the environments. The DevOps team defines a release management process with automated gates or checkpoints the move the applications between stages in order to deploy in an efficient, scalable, repeatable and controllable way.
     \item \textbf{Operate:} The operate phase involves maintaining, monitoring and troubleshooting the application in the production environment. The purpose of this phase is ensuring high availability, system reliability and zero downtime. This requires alerting and full visibility into the application.
 \end{itemize}
 
 \subsection{Container management}
-Containers have become an integral part of DevOps over the past couple of years but what is a container exactly and how do we manage them?
+Containers have become an integral part of DevOps over the past couple of years but what are containers exactly and how do we manage them?
+
 \subsubsection*{What is a container ?}
-Simply said; container is a packaging format for software applications that are akin to a very lightweight virtual machine which always executes in an isolated environment \cite{what-is-a-container}.
+Simply said; container is a packaging format for software applications that are akin to a very lightweight virtual machine (very broad analogy) which always executes in an isolated environment \cite{what-is-a-container}.
 What this implies is that said containers can be easily copied to and run on different machines with high reliability, lower costs and high efficiency.
+
 \subsubsection*{What is container management ?}
 Container management is the process for automating the creation, deployment and scaling of containers \cite{container-management}.
 Container management tools such as Docker and Podman facilitate the addition, replacement and organization of containers.
@@ -64,7 +66,7 @@ Container management tools such as Docker and Podman facilitate the addition, re
 A continuous integration and continuous deployment (CI/CD) pipeline is a series of steps that must be performed in order to deliver a new version of software.
 CI/CD pipelines are a practice focused on improving software delivery throughout the software development life cycle via automation. \cite{cicd-definition}
 
-% ----------------------- Mincroservices ----------------------- %
+% ----------------------- Microservices ----------------------- %
 \section{Microservices}
 
 \subsection{Definition}
@@ -76,23 +78,23 @@ Microservices architectures make applications easier to scale and faster to deve
 \begin{figure}[H]
     \centering
     \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/microservices.png}}
-    \caption{Breaking a monolithic application into microservices}
+    \caption{Monolith to microservices example}
     \label{fig:monolith-to-microservices}
 \end{figure}
 \subsection{Characteristics of Microservices}
 \begin{itemize}
-    \item \textbf{Autonomous :} Each component service in a microservices architecture can be developed, deployed, operated, and scaled without affecting the functioning of other services. Services do not need to share any of their code or implementation with other services. Any communication between individual components happens via well-defined APIs.
-    \item \textbf{Specialized :} Each service is designed for a set of capabilities and focuses on solving a specific problem. If developers contribute more code to a service over time and the service becomes complex, it can be broken into smaller services.
+    \item \textbf{Autonomous:} Each component service in a microservices architecture can be developed, deployed, operated, and scaled without affecting the functioning of other services. Services do not need to share any of their code or implementation with other services. Any communication between individual components happens via well-defined APIs.
+    \item \textbf{Specialized:} Each service is designed for a set of capabilities and focuses on solving a specific problem. If developers contribute more code to a service over time and the service becomes complex, it can be broken into smaller services.
 \end{itemize}
 
 \subsection{Benefits of Microservices}
 \begin{itemize}
-    \item \textbf{Agility :} Microservices foster an organization of small, independent teams that take ownership of their services. Teams act within a small and well understood context, and are empowered to work more independently and more quickly.
-    \item \textbf{Flexible Scaling :} Microservices allow each service to be independently scaled to meet demand for the application feature it supports. This enables teams to right-size infrastructure needs, accurately measure the cost of a feature, and maintain availability if a service experiences a spike in demand.
-    \item \textbf{Easy Deployment :} Microservices enable continuous integration and continuous delivery, making it easy to try out new ideas and to roll back if something doesn’t work. The low cost of failure enables experimentation, makes it easier to update code, and accelerates time-to-market for new features.
-    \item \textbf{Technical Freedom :} Microservices architectures don’t follow a “one size fits all” approach. Teams have the freedom to choose the best tool to solve their specific problems. As a consequence, teams building microservices can choose the best tool for each job.
-    \item \textbf{Reusable Code :} Dividing software into small, well-defined modules enables teams to use functions for multiple purposes. A service written for a certain function can be used as a building block for another feature. This allows an application to bootstrap off itself, as developers can create new capabilities without writing code from scratch.
-    \item \textbf{Resilience :} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
+    \item \textbf{Agility:} Microservices foster an organization of small, independent teams that take ownership of their services. Teams act within a small and well understood context, and are empowered to work more independently and more quickly.
+    \item \textbf{Flexible Scaling:} Microservices allow each service to be independently scaled to meet demand for the application feature it supports. This enables teams to right-size infrastructure needs, accurately measure the cost of a feature, and maintain availability if a service experiences a spike in demand.
+    \item \textbf{Easy Deployment:} Microservices enable continuous integration and continuous delivery, making it easy to try out new ideas and to roll back if something doesn’t work. The low cost of failure enables experimentation, makes it easier to update code, and accelerates time-to-market for new features.
+    \item \textbf{Technical Freedom:} Microservices architectures don’t follow a “one size fits all” approach. Teams have the freedom to choose the best tool to solve their specific problems. As a consequence, teams building microservices can choose the best tool for each job.
+    \item \textbf{Reusable Code:} Dividing software into small, well-defined modules enables teams to use functions for multiple purposes. A service written for a certain function can be used as a building block for another feature. This allows an application to bootstrap off itself, as developers can create new capabilities without writing code from scratch.
+    \item \textbf{Resilience:} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
 \end{itemize}
 
 % ----------------------- Comparative Analysis ----------------------- %
@@ -111,18 +113,18 @@ The most used tools for version control are Git and SVN. Here is a table compari
             | >{\hsize=1.25\hsize\linewidth=\hsize\justifying\arraybackslash}X
             | >{\hsize=1.25\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} & \textbf {Description}                                                                                                                                    & \textbf {Advantages}                                                                                                                                                                     \\
+        \rowcolor{primary} & \textbf {Description}                                                                                                                                   & \textbf {Advantages}                                                                                                                                                                     \\
         \hline
-        \textbf{Git}       & \noindent Git is a distributed version control system which means that when coloning a repository, you get a copy of the entire history of that project. & \noindent Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
+        \textbf{Git}       & \noindent Git is a distributed version control system which means that when cloning a repository, you get a copy of the entire history of that project. & \noindent Git has what's called a staging area. This means that even if you made over a 100 changes, they can be broken down to 10 commits each with their own comments and description. \\
         \hline
-        \textbf{SVN}       & \noindent SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout.  & \noindent SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
+        \textbf{SVN}       & \noindent SVN or Subversion is a centralized version control system. Meaning that there is always a single version of the repository that you checkout. & \noindent SVN has one central repository – which makes it easier for managers to have more of a top down approach to control, security, permissions, mirrors, and dumps.                 \\
         \hline
     \end{tabularx}
 \end{table}
-At the end, both are great options. However, we will be using Git which is the VCS the company uses.
+In the end, both are great options. However, we will be using Git since the company already has a self-hosted GitLab instance that naturally uses Git.
 
 \subsection{Container management: Docker vs Podman}
-Although Docker is widely popular, Podman is also taking its share from the market. Especially on Redhat systems.
+Although Docker is widely popular, Podman is also taking its share from the market. Especially on Red Hat systems.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
     \caption{Comparative study between Docker and Podman}
@@ -143,7 +145,7 @@ Although Docker is widely popular, Podman is also taking its share from the mark
         \hline
     \end{tabularx}
 \end{table}
-As a result, we will also be sticking to Docker in this project.
+We can see the similarities between the two and in theory, it shouldn't really matter which one we choose since both Docker and Podman are inter-changeable.
 
 \subsection{Browser automation: Puppeteer vs Playwright}
 Both are Node.js libraries for browser automation. The table below compares these two on different levels.
@@ -167,11 +169,11 @@ Both are Node.js libraries for browser automation. The table below compares thes
 \end{table}
 Since the difference is pretty minor, we will be sticking to the more recent Playwright.
 
-\subsection{Database: MongoDB vs MySQL}
-The old architecture of ILG uses MySQL but we have the choice to use a different database as well, so we did the following study.
+\subsection{Database: MongoDB vs PostgreSQL}
+The old architecture of ILG uses PostgreSQL but we have the choice to use a different database as well, so we did the following study.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
-    \caption{Comparative study between MongoDB and MySQL \cite{mongodb-vs-mysql}}
+    \caption{Comparative study between MongoDB and PostgreSQL}
     \centering
     \medskip
     \begin{tabularx}{1\textwidth} {
@@ -179,7 +181,7 @@ The old architecture of ILG uses MySQL but we have the choice to use a different
             | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X
             | >{\hsize=1.15\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
         \hline
-        \rowcolor{primary} \textbf {Category} & \textbf {MongoDB}                                                                 & \textbf {MySQL}                                                                                              \\
+        \rowcolor{primary} \textbf {Category} & \textbf {MongoDB}                                                                 & \textbf {PostgreSQL}                                                                                         \\
         \hline
         \textbf {Overview}                    & \noindent An open-source NoSQL that stores data in JSON-like documents.           & \noindent An open-source relational database system.                                                         \\
         \hline
@@ -189,10 +191,11 @@ The old architecture of ILG uses MySQL but we have the choice to use a different
         \hline
     \end{tabularx}
 \end{table}
-Since the old architecture uses MySQL, we will be sticking to that in the new architecture as well for an easier migration.
+Since the old architecture uses PostgreSQL, we will be sticking to that in the new architecture as well for an easier migration.
 
-\subsection{Database: GraphQL vs Rest}
-The most used tools for version control are Git and SVN. Here is a table comparing both tools.
+\subsection{Database: GraphQL vs REST}
+One of the decision we need to make is how to exchange the data in our application.
+For that, we compare GraphQL and REST.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
     \caption{Comparative study between GraphQL and REST \cite{graphql-vs-rest}}
@@ -211,11 +214,13 @@ The most used tools for version control are Git and SVN. Here is a table compari
         \hline
     \end{tabularx}
 \end{table}
-Since the old architecture uses MySQL, we will be sticking to it in the new architecture.
+Due to time constraints, we agreed to use both.
+GraphQL will be used internally between the microservices.
+REST on the other hand will still be used by the frontend to communicate with the backend api service.
 
 \subsection{Deployment: Docker Swarm vs Kubernetes}
-The old deployment uses Docker Compose, but we had to to a comparative study instead of the available tools on the market since docker-compose is not very optimized for production.
-Our research led us to both Docker Swarm and Kubernetes.
+The old deployment uses Docker Compose but that will not cut it anymore since it is not very optimized for production, especially on systems that need to scale later on as is the case here.
+Our research leads us to choosing between either Docker Swarm or Kubernetes.
 
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
@@ -250,7 +255,7 @@ Our research led us to both Docker Swarm and Kubernetes.
 Therefore, we will be deploying our application stack to Kubernetes since the potential is huge compared to the deprecated Docker Swarm.
 
 \subsection{Deployment management: Kubectl vs Helm}
-Since we're using Kubernetes, we have the option to deploy our microservices either with kubectl or with helm.
+Since we're using Kubernetes, we have the option to deploy our microservices either with Kubectl or with Helm.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
     \caption{Comparative study between Kubectl and Helm}
@@ -269,8 +274,8 @@ Since we're using Kubernetes, we have the option to deploy our microservices eit
         \hline
     \end{tabularx}
 \end{table}
-Thouroughly studying our use case, we agreed to create a uniform Helm package to ship our microservices.
-We also deemed it necessary to have some common configuration that we simply apply with kubectl such as Ingress rules for convenience.
+Thoroughly studying our use case, we agreed to create a uniform Helm package to ship our microservices.
+We also deemed it necessary to have some common configuration that we simply apply with Kubectl such as Ingress rules or letsencrypt certificates for convenience purposes and due to the lack of time.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
