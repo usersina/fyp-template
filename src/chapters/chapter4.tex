@@ -13,8 +13,8 @@ Later on, we will present some of the difficulties we encountered and then list 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- Hardware setup ----------------------- %
 \section{Hardware setup}
-Since we agreed to proceed with the self-managed Kubernetes deployment as mentioned in \textbf{Chapter 2: State of the art}, we had to create own cluster nodes or virtual machines.
-The nodes in question can be separated into the core nodes that are created once, and the scalable nodes that can be created indefinitely.
+Since we agreed to proceed with the self-managed Kubernetes deployment as mentioned in \textbf{Chapter 2: State of the art}, we must create our own cluster nodes or virtual machines.
+The nodes in question can be separated into the core nodes that are create once, and the scalable nodes that can be created indefinitely whenever we need to scale.
 
 \subsection{Cloud provider}
 To provision the hardware resources that we need for the deployment, we're going  to use the IONOS Cloud provider.
@@ -34,9 +34,8 @@ IONOS Cloud provides -through the Ionos cloudpanel service- an easy way to creat
     \label{fig:image-of-ionos-cloudpanel-dashboard}
 \end{figure}
 
-
-The two images below show the available VM sizes in the Ionos cloudpanel dashboard that we can pick for our VMs.
-Note that will be referenced in the tables below.
+The two images below show the available virtual machine (VM) sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
+We will refer to the sizes in the tables of the next section entitled \textbf{Kubernetes Cluster}.
 \begin{figure}[H]
     \centering
     \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-standard.jpg}}
@@ -51,13 +50,8 @@ Note that will be referenced in the tables below.
 \end{figure}
 
 \subsection{Kubernetes Cluster}
-Below are the necessary virtual machines needed to setup a self-managed Kubernetes Cluster.
-Please note that
-\begin{itemize}
-    \item What each of the services represent is already mentioned in \textbf{Chapter 3: Analysis and specification of requirements}
-    \item The size column which stands for the specification of the virtual machine is described in the previous section.
-    \item The number of servers for \textbf{scraper}, and \textbf{automation} nodes will be scaled depending on the number of clients as mentioned in \textbf{Chapter 3: Analysis and specification of requirements}.
-\end{itemize}
+Using the cloudpanel dashboard, it is time that we setup our cluster.
+The tables below show the virtual machines that we need to get started.
 
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5} % Padding
@@ -73,11 +67,11 @@ Please note that
         \hline
         \textbf{kube-controller}         & The main Kubernetes cluster controller       & XL            \\
         \hline
-        \textbf{data-node}               & postgresdb, ilg-data, ilg-api, ilg-scheduler & L             \\
+        \textbf{data-node}               & PostgresDB, ilg-data, ilg-api, ilg-scheduler & L             \\
         \hline
         \textbf{front-node}              & ilg-front                                    & S             \\
         \hline
-        \textbf{staging-node}            & postgresdb, all other ilg services           & L             \\
+        \textbf{staging-node}            & PostgresDB, all other ilg services           & L             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -101,9 +95,15 @@ Please note that
     \end{tabularx}
 \end{table}
 
-\subsection{Proxy Servers}
-Proxies are used to ensure all requests to LinkedIn come from a single IP address as mentioned in \textbf{Chapter X: ---}
+Please note that
+\begin{itemize}
+    \item What each of the services represent is already mentioned in \textbf{Chapter 3: Analysis and specification of requirements}
+    \item The size column which stands for the specification of the virtual machine is described in the previous section.
+    \item The number of servers for \textbf{scraper}, and \textbf{automation} nodes will be scaled manually depending on the number of clients whenever the need arises.
+\end{itemize}
 
+\subsection{Proxy Servers}
+Proxies are used to ensure all requests to LinkedIn come from a single IP address in order to avoid having to write a verification code every time.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5} % Padding
     \caption{List of proxy servers}
@@ -135,19 +135,29 @@ For a single virtual machine, we have to do the following setup:
 \begin{itemize}
     \item Create a user with sudo permissions
     \item Install the base packages we will be using
-    \item Edit the hosts file so that the VM recognizes other VMs by their hostnames
-    \item Install MicroK8s to have a single cluster node running on the VM
-    \item Join the VM with the master node to have a multi-node cluster.
+    \item Edit the hosts file so that the virtual machine recognizes the other virtual machines by their hostnames
+    \item Install MicroK8s to have a single-node cluster running on the virtual machine
+    \item Join the virtual machine with the master node to have a multi-node cluster.
 \end{itemize}
 
 \subsection{Automating the process}
-Manually configuring the above can be extremely tedious, unefficient and error prone.
+Manually configuring the above can be extremely tedious, inefficient and error prone.
 Therefore, we've created {\bf Ansible} scripts or playbooks that do just that. In the end, we simply edit a configuration file and directly run the script.
-This has a huge advantange especially when
+This has a huge advantage especially when
 \begin{itemize}
     \item We want to create a development environment for easy prototyping.
     \item We want to use the exact same setup for future projects.
+    \item We want to add nodes to the cluster later on when scaling.
 \end{itemize}
+
+The playbook in question should first of all, apply the common configuration to all nodes.
+Second of all, it should install MicroK8s on all nodes.
+After that, it needs to configure the master node appropriately.
+Finally, it configures the other nodes to join the cluster as worker nodes so that they can execute our services.
+
+There are more details related to Kubernetes such as node tainting and node selectors that won't be mentioned  in this report due to time constraints.
+
+Also note that we won't get into too much details about how Ansible works in this report also due to time constraints and since it will become very lengthy. We'll only mention that the connection is established using SSH.
 
 \begin{figure}[H]
     \centering
@@ -162,11 +172,11 @@ This has a huge advantange especially when
     \caption{The Ansible hosts configuration}
     \label{fig:image-of-ansible-hosts}
 \end{figure}
-Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from \textbf {Figure 10}.
+Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from the figure just above.
 
 % ----------------------- Application pipeline ----------------------- %
 \section{Deployment process}
-This section will explain the approach we adopted to continously integrate, deploy and deliver our application as per the best practices of DevOps previoulsy mentioned in \textbf{Chapter 3: State of the art}.
+We will now explain the approach we adopted to continuously integrate, deploy and deliver our application as per the best practices of DevOps previously mentioned in \textbf{Chapter 3: State of the art}.
 The deployment is currently supported on two different environments; the staging environment where we make sure our application works as intended, and of course the production environment.
 
 \subsection{Adopted strategy}
@@ -192,20 +202,20 @@ Since we have a Kubernetes cluster and we also use GitLab, we will link the two 
 
 % CI Continuous Integration
 \subsection{Continuous Integration}
-When developers make code changes to the main branch of any microservice, tests are automatically executed.
-If the tests are validated, a new Docker image that incorporates the changes the developers made will be pushed to the container registry and our deployment pipeline will be triggered.
+When we as developers make code changes to the main branch of any microservice, tests are automatically executed.
+If the tests are validated, a new Docker image that incorporates the changes we make will be pushed to the container registry and our deployment pipeline will then be triggered.
 In other words, the new code will be integrated and that actually marks the end of this step.
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=11cm]{src/assets/images/ci-pipeline-extract.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/images/ci-pipeline-extract.JPG}}
     \caption{Extract from the CI pipeline}
     \label{fig:extract-from-ci-pipeline}
 \end{figure}
 
 % CD Continuous Deployment
 \subsection{Continuous Deployment}
-Our ilg-controller repository (where KAS is configured) will choose the correct microservice to deploy depending on the trigger input.
-It then sets the necessary environment variables for it and installs it from a custom Helm package we've created for the deployment.
+Our ilg-controller repository (where the agent is configured) chooses the correct microservice to deploy depending on the trigger input.
+It then sets the necessary environment variables for it and installs it using a custom Helm package we've created for the deployment.
 
 \begin{figure}[H]
     \centering
@@ -213,7 +223,8 @@ It then sets the necessary environment variables for it and installs it from a c
     \caption{Extract from the deployment Makefile}
     \label{fig:extract-from-cd-makefile}
 \end{figure}
-% NOTE: Continuous delivery is a partly manual process where developers can deploy any changes to customers by simply clicking a button, while continuous deployment emphasizes automating the entire the process.
+
+% NOTE: Continuous delivery is a partly manual process where developers can deploy any changes to customers by simply clicking a button, while continuous deployment emphasizes automating the entirety of the process.
 
 % Custom Helm Package
 \subsection{Custom Helm Package}
@@ -226,7 +237,7 @@ Since we agreed to use Helm (refer to \textbf{Chapter 2: State of the art}), we'
     \label{fig:extract-from-custom-helm-chart}
 \end{figure}
 
-We even integrate a CI/CD pipeline for the Helm chart itself so that new packages are built automatically whenever we make changes to the manifest files.
+We even integrate a CI/CD pipeline for the Helm chart itself so that new packages are built automatically whenever we make changes to the manifest template files.
 
 \begin{figure}[H]
     \centering
@@ -246,7 +257,7 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
 % ----------------------- Monitoring ----------------------- %
 \section{Monitoring}
 In order to make the most out of our Kubernetes setup, we also setup basic monitoring for our whole application stack.
-The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices. By using and configuring the Kubernetes community's Helm pacakges, we can very easily deploy what's called the Kubernetes Prometheus Stack which will give us access to many things, one of which is the Grafana dashboard.
+The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices. By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the Kubernetes Prometheus Stack which will give us access to many things, one of which is the Grafana dashboard.
 
 \medskip
 We won't go into too much details into the architecture of Grafana and Prometheus since that's beyond the scope of this report.
@@ -295,17 +306,17 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
               \includegraphics[width=3.7cm]{src/assets/logos/nestjs_512x512.png}
               \captionof{figure}{Logo of NestJS}
           \end{minipage}
-    \item \textbf{ReactJS:} \newline A front-end javascript library that's often used as a framework. \newline
+    \item \textbf{ReactJS:} \newline A front-end JavaScript library that's often considered as a framework. \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=3.7cm]{src/assets/logos/react_512x512.png}
               \captionof{figure}{Logo of ReactJS}
           \end{minipage}
-    \item \textbf{MySQL:} \newline
+    \item \textbf{PostgreSQL:} \newline \newline
           \begin{minipage}{\linewidth}
               \centering
-              \includegraphics[width=5cm]{src/assets/logos/mysql.png}
-              \captionof{figure}{Logo of MySQL}
+              \includegraphics[width=8cm]{src/assets/logos/postgresql.png}
+              \captionof{figure}{Logo of PostgreSQL}
           \end{minipage}
 
           \newpage
@@ -341,7 +352,7 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
               \includegraphics[width=3cm]{src/assets/logos/renovate_200x200.png}
               \captionof{figure}{Logo of Renovate}
           \end{minipage}
-    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a .YAML format. Used in development. \newline
+    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a yaml format. Often used in development. \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=4cm]{src/assets/logos/docker-compose_667x667.png}
@@ -434,13 +445,13 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
 
 % ----------------------- Difficulties encountered ----------------------- %
 \section{Difficulties encountered}
-This not persay a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
-To have a full DevOps approach, even the infrastructure should be managed in code -also known as IAC (Infrastructure As Code)- using tools such as Terraform.
+This not per say a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
+To have a full DevOps approach, even the infrastructure should be managed in code -also known as Infrastructure As Code (IAC)- using tools such as Terraform.
 However, Ionos cloudpanel does not provide that functionality.
-Therefore we had to scrape off the idea and simply create the virtual machines fron the UI everytime we need them.
+Therefore we had to scrape off the idea and simply create the virtual machines from the UI every time we need them.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-A successfull project comes from a successfull development environment as well as a clean production environment.
-For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and script which all comform to the modern ways of how DevOps should be done.
+A successful project comes from a successful development environment as well as a clean production environment.
+For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and script which all conform to the modern ways of how DevOps should be done.
