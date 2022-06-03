@@ -31,8 +31,16 @@ jobs:
           name: compiled
           path: main.pdf
 
+      - name: Show folder structure after artifact download
+        run: tree
+
       - name: Move artifact to public folder
-        run: mv main.pdf public/main-${{ github.sha }}.pdf
+        run: |
+          mkdir -p public 
+          mv main.pdf public/main-${{ github.sha }}.pdf
+
+      - name: Show folder structure after artifact move
+        run: tree
 
       - name: Publish to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
