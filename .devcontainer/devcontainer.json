@@ -3,6 +3,7 @@
   "dockerFile": "stable/Dockerfile",
   "extensions": [
     "james-yu.latex-workshop",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ban.spellright"
   ]
 }
