@@ -18,5 +18,5 @@ jobs:
       - name: Upload main.pdf artifact
         uses: actions/upload-artifact@v3
         with:
-          name: compiled-pdf
+          name: compiled
           path: main.pdf
