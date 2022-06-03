@@ -1,5 +1,8 @@
 {
   "name": "Node.js 16 & TeX Live Base",
   "dockerFile": "stable/Dockerfile",
-  "extensions": ["james-yu.latex-workshop"]
+  "extensions": [
+    "james-yu.latex-workshop",
+    "esbenp.prettier-vscode"
+  ]
 }
