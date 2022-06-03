@@ -1,4 +1,4 @@
-name: Build
+name: Build and publish pdf to Heroku
 on:
   push:
     branches:
@@ -36,6 +36,9 @@ jobs:
 
       - name: Move artifact to public folder
         run: mv ./main.pdf ./public/main-${{ github.sha }}.pdf
+
+      - name: Show folder structure
+        run: tree
 
       - name: Publish to heroku
         uses: akhileshns/heroku-deploy@v3.12.12

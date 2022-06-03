@@ -15,7 +15,7 @@ ENV APP_HOME /usr/src/app
 RUN mkdir -p "$APP_HOME"
 WORKDIR "$APP_HOME"
 
-COPY --from=builder "$APP_HOME"/main .
+COPY --from=builder "$APP_HOME"/main "$APP_HOME"/go.mod ./
 COPY public/ "$APP_HOME"/public
 
 CMD [ "/usr/src/app/main" ]
