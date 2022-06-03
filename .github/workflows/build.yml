@@ -10,5 +10,11 @@ jobs:
         uses: dante-ev/latex-action@edge
         with:
           root_file: main.tex
+          args: -outdir=out
       - name: Print folder structure
         run: tree
+      - name: Upload main.pdf artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-pdf
+          path: out/main.pdf
