@@ -36,7 +36,7 @@ jobs:
       - name: Move artifact to public folder
         run: |
           mkdir -p ./public
-          mv main.pdf ./public/main-${{ GITHUB_SHA }}.pdf
+          mv main.pdf ./public/main-${{ github.sha }}.pdf
 
       - name: Publish to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
