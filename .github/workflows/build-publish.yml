@@ -32,10 +32,7 @@ jobs:
           path: main.pdf
 
       - name: Move artifact to public folder
-        run: cp ./main.pdf ./public/main-${{ github.sha }}.pdf
-
-      - name: Show folder structure
-        run: tree
+        run: mv main.pdf public/main-${{ github.sha }}.pdf
 
       - name: Publish to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
