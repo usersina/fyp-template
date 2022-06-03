@@ -12,9 +12,6 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Print folder structure
-        run: tree
-
       - name: Upload compiled artifact
         uses: actions/upload-artifact@v3
         with:
@@ -23,6 +20,7 @@ jobs:
 
   publish_to_heroku:
     runs-on: ubuntu-latest
+    needs: build_latex
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
