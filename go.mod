@@ -1,3 +1,3 @@
-module github.com/firasjaber/isetn-end-of-studies-project-rapport
+module github.com/usersina/isetn-end-of-studies-project
 
-go 1.17
+go 1.18

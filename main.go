@@ -12,10 +12,10 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-			port = "3000" // Default port if not specified
+		port = "3000" // Default port if not specified
 	}
 	log.Println("Listening on :" + port)
-	err := http.ListenAndServe(":" + port, nil)
+	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
