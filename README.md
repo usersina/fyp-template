@@ -4,7 +4,7 @@ This is the end of studies project rapport.
 
 ### **TODO:**
 
-- [ ] Include the correct covert page.
+- [x] Include the correct covert page.
 - [x] Fix all occurrences of `\lipsum` with their actual content.
 - [x] Fix the use of tenses; for the introduction use the future tense, for the conclusion use the past tense. Also use present tense in the chapter sections themselves aside from the introduction and the conclusion.
 - [x] Fix the ~~dedications and~~ acknowledgements.
