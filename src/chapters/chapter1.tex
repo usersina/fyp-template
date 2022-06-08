@@ -61,6 +61,7 @@ After studying the existing, we can determine its limitations:
     \item Since cron jobs are running for the whole day, bugs are hard to respond to fast enough because we can only deploy once at the end of day.
     \item It is hard to test the whole workflow because of how the app works (looking for certain changes in the LinkedIn interface after certain buttons are clicked for example) meaning that the dev environment is lacking.
     \item It cannot scale well enough since the whole monolithic application is deployed on a single server.
+    \item It is very hard to read the logs of the application since we have to SSH into the VM every time and use the correct grep command.
 \end{itemize}
 \subsection{Proposed solution}
 The solution to these problems is refactoring the whole application to separate sub-applications or microservices where the automation and scraping processes can be scaled independently of the other parts of the application.

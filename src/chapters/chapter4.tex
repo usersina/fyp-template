@@ -256,17 +256,78 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
 
 % ----------------------- Monitoring ----------------------- %
 \section{Monitoring}
-In order to make the most out of our Kubernetes setup, we also setup basic monitoring for our whole application stack.
-The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices. By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the Kubernetes Prometheus Stack which will give us access to many things, one of which is the Grafana dashboard.
+In order to make the most out of our Kubernetes setup, we also setup monitoring for our whole application stack.
+The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices.
 
-\medskip
-We won't go into too much details into the architecture of Grafana and Prometheus since that's beyond the scope of this report.
+\subsection{Monitoring the cluster nodes}
+By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the \textbf{Kubernetes Prometheus Stack} which will give us access to the Grafana dashboard and to the Prometheus UI dashboard.
 
+\subsubsection*{\underline{Prometheus}}
+Prometheus is an open-source software used for event monitoring and alerting.
+The way we do that is by collecting different kind of metrics as well as configuring the automatic sending of alerts in case of critical errors.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/prometheus-metrics.JPG}}
+    \caption{Viewing the metrics endpoints with Prometheus UI}
+    \label{fig:prometheus-ui-metrics-endpoint}
+\end{figure}
+
+\subsubsection*{\underline{Grafana}}
+Grafana is an open-source interactive visualization web application.
+We use it here to monitor our cluster nodes, and most importantly, the metrics of our application collected by Prometheus.
 \begin{figure}[H]
     \centering
     \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/grafana-nodes-monitoring.JPG}}
     \caption{Monitoring the cluster nodes with Grafana}
     \label{fig:grafana-node-monitoring}
+\end{figure}
+
+\subsection{Monitoring the logs}
+In order to monitor the logs of our different microservices as well as any other applications running on the cluster efficiently, we need to
+
+\begin{itemize}
+    \item Collect the logs from the different Pods in the cluster
+    \item Process and parse the logs to a uniform format, often json
+    \item Send the logs to an indexing engine for easy querying
+    \item We may also optionally create dashboards for our logs
+\end{itemize}
+The best way to go about doing this is by using the EFK Stack or more expressively the Elasticsearch, Fluentd and Kibana stack.
+
+\subsubsection*{\underline{Elasticsearch \& Kibana}}
+Elasticsearch is many things: it is often referred to as search engine, analytics engine or even database and all of that is true.
+It can process a huge amount of logs with relatively minimal resources and is therefore the optimal choice for our cluster.
+
+Kibana is a data visualization dashboard exclusively used with Elasticsearch.
+It is always almost used whenever there is an Elasticsearch instance involved.
+
+By using the open-source \textbf{Elastic Stack Kubernetes Helm Charts}, we can create our Elasticsearch and Kibana setup in the cluster.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/kibana-home.JPG}}
+    \caption{Kibana dashboard home screen}
+    \label{fig:kibana-dashboard-home}
+\end{figure}
+
+\subsubsection*{\underline{Fluentd}}
+Fluentd on the other hand is a data collector.
+It runs in the background with the sole purpose of delivering the logs of all of our applications to us in a uniform way we specify.
+We configure it to get the logs from the standard output of our Pods, parse them to json and send them to Elasticsearch.
+
+We deploy Fluentd the manifest way, as opposed to using Helm Charts.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/fluentd-config-snippet.JPG}}
+    \caption{Fluentd configuration extract}
+    \label{fig:fluentd-config-snippet}
+\end{figure}
+
+And now we can finally use some of the advanced features of Elasticsearch such as the filtering and sorting of our logs from the Kibana dashboard.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/efk-stack-logs.JPG}}
+    \caption{Indexing the logs in Kibana}
+    \label{fig:kibana-logs-indexing}
 \end{figure}
 
 \newpage
@@ -445,13 +506,37 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
 
 % ----------------------- Difficulties encountered ----------------------- %
 \section{Difficulties encountered}
+\subsection{Infrastructure as code}
 This not per say a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
 To have a full DevOps approach, even the infrastructure should be managed in code -also known as Infrastructure As Code (IAC)- using tools such as Terraform.
 However, Ionos cloudpanel does not provide that functionality.
 Therefore we had to scrape off the idea and simply create the virtual machines from the UI every time we need them.
 
+\subsection{Stateful Kubernetes}
+Another issue we had is data persistence in Kubernetes.
+Kubernetes is -by design- used for stateless applications.
+However, since we're using an Elasticsearch database, we definitely needed a way to persist our data across system reboots or crashes.
+
+First of all, we used IONOS -our cloud provider- to create the physical Block Storage in question that we used as the data source.
+We started with an SSD of 40 Gigabytes then scaled it up to 80 Gigs.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/ionos-block-storage.JPG}}
+    \caption{Creating a block storage in IONOS}
+    \label{fig:ionos-block-storage}
+\end{figure}
+
+Secondly, we had to logically mount the previously created block storage to a directory such as \textbf{/mnt/block} inside the controller virtual machine.
+
+From there, we create a self-managed NFS Server on the host system that we export to the private network or in other words to all of the cluster nodes.
+
+Now, for the stateful cluster components to use the NFS Server, we needed to setup an NFS client provisioner inside the Kubernetes cluster itself. This was as simple as using the \textbf{NFS Subdir External Provisioner} Helm Chart.
+
+Lastly, our cluster components are now allowed to provision persistent and dynamic storage resources whenever they need it.
+
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-A successful project comes from a successful development environment as well as a clean production environment.
-For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and script which all conform to the modern ways of how DevOps should be done.
+A successful project comes from a successful development environment as well as a clean production environment with a good and well thought of monitoring solutions.
+For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and scripts which all conform to the modern ways of how DevOps should be done.
