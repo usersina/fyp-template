@@ -1,11 +1,11 @@
 \input{./package.tex}
 
+
 % ------------- Document content ------------- %
 \begin{document}
 
 % Global config
 \input{./config.tex}
-
 
 % Include the cover page
 \includepdf[]{src/assets/pdfs/cover-page.pdf}
@@ -17,6 +17,8 @@
 % Dedication and acknowledgments
 % \input{src/components/dedications.tex} % Optional
 \input{src/components/acknowledgments.tex}
+
+% Abstract or TL;DR
 \input{src/components/abstract.tex}
 
 % Tables
@@ -37,13 +39,14 @@
 \renewcommand\bibname{Webography}
 \bibliographystyle{plain}
 \bibliography{references}
+\clearpage
 
 % % Set page numbering to alphabetic for appendices
-% \pagenumbering{alph}
-% \setcounter{page}{0}
+\pagenumbering{alph}
+\setcounter{page}{0}
 
 % % Very big diagrams, pictures or schemas go here
-% \include{src/components/appendices.tex}
+% \input{src/components/appendices.tex}
 
 \end{document}
 % ------------- Document content ------------- %
