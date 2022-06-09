@@ -1,5 +1,5 @@
 \input{./package.tex}
-
+\input{./src/components/glossary.tex}
 
 % ------------- Document content ------------- %
 \begin{document}
@@ -20,6 +20,10 @@
 
 % Abstract or TL;DR
 \input{src/components/abstract.tex}
+
+% Print the acronyms list
+\printunsrtglossaries
+\newpage
 
 % Tables
 \renewcommand{\contentsname}{Table of Contents}
@@ -45,8 +49,8 @@
 \pagenumbering{alph}
 \setcounter{page}{0}
 
-% % Very big diagrams, pictures or schemas go here
-% \input{src/components/appendices.tex}
+% Very big diagrams, pictures or schemas go here
+\input{src/components/appendices.tex}
 
 \end{document}
 % ------------- Document content ------------- %
