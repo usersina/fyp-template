@@ -6,7 +6,7 @@
 \section{Introduction}
 In this chapter, we will finally discuss the long awaited realization.
 This is the implementation phase where all of the work done in the previous chapters comes into picture.
-This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the ILG application to a new scalable architecture.
+This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the \glsxtrshort{ilg} application to a new scalable architecture.
 We will start with the new architecture hardware and software setup, talk a little bit about monitoring the application.
 Later on, we will present some of the difficulties we encountered and then list all of the technologies we've used for our work.
 
@@ -34,7 +34,7 @@ IONOS Cloud provides -through the Ionos cloudpanel service- an easy way to creat
     \label{fig:image-of-ionos-cloudpanel-dashboard}
 \end{figure}
 
-The two images below show the available virtual machine (VM) sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
+The two images below show the available \glsxtrshort{vm} sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
 We will refer to the sizes in the tables of the next section entitled \textbf{Kubernetes Cluster}.
 \begin{figure}[H]
     \centering
@@ -508,7 +508,7 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
 \section{Difficulties encountered}
 \subsection{Infrastructure as code}
 This not per say a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
-To have a full DevOps approach, even the infrastructure should be managed in code -also known as Infrastructure As Code (IAC)- using tools such as Terraform.
+To have a full DevOps approach, even the infrastructure should be managed in code -also known as \glsxtrfull{iac}- using tools such as Terraform.
 However, Ionos cloudpanel does not provide that functionality.
 Therefore we had to scrape off the idea and simply create the virtual machines from the UI every time we need them.
 

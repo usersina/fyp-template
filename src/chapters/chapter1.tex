@@ -48,7 +48,8 @@ Incedo develops software for clients, as well as for the company itself.
 % ----------------------- Stating the problem ----------------------- %
 \section{Stating the problem}
 Incedo -having ambitious goals to grow over the next 2 to 4 years- wants to win new clients and strategically develop the existing ones. Winning new clients starts with generating new leads. Previously, Incedo has worked with an Austrian start-up (motion group) that provides automated lead generation through LinkedIn at the cost of 0.85 € per requested contact. Although one big project was closed and several leads were generated, Incedo started using the LinkedIn Sales Navigator with a more targeted approach, but nevertheless wanted to automate the approach and increase its outreach.
-Having launched the first version of the ILG (Incedo Lead Generator) as a SaaS (Software as Service), Incedo was satisfied for a while. Over the time however, as more and more clients were interested in the ILG, the current architecture couldn’t handle the load properly. Therefore, it was our task to re-design and implement a new scalable architecture instead of the old one.
+Having launched the first version of the \glsxtrshort{ilg} as a \glsxtrshort{saas}, Incedo was satisfied for a while.
+Over the time however, as more and more clients were interested in the \glsxtrshort{ilg}, the current architecture couldn’t handle the load properly. Therefore, it was our task to re-design and implement a new scalable architecture instead of the old one.
 
 % ----------------------- Assessment of the case ----------------------- %
 \section{Assessment of the case}
@@ -61,7 +62,7 @@ After studying the existing, we can determine its limitations:
     \item Since cron jobs are running for the whole day, bugs are hard to respond to fast enough because we can only deploy once at the end of day.
     \item It is hard to test the whole workflow because of how the app works (looking for certain changes in the LinkedIn interface after certain buttons are clicked for example) meaning that the dev environment is lacking.
     \item It cannot scale well enough since the whole monolithic application is deployed on a single server.
-    \item It is very hard to read the logs of the application since we have to SSH into the VM every time and use the correct grep command.
+    \item It is very hard to read the logs of the application since we have to SSH into the \glsxtrshort{vm} every time and use the correct grep command.
 \end{itemize}
 \subsection{Proposed solution}
 The solution to these problems is refactoring the whole application to separate sub-applications or microservices where the automation and scraping processes can be scaled independently of the other parts of the application.
@@ -94,5 +95,5 @@ Since this project is very susceptible to changes from outside (LinkedIn), Kanba
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
 In this chapter, we presented not only the host organization but also the general context of the project and why it's needed.
-We then criticized the current state of the ILG application and discussed the possible development methodologies.
+We then criticized the current state of the \glsxtrshort{ilg} application and discussed the possible development methodologies.
 Lastly, we picked the most ideal choice for us which is Kanban.
