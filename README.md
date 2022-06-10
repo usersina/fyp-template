@@ -11,6 +11,15 @@ See the following links for all deployed services:
 5. Prometheus dashboard: Kubernetes dashboard: https://ctl.ilg.incedo.net/prometheus/targets
 6. Kibana dashboard: https://ctl.ilg.incedo.net/kibana/
 
+### Todo:
+
+- [x] Add the list of sections to the chapter's title page.
+- [x] Add the lines at the top to remind on which chapter the reader is on.
+- [ ] Create a final diagram with all software components, potentially incrementally for each realization section.
+- [ ] Add non functional requirements (page 38 of old report).
+- [ ] Add section about setting up the pipelines in functional requirements.
+- [ ] Add figures of various meetings to appendix.
+
 ### Helpers:
 
 - [Word Counter Tool](https://string-functions.com/wordcount.aspx)
