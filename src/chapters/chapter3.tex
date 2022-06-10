@@ -68,6 +68,37 @@ Here are the main requirements of campaign management for the different type of 
 	\item As a \textbf{User}, I can view my campaigns' analytics with information such as requested, connected, replied leads, and conversion rates.
 \end{itemize}
 
+\subsubsection{Use case textual description}
+Here is an example of the textual description of one of the use cases scenarios:
+
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1.5}%
+	\caption{Create Campaign's use case textual description}
+	\centering
+	\medskip
+	\begin{tabularx}{1\textwidth} {
+			| >{\hsize=0.5\hsize\linewidth=\hsize\centering\arraybackslash}X
+			| >{\hsize=1.5\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
+		\hline
+		\textbf {Use Case}        & \noindent Create Campaign                           \\
+		\hline
+		\textbf {Actor}            & \noindent User.                 \\
+		\hline
+		\textbf {Pre-condition}            & \noindent Authentified User.                 \\
+		\hline
+		\textbf {Post-condition}           & \noindent Campaign Created. \\
+		\hline
+		\textbf {Basic path}            & \noindent    \begin{enumerate}
+			\item Navigate to campaign page.
+			\item Click on the "create campaign" button.
+			\item Fill in the needed informations of the campaign in the popped modal form.
+			\item Validate the form then submit.
+		\end{enumerate}                               \\
+		\hline
+		\textbf {Exceptional path}            & \noindent On step 3, if the campaign sales navigator link is not valid, show "invalid campaign link" to the user and restart the step.                                  \\
+		\hline
+	\end{tabularx}
+\end{table}
 \subsection{Lead generating}
 
 \subsubsection*{\underline{Definition}}
