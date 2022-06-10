@@ -5,30 +5,37 @@
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Introduction ----------------------- %
 \section{Introduction}
-In this chapter, we are going to analyze the specification and the requirements of the application.
-This chapter will describe the product's main features and their conception that should be met for the end result.
+In this chapter, we are going to analyze the various specifications and requirements of the whole ILG project from development to production.
+We will also describe the product's main features and the conception that should be met for the end result.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
-% ----------------------- Requirements ----------------------- %
-\section{Requirements}
-Our requirements are divided into two parts:
+% ----------------------- Functional Requirements ----------------------- %
+\section{Functional requirements}
+Since our project is fairly voluminous, we identify what we consider the necessities for ILG as follows:
 \begin{itemize}
-	\item The public client portal of the application or dashboard.
-	\item The lead generating happening in the background.
+	\item Actively editing and enhancing the portal server dashboard by implementing new features to increase customer satisfaction.
+	\item Separating the monolithic application to multiple microservices to validate the \glsxtrfull{poc} as instructed by our Product Owner before proceeding with the making of the new architecture.
+	\item Daily monitoring of the old system by reading logs directly from the server.
+	\item Ensuring that the lead generating is happening in the background with the newly implemented microservices architecture.
+	\item Creating individual Dockerfiles for all microservices based on what they require.
+	\item Creating the GitLab CI pipelines for all microservices and configuring them to build and push Docker images.
+	\item Creating a custom configurable Helm Chart for the whole ILG application stack.
+	\item Working on the CD part of the pipelines by setting up a clear deployment strategy to Kubernetes using the custom Helm Chart.
+	\item Setting up modern monitoring solutions that use the most out of our Kubernetes deployment with the most recent tools on the market.
 \end{itemize}
 
 \subsection{Application dashboard}
 
-\subsubsection{Requirements}
-Here is a global use case diagram that specifies the dashboard requirements:
+\subsubsection*{\underline{Use case}}
+We use the Unified Modeling Language (UML) to describe the behavior of the system.
 \begin{figure}[H]
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/diagrams/usecase.png}}
-	\caption{Use case diagram}
+	\makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/diagrams/usecase.png}}
+	\caption{Use case diagram for the frontend dashboard}
 	\label{fig:use-case-diagram}
 \end{figure}
 
-\subsubsection{Actors}
+\subsubsection*{\underline{Actors}}
 Mainly, there are 3 types of actors of the system:
 \begin{itemize}
 	\item \textbf{Super Admin}: The main administrator with full access permissions to the system.
@@ -36,7 +43,7 @@ Mainly, there are 3 types of actors of the system:
 	\item \textbf{User:} The main user of the system, who benefits from the different features the system offers, usually a client representative.
 \end{itemize}
 
-\subsubsection{User management}
+\subsubsection*{\underline{User management}}
 Here are the main requirements of user management for the different type of actors:
 \begin{itemize}
 	\item As a \textbf{Super Admin}, I can create, modify or delete users and admins accounts.
@@ -45,7 +52,7 @@ Here are the main requirements of user management for the different type of acto
 	\item As an \textbf{Admin}, I can view my user's accounts, their used and bought credits.
 \end{itemize}
 
-\subsubsection{Campaign management}
+\subsubsection*{\underline{Campaign management}}
 Here are the main requirements of campaign management for the different type of actors:
 \begin{itemize}
 	\item As a \textbf{User}, I can create my campaign specifying the LinkedIn account credentials to be used, the campaign list, salutation messages, invite messages, follow up messages and the number of invites per day.
@@ -56,7 +63,7 @@ Here are the main requirements of campaign management for the different type of 
 	\item As a \textbf{User}, I can export information about the scraped leads as a CSV file.
 \end{itemize}
 
-\subsubsection{Campaign monitoring}
+\subsubsection*{\underline{Campaign monitoring}}
 \begin{itemize}
 	\item As a \textbf{Super Admin}, I can view the campaigns' records, on day by day basis or in a specific range of dates with information such as number of invites sent, number of follow ups sent and the number of withdrawn invites.
 	\item As a \textbf{User}, I can view my campaigns' analytics with information such as requested, connected, replied leads, and conversion rates.
@@ -64,17 +71,17 @@ Here are the main requirements of campaign management for the different type of 
 
 \subsection{Lead generating}
 
-\subsubsection{Requirements}
+\subsubsection*{\underline{Definition}}
 The lead generating is the process of \textbf{scraping} the LinkedIn accounts and \textbf{generating} leads by sending them customized invites and follow ups messages through the LinkedIn UI depending on the user's campaign preferences.
 So here is the requirements of both parts:
 
-\subsubsection{Scraping leads}
+\subsubsection*{\underline{Scraping leads}}
 \begin{itemize}
 	\item Each day, the system generates a list of URLs to scrape from a campaign (search) list and saves them as tasks in the database where each list item corresponds to a lead's profile URL.
 	\item Each day, the leads' information are scraped from the previously generated URLs. Each scraped URL corresponds to one lead and is saved as an entry in the database.
 \end{itemize}
 
-\subsubsection{Generating leads}
+\subsubsection*{\underline{Generating leads}}
 \begin{itemize}
 	\item Each day, the system sends a certain number of invites to the scraped leads. The number is between a range the user specifies in the UI.
 	\item The system sends out the first follow up message to leads that accepted the connection request but did not yet reply. The first follow up message is sent at the earliest 24 hours after the connection request has been sent.
@@ -234,8 +241,21 @@ For the intra-communication between the various services, two interfaces are pro
 	      It is of course secured by a JWT token level authentication.
 \end{itemize}
 
+% --------------- Non functional Requirements --------------- %
+\section{Non-functional requirements}
+Non functional requirements describe any specification that does not add direct business value but is nonetheless crucial for the good operation of a developed software.
+For \glsxtrshort{ilg}, what we should focus on is:
+\begin{itemize}
+	\item \textbf{Reliability and Availability:} The software should be available 24 hours a day and 7 days a week.
+	\item \textbf{Security:} Clients should be able to safely authenticate to the dashboard with a strong authentication system.
+	\item \textbf{Maintainability and Recoverability:} We should respond to LinkedIn changes all the time as fast as possible.
+	\item \textbf{Scalability:} This is the main reason we're migrating to a new architecture in the first place.
+	\item \textbf{Documentation:} We should always document each and every step we make extensively so that new developers can onboard on the project in a fast and efficient way, which further emphasizes reliability.
+\end{itemize}
+
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-In this chapter, we discussed the main features of the application and its different layers and services.
+In this chapter, we discussed our main objectives that we should meet during the course of our internship.
+We also discuss the various layers and services of the application.
 In what follows, we will discuss the realization part with heavy focus on DevOps and the actual implementation of the new architecture.

@@ -15,10 +15,11 @@ See the following links for all deployed services:
 
 - [x] Add the list of sections to the chapter's title page.
 - [x] Add the lines at the top to remind on which chapter the reader is on.
-- [ ] Create a final diagram with all software components, potentially incrementally for each realization section.
-- [ ] Add non functional requirements (page 38 of old report).
-- [ ] Add section about setting up the pipelines in functional requirements.
-- [ ] Add figures of various meetings to appendix.
+- [x] Add non functional requirements (page 38 of old report).
+- [x] Add section about setting up the pipelines in functional requirements.
+- [ ] Clean up the realization section that includes the dashboard.
+- [ ] (optional) Add figures of various meetings to appendix.
+- [ ] (optional) Create a final diagram with all software components, potentially incrementally for each realization section.
 
 ### Helpers:
 
