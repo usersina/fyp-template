@@ -104,16 +104,18 @@ Microservices architectures make applications easier to scale and faster to deve
 \section{Software Testing}
 
 \subsection{Definition}
-Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. Also it makes refactoring and adding code a lot easier so it prevent the developer from breaking existing feature when adding new one.
-\medskip
+Testing is the process of executing a program to find errors.
+To make our software perform well it should be error-free.
+It also makes refactoring and adding code later on a lot easier by preventing the developer from breaking existing feature when adding new ones.
+
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
-\newline
-There are multiple types of testing that we used in our application, here are their definitions below :
+There are multiple types of testing that we used in our application, here are their definitions:
 
 \subsection{Types of Tests used}
 \begin{itemize}
+    \item \textbf{Smoke Testing:} This type of test serves as a very shallow probe to see if the rest of the tests should proceed. An example used in the CI pipeline is to check if environment variables are set before building the docker image.
     \item \textbf{Unit Testing:} Unit testing is the first level of testing and is often performed by the developers themselves. It is the process of ensuring individual components of a piece of software at the code level are functional and work as they were designed to.
-    \item \textbf{Integration Testing:} After each unit is thoroughly tested, it is integrated with other units to create modules or components that are designed to perform specific tasks or activities. These are then tested as group through integration testing to ensure whole segments of an application behave as expected.
+    \item \textbf{Integration Testing:} After each unit is thoroughly tested, it is integrated with other units to create modules or components that are designed to perform specific tasks or activities. These are then tested as a group through integration testing to ensure whole segments of an application behave as expected.
 \end{itemize}
 
 \newpage
