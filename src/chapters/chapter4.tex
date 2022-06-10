@@ -172,7 +172,7 @@ Also note that we won't get into too much details about how Ansible works in thi
     \caption{The Ansible hosts configuration}
     \label{fig:image-of-ansible-hosts}
 \end{figure}
-Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from the figure just above.
+Note that we also use a hosts file for development where we test the setup extensively before trying it on production as seen from the figure just above.
 
 % ----------------------- Application pipeline ----------------------- %
 \section{Deployment process}
@@ -258,6 +258,8 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
 \section{Monitoring}
 In order to make the most out of our Kubernetes setup, we also setup monitoring for our whole application stack.
 The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices.
+
+In order to get started, we setup the necessary manifest resources to expose the dashboard provided by Kubernetes.
 
 \subsection{Monitoring the cluster nodes}
 By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the \textbf{Kubernetes Prometheus Stack} which will give us access to the Grafana dashboard and to the Prometheus UI dashboard.
