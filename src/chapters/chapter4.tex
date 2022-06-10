@@ -23,7 +23,7 @@ To provision the hardware resources that we need for the deployment, we're going
 \cite[Ionos is a web hosting company founded in Germany in 1988 and is currently owned by United Internet.]{ionos-wikipedia}
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/images/ionos-logo.png}}
+    \makebox[\textwidth]{\includegraphics[width=8cm]{src/assets/images/ionos-logo.png}}
     \caption{Logo of IONOS}
     \label{fig:logo-of-ionos-cloud}
 \end{figure}
@@ -31,13 +31,27 @@ To provision the hardware resources that we need for the deployment, we're going
 IONOS Cloud provides -through the Ionos cloudpanel service- an easy way to create and manage virtual machines, firewall rules, private networks and various other infrastructure components.
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/ionos-cloudpanel-dashboard.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/ionos-cloudpanel-dashboard.JPG}}
     \caption{Ionos cloudpanel dashboard}
     \label{fig:image-of-ionos-cloudpanel-dashboard}
 \end{figure}
 
+The dashboard options of IONOS cloudpanel we use during our deployment process are:
+
+\textbf{Infrastructure:}
+\begin{itemize}
+    \item \textbf{Server:} To create and manage our virtual machines.
+    \item \textbf{Block storage:} To create and connect an SSD to a single server for extra storage.
+\end{itemize}
+
+\textbf{Network:}
+\begin{itemize}
+    \item \textbf{Firewall Policies:} To create firewall rules to protect our VMs.
+    \item \textbf{Private Network:} To create and manage private networks for server to server communication.
+\end{itemize}
+
 The two images below show the available \glsxtrshort{vm} sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
-We will refer to the sizes in the tables of the next section entitled \textbf{Kubernetes Cluster}.
+We will refer to the sizes in the tables of the next section.
 \begin{figure}[H]
     \centering
     \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-standard.jpg}}

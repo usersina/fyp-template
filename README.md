@@ -17,7 +17,7 @@ See the following links for all deployed services:
 - [x] Add the lines at the top to remind on which chapter the reader is on.
 - [x] Add non functional requirements (page 38 of old report).
 - [x] Add section about setting up the pipelines in functional requirements.
-- [ ] Clean up the realization section that includes the dashboard.
+- [x] Clean up the realization section that includes the dashboard.
 - [ ] (optional) Add figures of various meetings to appendix.
 - [ ] (optional) Create a final diagram with all software components, potentially incrementally for each realization section.
 
