@@ -316,7 +316,7 @@ In order to provide visibility to see whether leads are generated, we build on t
 As seen from the screenshot, it is not easy on the eyes and the UI is very primitive.
 We therefore implement an interactive good looking analytics dashboard with ChartJS in order to make it very easy for non technical people to keep an eye out on their campaigns.
 
-It is also always a plus for us if our customers are happy.
+It is also always a plus for us if our customers are satisfied.
 
 \begin{figure}[H]
     \centering
@@ -657,6 +657,23 @@ From there, we create a self-managed NFS Server on the host system that we expor
 Now, for the stateful cluster components to use the NFS Server, we needed to setup an NFS client provisioner inside the Kubernetes cluster itself. This was as simple as using the \textbf{NFS Subdir External Provisioner} Helm Chart.
 
 Lastly, our cluster components are now allowed to provision persistent and dynamic storage resources whenever they need it.
+
+\subsection{Automatic Testing}
+One of the keys to writing maintainable and error-prone software is to write tests across all the codebase to ensure no breaking changes happen when adding new pieces, and also make debugging way more manageable later on. However, in our case, it's challenging to write end-to-end or integration tests, because most of the scraping and automation logic, is dependent on interacting with LinkedIn via the browser, and since LinkedIn sets some limits on how many leads profile views per day, mocking and running those tests will make our scraping and automation more detectable, but we still have some parts of the codebases automatically tested such is modules integrations, helpers and auth endpoints. 
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/ilg-backend-tests.png}}
+    \caption{ilg-scraper tests}
+    \label{fig:ilg-scraper-tests}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/ilg-api-tests.png}}
+    \caption{ilg-api tests}
+    \label{fig:ilg-api-tests}
+\end{figure}
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
