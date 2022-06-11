@@ -167,11 +167,15 @@ We will discuss each service with more details in the upcoming sub-sections.
 \end{table}
 
 \subsubsection*{\underline{Cloud Infrastructure}}
-Since we are deploying to a Kubernetes cluster, we decided to distribute our different microservices into their corresponding nodes or virtual machines depending on their shared components and scalability.
+Since we are deploying to a Kubernetes cluster, we distribute our different microservices into various nodes or virtual machines depending on which services they are handling and whether they are scalable or not.
+Seeing that we're managing the cluster ourselves, we come up with a custom architecture that we do the conception of using Miro.
+Miro is a cloud-based white dashboard tool used for quick and efficient collaboration.
+
+Please see the next screenshot for the architecture that we create and adopt.
 \begin{figure}[H]
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=22cm]{src/assets/diagrams/cloud_infra.jpeg}}
-	\caption{Cloud infrastructure of the application}
+	\caption{Custom cloud infrastructure of the application}
 	\label{fig:cloud-infrastructure}
 \end{figure}
 
