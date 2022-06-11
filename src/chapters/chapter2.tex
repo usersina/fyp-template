@@ -1,4 +1,5 @@
-\chapter{ State of the art }
+\chapter{State of the art}
+\minitoc
 \newpage
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
@@ -77,7 +78,7 @@ These services are owned by small, self-contained teams. \cite{microservices}
 Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/microservices.png}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/microservices.png}}
     \caption{Monolith to microservices example}
     \label{fig:monolith-to-microservices}
 \end{figure}
@@ -97,6 +98,27 @@ Microservices architectures make applications easier to scale and faster to deve
     \item \textbf{Resilience:} Service independence increases an application’s resistance to failure. In a monolithic architecture, if a single component fails, it can cause the entire application to fail. With microservices, applications handle total service failure by degrading functionality and not crashing the entire application.
 \end{itemize}
 
+% ----------------------- Software Testing ----------------------- %
+\newpage
+
+\section{Software Testing}
+
+\subsection{Definition}
+Testing is the process of executing a program to find errors.
+To make our software perform well it should be error-free.
+It also makes refactoring and adding code later on a lot easier by preventing the developer from breaking existing feature when adding new ones.
+
+Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
+There are multiple types of testing that we used in our application, here are their definitions:
+
+\subsection{Types of Tests used}
+\begin{itemize}
+    \item \textbf{Smoke Testing:} This type of test serves as a very shallow probe to see if the rest of the tests should proceed. An example used in the CI pipeline is to check if environment variables are set before building the docker image.
+    \item \textbf{Unit Testing:} Unit testing is the first level of testing and is often performed by the developers themselves. It is the process of ensuring individual components of a piece of software at the code level are functional and work as they were designed to.
+    \item \textbf{Integration Testing:} After each unit is thoroughly tested, it is integrated with other units to create modules or components that are designed to perform specific tasks or activities. These are then tested as a group through integration testing to ensure whole segments of an application behave as expected.
+\end{itemize}
+
+\newpage
 % ----------------------- Comparative Analysis ----------------------- %
 \section{Comparative Analysis}
 In order to get started with our project, we need a wide range of tools that deal with the following areas; version control, orchestration between containers, browser automation as well as scheduled automation. For that, we did a comparative study on some of the tools the market provides.
@@ -170,7 +192,7 @@ Both are Node.js libraries for browser automation. The table below compares thes
 Since the difference is pretty minor, we will be sticking to the more recent Playwright.
 
 \subsection{Database: MongoDB vs PostgreSQL}
-The old architecture of ILG uses PostgreSQL but we have the choice to use a different database as well, so we did the following study.
+The old architecture of \glsxtrshort{ilg} uses PostgreSQL but we have the choice to use a different database as well, so we did the following study.
 \begin{table}[H]
     \renewcommand{\arraystretch}{1.5}%
     \caption{Comparative study between MongoDB and PostgreSQL}

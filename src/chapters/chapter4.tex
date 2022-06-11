@@ -1,4 +1,5 @@
 \chapter{Realization}
+\minitoc
 \newpage
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
@@ -6,9 +7,10 @@
 \section{Introduction}
 In this chapter, we will finally discuss the long awaited realization.
 This is the implementation phase where all of the work done in the previous chapters comes into picture.
-This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the ILG application to a new scalable architecture.
-We will start with the new architecture hardware and software setup, talk a little bit about monitoring the application.
-Later on, we will present some of the difficulties we encountered and then list all of the technologies we've used for our work.
+This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the \glsxtrshort{ilg} application to a new scalable architecture using modern DevOps standards.
+We will start with the new architecture hardware and software setup then talk about how to monitor the whole application stack.
+Later on, we list all of the technologies we've used for our work.
+And finally, we will present some of the difficulties we encountered.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- Hardware setup ----------------------- %
@@ -21,7 +23,7 @@ To provision the hardware resources that we need for the deployment, we're going
 \cite[Ionos is a web hosting company founded in Germany in 1988 and is currently owned by United Internet.]{ionos-wikipedia}
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=10cm]{src/assets/images/ionos-logo.png}}
+    \makebox[\textwidth]{\includegraphics[width=8cm]{src/assets/images/ionos-logo.png}}
     \caption{Logo of IONOS}
     \label{fig:logo-of-ionos-cloud}
 \end{figure}
@@ -29,13 +31,27 @@ To provision the hardware resources that we need for the deployment, we're going
 IONOS Cloud provides -through the Ionos cloudpanel service- an easy way to create and manage virtual machines, firewall rules, private networks and various other infrastructure components.
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/ionos-cloudpanel-dashboard.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/ionos-cloudpanel-dashboard.JPG}}
     \caption{Ionos cloudpanel dashboard}
     \label{fig:image-of-ionos-cloudpanel-dashboard}
 \end{figure}
 
-The two images below show the available virtual machine (VM) sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
-We will refer to the sizes in the tables of the next section entitled \textbf{Kubernetes Cluster}.
+The dashboard options of IONOS cloudpanel we use during our deployment process are:
+
+\textbf{Infrastructure:}
+\begin{itemize}
+    \item \textbf{Server:} To create and manage our virtual machines.
+    \item \textbf{Block storage:} To create and connect an SSD to a single server for extra storage.
+\end{itemize}
+
+\textbf{Network:}
+\begin{itemize}
+    \item \textbf{Firewall Policies:} To create firewall rules to protect our VMs.
+    \item \textbf{Private Network:} To create and manage private networks for server to server communication.
+\end{itemize}
+
+The two images below show the available \glsxtrshort{vm} sizes in the Ionos cloudpanel dashboard and their corresponding specifications.
+We will refer to the sizes in the tables of the next section.
 \begin{figure}[H]
     \centering
     \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/vm-standard.jpg}}
@@ -172,7 +188,7 @@ Also note that we won't get into too much details about how Ansible works in thi
     \caption{The Ansible hosts configuration}
     \label{fig:image-of-ansible-hosts}
 \end{figure}
-Note that we've also used a hosts file for development where we tested the setup extensively before trying it on production as seen from the figure just above.
+Note that we also use a hosts file for development where we test the setup extensively before trying it on production as seen from the figure just above.
 
 % ----------------------- Application pipeline ----------------------- %
 \section{Deployment process}
@@ -254,19 +270,146 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
 \end{figure}
 \newpage
 
-% ----------------------- Monitoring ----------------------- %
-\section{Monitoring}
-In order to make the most out of our Kubernetes setup, we also setup basic monitoring for our whole application stack.
-The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices. By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the Kubernetes Prometheus Stack which will give us access to many things, one of which is the Grafana dashboard.
-
-\medskip
-We won't go into too much details into the architecture of Grafana and Prometheus since that's beyond the scope of this report.
+\subsection{Deployment result}
+And now if we trigger the CI/CD pipeline of all of our microservices, we can see the application dashboard deployed!
+In fact, we now have two live environments that are publicly available:
+\begin{itemize}
+    \item \textbf{Production:} \url{https://lead-generator.incedo.net}
+    \item \textbf{Staging:} \url{https://staging.lead-generator.incedo.net}
+\end{itemize}
 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/grafana-nodes-monitoring.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/login.png}}
+    \caption{ILG Login page}
+    \label{fig:login-page}
+\end{figure}
+
+When we login, the dashboard with the list of campaigns is the first thing we notice. We can see how many active or inactive campaigns we have and also some useful statistics about how well our campaigns are doing.
+
+We can also manage our campaigns by adding, editing or deleting them as per the defined requirements.
+See \textbf{Appendix a} for more details.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/campaigns.png}}
+    \caption{Campaigns overview page}
+    \label{fig:campaigns-overview}
+\end{figure}
+
+We additionally have the option to manage our users as well as their credits.
+Also refer to \textbf{Appendix b} for more screenshots.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/users.png}}
+    \caption{View users page}
+    \label{fig:users-view-page}
+\end{figure}
+
+In order to provide visibility to see whether leads are generated, we build on the legacy code by using a records system which is basically the increment of invites sent or leads generated each day.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/records.png}}
+    \caption{Campaigns Records page}
+    \label{fig:records-page}
+\end{figure}
+
+As seen from the screenshot, it is not easy on the eyes and the UI is very primitive.
+We therefore implement an interactive good looking analytics dashboard with ChartJS in order to make it very easy for non technical people to keep an eye out on their campaigns.
+
+It is also always a plus for us if our customers are happy.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/analytics-1.png}}
+    \caption{Campaigns Analytics page}
+    \label{fig:campaigns-analytics-page-1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/app-screenshots/analytics-2.png}}
+    \caption{Campaigns Analytics page}
+    \label{fig:campaign-analytics-page-2}
+\end{figure}
+\newpage
+
+% ----------------------- Monitoring ----------------------- %
+\section{Monitoring}
+The visibility definitely gets way better with dashboards.
+Therefore, we also setup such monitoring solutions for our whole cluster.
+The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices.
+
+The first thing we do is exposing the dashboard provided by Kubernetes using manifest resources and kubectl.
+Please see \textbf{Appendix c}.
+
+\subsection{Monitoring the cluster nodes}
+By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the \textbf{Kubernetes Prometheus Stack} which will give us access to the Grafana dashboard and to the Prometheus UI dashboard.
+
+\subsubsection*{\underline{Prometheus}}
+Prometheus is an open-source software used for event monitoring and alerting.
+The way we do that is by collecting different kind of metrics and by configuring the automatic sending of alerts using rules in case of critical errors.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/prometheus-metrics.JPG}}
+    \caption{Viewing the metrics endpoints with Prometheus UI}
+    \label{fig:prometheus-ui-metrics-endpoint}
+\end{figure}
+
+\subsubsection*{\underline{Grafana}}
+Grafana is an open-source interactive visualization web application.
+We use it here to monitor our cluster nodes, and most importantly, the metrics of our application collected by Prometheus.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/grafana-nodes-monitoring.JPG}}
     \caption{Monitoring the cluster nodes with Grafana}
     \label{fig:grafana-node-monitoring}
+\end{figure}
+
+\subsection{Monitoring the logs}
+In order to monitor the logs of our different microservices as well as any other applications running on the cluster efficiently, we need to
+
+\begin{itemize}
+    \item Collect the logs from the different Pods in the cluster
+    \item Process and parse the logs to a uniform format, often json
+    \item Send the logs to an indexing engine for easy querying
+    \item We may also optionally create dashboards for our logs
+\end{itemize}
+The best way to go about doing this is by using the EFK Stack or more expressively the Elasticsearch, Fluentd and Kibana stack.
+
+\subsubsection*{\underline{Elasticsearch \& Kibana}}
+Elasticsearch is many things: it is often referred to as search engine, analytics engine or even a database and all of that is true.
+It can process a huge amount of logs with relatively minimal resources and is therefore the optimal choice for our cluster.
+
+Kibana is a data visualization dashboard exclusively used with Elasticsearch.
+It is used almost always whenever there is an Elasticsearch instance involved.
+
+By using the open-source \textbf{Elastic Stack Kubernetes Helm Charts}, we can create our Elasticsearch and Kibana setup in the cluster.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/kibana-home.JPG}}
+    \caption{Kibana dashboard home screen}
+    \label{fig:kibana-dashboard-home}
+\end{figure}
+
+\subsubsection*{\underline{Fluentd}}
+Fluentd on the other hand is a data collector.
+It runs in the background with the sole purpose of delivering the logs of all of our applications to any other service in a uniform way we specify.
+We configure it to get the logs from the standard output of our Pods, parse them to json and send them to Elasticsearch.
+
+We deploy Fluentd the manifest way, as opposed to using Helm Charts.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/fluentd-config-snippet.JPG}}
+    \caption{Fluentd configuration extract}
+    \label{fig:fluentd-config-snippet}
+\end{figure}
+
+And now we can finally use some of the advanced features of Elasticsearch such as the filtering and sorting of our logs from the Kibana dashboard.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/efk-stack-logs.JPG}}
+    \caption{Indexing the logs in Kibana}
+    \label{fig:kibana-logs-indexing}
 \end{figure}
 
 \newpage
@@ -340,7 +483,7 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
           \end{minipage}
 
           \newpage
-    \item \textbf{Nginx:} \newline \cite{nginx} A multi-purpose web server can also be used as reverse proxy, load balancer, mail proxy and HTTP cache. \newline
+    \item \textbf{Nginx:} \newline \cite{nginx} A multi-purpose web server can also be used as reverse proxy, load balancer, mail proxy and HTTP cache. \newline \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=3.4cm]{src/assets/logos/nginx_512x512.png}
@@ -352,7 +495,7 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
               \includegraphics[width=3cm]{src/assets/logos/renovate_200x200.png}
               \captionof{figure}{Logo of Renovate}
           \end{minipage}
-    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a yaml format. Often used in development. \newline
+    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a yaml format. Often used in development. \newline \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=4cm]{src/assets/logos/docker-compose_667x667.png}
@@ -380,7 +523,7 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
           \end{minipage}
 
           \newpage
-    \item \textbf{MicroK8s:} \newline \cite{microk8s} MicroK8s is a simple production-grade conformant K8s. It is Lightweight and focused. \newline
+    \item \textbf{MicroK8s:} \newline \cite{microk8s} MicroK8s is a simple production-grade conformant K8s. It is Lightweight and focused. \newline \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=3.8cm]{src/assets/logos/microk8s.png}
@@ -426,13 +569,13 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
               \includegraphics[width=4cm]{src/assets/logos/prometheus_512x512.png}
               \captionof{figure}{Logo of Prometheus}
           \end{minipage}
-    \item \textbf{Grafana:} \newline Grafana is an open source solution for monitoring and analytics. \newline
+    \item \textbf{Grafana:} \newline Grafana is an open source solution for monitoring and analytics. \newline \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=3.5cm]{src/assets/logos/grafana.png}
               \captionof{figure}{Logo of Grafana}
           \end{minipage}
-    \item \textbf{LaTeX:} \newline \cite{latex-project} A high-quality document preparation and typesetting system for technical grade documents. \newline
+    \item \textbf{LaTeX:} \newline \cite{latex-project} A high-quality document preparation and typesetting system for technical grade documents. \newline \newline
           \begin{minipage}{\linewidth}
               \centering
               \includegraphics[width=4cm]{src/assets/logos/latex_200x200.png}
@@ -440,18 +583,83 @@ For a comparative analysis on some of our choices, see \textbf {Chapter 2: State
           \end{minipage}
 
           \newpage
-          %   MSTeams, Asana, Signal?
+    \item \textbf{Elasticsearch:} \newline Elasticsearch is a search engine based on the Lucene library. Is it often used as part of a stack alongside Kibana and other tools. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=7cm]{src/assets/logos/elasticsearch-logo.png}
+              \captionof{figure}{Logo of elasticsearch}
+          \end{minipage}
+    \item \textbf{Kibana:} \newline \cite{kibana} Kibana is an free and open frontend application that sits on top of the Elastic Stack, providing search and data visualization capabilities for data indexed in Elasticsearch. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=6.8cm]{src/assets/logos/kibana-logo.jpg}
+              \captionof{figure}{Logo of Kibana}
+          \end{minipage}
+    \item \textbf{Fluentd:} \newline \cite{fluentd} Fluentd is an open source data collector, which lets you unify the data collection and consumption for a better use and understanding of data. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=4cm]{src/assets/logos/fluentd-logo.png}
+              \captionof{figure}{Logo of Fluentd}
+          \end{minipage}
+
+          \newpage
+    \item \textbf{Microsoft Teams:} \newline Microsoft Teams is a proprietary business communication platform developed by Microsoft. We use it to collaborate and share information. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=3.2cm]{src/assets/logos/ms-teams-logo.png}
+              \captionof{figure}{Logo of Microsoft Teams}
+          \end{minipage}
+    \item \textbf{Asana:} \newline Asana is a work management platform available on web and and mobile. It is used internally by Incedo for various work and project management. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=4.5cm]{src/assets/logos/asana-logo.png}
+              \captionof{figure}{Logo of Asana}
+          \end{minipage}
+    \item \textbf{Signal:} \newline Signal is a cross-platform centralized e2e encrypted instant messaging service. It is used by the team to share sensitive information. \newline
+          \begin{minipage}{\linewidth}
+              \centering
+              \includegraphics[width=6cm]{src/assets/logos/signal-logo.png}
+              \captionof{figure}{Logo of Signal}
+          \end{minipage}
+
+          \newpage
 \end{itemize}
 
 % ----------------------- Difficulties encountered ----------------------- %
 \section{Difficulties encountered}
+\subsection{Infrastructure as code}
 This not per say a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
-To have a full DevOps approach, even the infrastructure should be managed in code -also known as Infrastructure As Code (IAC)- using tools such as Terraform.
+To have a full DevOps approach, even the infrastructure should be managed in code -also known as \glsxtrfull{iac}- using tools such as Terraform.
 However, Ionos cloudpanel does not provide that functionality.
 Therefore we had to scrape off the idea and simply create the virtual machines from the UI every time we need them.
+
+\subsection{Stateful Kubernetes}
+Another issue we had is data persistence in Kubernetes.
+Kubernetes is -by design- used for stateless applications.
+However, since we're using an Elasticsearch database, we definitely needed a way to persist our data across system reboots or crashes.
+
+First of all, we used IONOS -our cloud provider- to create the physical Block Storage in question that we used as the data source.
+We started with an SSD of 40 Gigabytes then scaled it up to 80 Gigs.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/ionos-block-storage.JPG}}
+    \caption{Creating a block storage in IONOS}
+    \label{fig:ionos-block-storage}
+\end{figure}
+
+\newpage
+
+Secondly, we had to logically mount the previously created block storage to a directory such as \textbf{/mnt/block} inside the controller virtual machine.
+
+From there, we create a self-managed NFS Server on the host system that we export to the private network or in other words to all of the cluster nodes.
+
+Now, for the stateful cluster components to use the NFS Server, we needed to setup an NFS client provisioner inside the Kubernetes cluster itself. This was as simple as using the \textbf{NFS Subdir External Provisioner} Helm Chart.
+
+Lastly, our cluster components are now allowed to provision persistent and dynamic storage resources whenever they need it.
 
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-A successful project comes from a successful development environment as well as a clean production environment.
-For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and script which all conform to the modern ways of how DevOps should be done.
+A successful project comes from a successful development environment as well as a clean production environment with a good and well thought of monitoring solutions.
+For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and scripts which all conform to the modern ways of how DevOps should be done.

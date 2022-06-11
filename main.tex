@@ -1,11 +1,11 @@
 \input{./package.tex}
+\input{./src/components/glossary.tex}
 
 % ------------- Document content ------------- %
 \begin{document}
 
 % Global config
 \input{./config.tex}
-
 
 % Include the cover page
 \includepdf[]{src/assets/pdfs/cover-page.pdf}
@@ -17,13 +17,19 @@
 % Dedication and acknowledgments
 % \input{src/components/dedications.tex} % Optional
 \input{src/components/acknowledgments.tex}
+
+% Abstract or TL;DR
 \input{src/components/abstract.tex}
+
+% Print the acronyms list
+\printunsrtglossaries
+\newpage
 
 % Tables
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
-\listoffigures % https://tex.stackexchange.com/questions/155177/how-to-add-the-word-figure-to-the-list-of-figures
-\listoftables % https://tex.stackexchange.com/questions/79869/first-chapter-after-list-of-tables-starts-on-page-2-should-be-1
+\listoffigures \mtcaddchapter % https://tex.stackexchange.com/questions/155177/how-to-add-the-word-figure-to-the-list-of-figures
+\listoftables \mtcaddchapter % https://tex.stackexchange.com/questions/79869/first-chapter-after-list-of-tables-starts-on-page-2-should-be-1
 \clearpage
 
 % Set page numbering to Arabic for main content
@@ -37,13 +43,14 @@
 \renewcommand\bibname{Webography}
 \bibliographystyle{plain}
 \bibliography{references}
+\clearpage
 
 % % Set page numbering to alphabetic for appendices
-% \pagenumbering{alph}
-% \setcounter{page}{0}
+\pagenumbering{alph}
+\setcounter{page}{0}
 
-% % Very big diagrams, pictures or schemas go here
-% \include{src/components/appendices.tex}
+% Very big diagrams, pictures or schemas go here
+\input{src/components/appendices.tex}
 
 \end{document}
 % ------------- Document content ------------- %

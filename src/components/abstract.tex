@@ -1,5 +1,5 @@
 \section*{Abstract}
-The Incedo Lead Generator or ILG for short is a proprietary software solution of Incedo Services GmbH that's offered in a software as a service modal or SaaS.
+The Incedo Lead Generator is a proprietary software solution of Incedo Services GmbH that's offered in a software as a service modal.
 It scrapes LinkedIn and uses it as a medium to directly automate the generating of leads from a campaign using the LinkedIn sales navigator feature.
 
 To start off, we have two big roles to play.
@@ -8,6 +8,7 @@ To start off, we have two big roles to play.
 
 We start by breaking our application into various NestJS microservices, build the corresponding docker images then create a shared Helm package for the microservices. Second of all, we setup our own \textbf{self-managed Kubernetes cluster with MicroK8s and ansible scripts}, configure it appropriately to support our specific use-case, then deploy our application stack to both staging and production.
 
-Lastly, using \textbf{GitLab's CI/CD pipelines} and also \textbf{GNU's Makefiles} allows us to automate the whole process from start to finish. So that in the end, one commit on the main branch is enough to deliver our changes to the clients, which is the standard that \textbf{DevOps compliant} applications should follow.
+Lastly, using \textbf{GitLab's CI/CD pipelines} and also \textbf{GNU's Makefiles} allows us to automate the whole process from start to finish.
+So that in the end, one commit on the main branch is enough to deliver our changes to the clients, which is the standard that \textbf{DevOps compliant} applications should follow.
 
 \newpage

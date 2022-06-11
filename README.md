@@ -1,15 +1,25 @@
-# End of Studies Project (WIP)
+# End of Studies Project
 
-This is the end of studies project rapport.
+This is the end of studies project report for the Incedo Lead Generator Software as a Service.
 
-### **TODO:**
+See the following links for all deployed services:
 
-- [x] Include the correct covert page.
-- [x] Fix all occurrences of `\lipsum` with their actual content.
-- [x] Fix the use of tenses; for the introduction use the future tense, for the conclusion use the past tense. Also use present tense in the chapter sections themselves aside from the introduction and the conclusion.
-- [x] Fix the ~~dedications and~~ acknowledgements.
-- [ ] (If relevant) If too many acronyms are used, add a list for it before the beginning of the general introduction.
-- [ ] (If relevant) If too many code blocks many other diagrams are used, create an appendices list with custom numbering at the end of this report.
+1. Production portal server: http://lead-generator.incedo.net/
+2. Staging portal server: http://staging.lead-generator.incedo.net/
+3. Kubernetes dashboard: https://ctl.ilg.incedo.net/dashboard/
+4. Grafana dashboard: https://ctl.ilg.incedo.net/grafana/
+5. Prometheus dashboard: Kubernetes dashboard: https://ctl.ilg.incedo.net/prometheus/targets
+6. Kibana dashboard: https://ctl.ilg.incedo.net/kibana/
+
+### Todo:
+
+- [x] Add the list of sections to the chapter's title page.
+- [x] Add the lines at the top to remind on which chapter the reader is on.
+- [x] Add non functional requirements (page 38 of old report).
+- [x] Add section about setting up the pipelines in functional requirements.
+- [x] Clean up the realization section that includes the dashboard.
+- [ ] (optional) Add figures of various meetings to appendix.
+- [ ] (optional) Create a final diagram with all software components, potentially incrementally for each realization section.
 
 ### Helpers:
 

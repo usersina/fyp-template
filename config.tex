@@ -8,6 +8,19 @@
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 
+% Chapter name on each page
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0pt} % Remove the underline
+\setlength{\headheight}{15pt}
+
+% Initialize the mini toc at the beginning of each chapter
+% More config https://tex.stackexchange.com/a/4858/268270
+\dominitoc[n]
+\nomtcrule
+\setcounter{minitocdepth}{1}
+
 % Code highlighting for supported languages
 % https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Supported_languages
 \lstset{
