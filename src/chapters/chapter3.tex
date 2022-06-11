@@ -17,9 +17,9 @@ Since our project is fairly voluminous, we identify what we consider the necessi
 	\item Separating the monolithic application to multiple microservices to validate the \glsxtrfull{poc} as instructed by our Product Owner before proceeding with the making of the new architecture.
 	\item Daily monitoring of the old system by reading logs directly from the server.
 	\item Ensuring that the lead generating is happening in the background with the newly implemented microservices architecture.
-	\item Creating individual Dockerfiles for all microservices based on what they require.
-	\item Creating the GitLab CI pipelines for all microservices and configuring them to build and push Docker images.
-	\item Creating a custom configurable Helm Chart for the whole ILG application stack.
+	\item Creating individual docker files for all microservices based on what they require.
+	\item Creating the GitLab CI pipelines for all microservices and configuring them to build and push Docker images to a custom container registry.
+	\item Creating a custom configurable Helm Chart for the whole ILG application stack and publishing it to GitLab's package registry.
 	\item Working on the CD part of the pipelines by setting up a clear deployment strategy to Kubernetes using the custom Helm Chart.
 	\item Setting up modern monitoring solutions that use the most out of our Kubernetes deployment with the most recent tools on the market.
 \end{itemize}
@@ -70,7 +70,6 @@ Here are the main requirements of campaign management for the different type of 
 
 \subsubsection{Use case textual description}
 Here is an example of the textual description of one of the use cases scenarios:
-
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1.5}%
 	\caption{Create Campaign's use case textual description}
@@ -80,25 +79,26 @@ Here is an example of the textual description of one of the use cases scenarios:
 			| >{\hsize=0.5\hsize\linewidth=\hsize\centering\arraybackslash}X
 			| >{\hsize=1.5\hsize\linewidth=\hsize\justifying\arraybackslash}X |}
 		\hline
-		\textbf {Use Case}        & \noindent Create Campaign                           \\
+		\textbf {Use Case}         & \noindent Create Campaign                                                                                                              \\
 		\hline
-		\textbf {Actor}            & \noindent User.                 \\
+		\textbf {Actor}            & \noindent User.                                                                                                                        \\
 		\hline
-		\textbf {Pre-condition}            & \noindent Authenticated User.                 \\
+		\textbf {Pre-condition}    & \noindent Authenticated User.                                                                                                          \\
 		\hline
-		\textbf {Post-condition}           & \noindent Campaign Created. \\
+		\textbf {Post-condition}   & \noindent Campaign Created.                                                                                                            \\
 		\hline
-		\textbf {Basic path}            & \noindent    \begin{enumerate}
-			\item Navigate to campaign page.
-			\item Click on the "create campaign" button.
-			\item Fill in the needed information of the campaign in the popped modal form.
-			\item Validate the form then submit.
-		\end{enumerate}                               \\
+		\textbf {Basic path}       & \noindent    \begin{enumerate}
+			                                          \item Navigate to campaign page.
+			                                          \item Click on the "create campaign" button.
+			                                          \item Fill in the needed information of the campaign in the popped modal form.
+			                                          \item Validate the form then submit.
+		                                          \end{enumerate}                                             \\
 		\hline
-		\textbf {Exceptional path}            & \noindent On step 3, if the campaign sales navigator link is not valid, show "invalid campaign link" to the user and restart the step.                                  \\
+		\textbf {Exceptional path} & \noindent On step 3, if the campaign sales navigator link is not valid, show "invalid campaign link" to the user and restart the step. \\
 		\hline
 	\end{tabularx}
 \end{table}
+
 \subsection{Lead generating}
 
 \subsubsection*{\underline{Definition}}
@@ -290,7 +290,7 @@ Non functional requirements describe any specification that does not add direct 
 For \glsxtrshort{ilg}, what we should focus on is:
 \begin{itemize}
 	\item \textbf{Reliability and Availability:} The software should be available 24 hours a day and 7 days a week.
-	\item \textbf{Security:} Clients should be able to safely authenticate to the dashboard with a strong authentication system.
+	\item \textbf{Security:} Clients should be able to safely login to the dashboard with a strong authentication system.
 	\item \textbf{Maintainability and Recoverability:} We should respond to LinkedIn changes all the time as fast as possible.
 	\item \textbf{Scalability:} This is the main reason we're migrating to a new architecture in the first place.
 	\item \textbf{Documentation:} We should always document each and every step we make extensively so that new developers can onboard on the project in a fast and efficient way, which further emphasizes reliability.
