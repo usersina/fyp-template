@@ -67,7 +67,9 @@ After studying the existing, we can determine its limitations:
 \end{itemize}
 \subsection{Proposed solution}
 The solution to these problems is refactoring the whole application to separate sub-applications or microservices where the automation and scraping processes can be scaled independently of the other parts of the application.
-This way, it will be easier to maintain and scale the different codebases as well as respond faster to bugs and know exactly what caused them in the first place.
+This way, it will be easier to maintain and scale the different services as well as respond faster to bugs and know exactly what caused them in the first place.
+We of course have have to create and organize the deployment pipelines from start to finish in addition to creating the any hardware or software resources that we need for the deployment in the cloud.
+We also suggest going further by adding recent monitoring solutions for all of our infrastructure in order to increase the availability and the reliability of the application and ultimately improve the experience of the clients using ILG.
 
 \newpage
 

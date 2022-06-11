@@ -1,4 +1,4 @@
-\chapter{Realization}
+\chapter{Realization: Main setup}
 \minitoc
 \newpage
 
@@ -9,8 +9,6 @@ In this chapter, we will finally discuss the long awaited realization.
 This is the implementation phase where all of the work done in the previous chapters comes into picture.
 This section will {\bf heavily focus on DevOps} since our primary objective has been migrating the \glsxtrshort{ilg} application to a new scalable architecture using modern DevOps standards.
 We will start with the new architecture hardware and software setup then talk about how to monitor the whole application stack.
-Later on, we list all of the technologies we've used for our work.
-And finally, we will present some of the difficulties we encountered.
 
 \setcounter{secnumdepth}{2} % Resume counting the sections for the toc with a depth of 2 (Sections and sub-sections)
 % ----------------------- Hardware setup ----------------------- %
@@ -184,7 +182,7 @@ Also note that we won't get into too much details about how Ansible works in thi
 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=12cm]{src/assets/images/ansible-hosts.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/ansible-hosts.JPG}}
     \caption{The Ansible hosts configuration}
     \label{fig:image-of-ansible-hosts}
 \end{figure}
@@ -211,7 +209,7 @@ Since we have a Kubernetes cluster and we also use GitLab, we will link the two 
 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth]{\includegraphics[width=15cm]{src/assets/images/gitlab-kubernetes-agent.JPG}}
+    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/gitlab-kubernetes-agent.JPG}}
     \caption{GitLab Kubernetes Agent}
     \label{fig:gitlab-kubernetes-agent}
 \end{figure}
@@ -271,7 +269,7 @@ We even integrate a CI/CD pipeline for the Helm chart itself so that new package
 \newpage
 
 \subsection{Deployment result}
-And now if we trigger the CI/CD pipeline of all of our microservices, we can see the application dashboard deployed!
+And now if we trigger the CI/CD pipeline of all of our microservices (please see \textbf{Appendix c}), we can see the application dashboard deployed!
 In fact, we now have two live environments that are publicly available:
 \begin{itemize}
     \item \textbf{Production:} \url{https://lead-generator.incedo.net}
@@ -314,9 +312,9 @@ In order to provide visibility to see whether leads are generated, we build on t
 \end{figure}
 
 As seen from the screenshot, it is not easy on the eyes and the UI is very primitive.
-We therefore implement an interactive good looking analytics dashboard with ChartJS in order to make it very easy for non technical people to keep an eye out on their campaigns.
 
-It is also always a plus for us if our customers are happy.
+We therefore implement an interactive good looking analytics dashboard with ChartJS in order to make it very easy for our client to keep an eye out on their campaigns and study their conversion rate to make changes if needed to number of invites and follow ups sent per day to improve the leads conversion.
+
 
 \begin{figure}[H]
     \centering
@@ -339,7 +337,7 @@ Therefore, we also setup such monitoring solutions for our whole cluster.
 The things we monitor vary from the cluster nodes' CPU and memory usage, to the logs of our microservices.
 
 The first thing we do is exposing the dashboard provided by Kubernetes using manifest resources and kubectl.
-Please see \textbf{Appendix c}.
+Please see \textbf{Appendix d}.
 
 \subsection{Monitoring the cluster nodes}
 By using and configuring the Kubernetes community's Helm packages, we can very easily deploy what's called the \textbf{Kubernetes Prometheus Stack} which will give us access to the Grafana dashboard and to the Prometheus UI dashboard.
@@ -412,254 +410,9 @@ And now we can finally use some of the advanced features of Elasticsearch such a
     \label{fig:kibana-logs-indexing}
 \end{figure}
 
-\newpage
-
-% ----------------------- Technologies ----------------------- %
-\section{Technologies}
-This part is reserved for the presentation of all of the software used in the realization of the project and includes but is not limited to; programming languages, frameworks, technologies, etc...
-
-\medskip
-For a comparative analysis on some of our choices, see \textbf {Chapter 2: State of the art}.
-% NOTE: Transform into a table if total page number goes over 70 or so
-
-\begin{itemize}
-    \item \textbf{Git:} \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=2.5cm]{src/assets/logos/git_512x512.png}
-              \captionof{figure}{Logo of Git}
-          \end{minipage}
-    \item \textbf{Docker:} \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/docker_512x512.png}
-              \captionof{figure}{Logo of Docker}
-          \end{minipage}
-    \item \textbf{Playwright:} \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4.5cm]{src/assets/logos/playwright_512x512.png}
-              \captionof{figure}{Logo of Playwright}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{NestJS:} \newline \cite{nestjs} A framework for building efficient, scalable Node.js web applications. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.7cm]{src/assets/logos/nestjs_512x512.png}
-              \captionof{figure}{Logo of NestJS}
-          \end{minipage}
-    \item \textbf{ReactJS:} \newline A front-end JavaScript library that's often considered as a framework. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.7cm]{src/assets/logos/react_512x512.png}
-              \captionof{figure}{Logo of ReactJS}
-          \end{minipage}
-    \item \textbf{PostgreSQL:} \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=8cm]{src/assets/logos/postgresql.png}
-              \captionof{figure}{Logo of PostgreSQL}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Sequelize:} \newline \cite{sequelize} A modern TypeScript and Node.js ORM for SQL databases. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=5cm]{src/assets/logos/sequelize_512x512.png}
-              \captionof{figure}{Logo of Sequelize}
-          \end{minipage}
-    \item \textbf{GraphQL:} \newline \cite{graphql} A query language for APIs and a runtime for fulfilling those queries with existing data. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.7cm]{src/assets/logos/graphql_512x512.png}
-              \captionof{figure}{Logo of GraphQL}
-          \end{minipage}
-    \item \textbf{GitLab:} \newline A DevOps software that allows secure collaboration and operations in a single application. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.5cm]{src/assets/logos/gitlab_512x512.png}
-              \captionof{figure}{Logo of GitLab}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Nginx:} \newline \cite{nginx} A multi-purpose web server can also be used as reverse proxy, load balancer, mail proxy and HTTP cache. \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.4cm]{src/assets/logos/nginx_512x512.png}
-              \captionof{figure}{Logo of Nginx}
-          \end{minipage}
-    \item \textbf{Renovate:} \newline A software that provides automatic dependency updates with support for multiple languages. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3cm]{src/assets/logos/renovate_200x200.png}
-              \captionof{figure}{Logo of Renovate}
-          \end{minipage}
-    \item \textbf{Docker compose:} \newline A helper tool to run applications with multiple Docker containers using a yaml format. Often used in development. \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/docker-compose_667x667.png}
-              \captionof{figure}{Logo of Docker Compose}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Visual Studio Code:} \newline A code editor that's used as an entire development environment with the help of extensions. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=2.5cm]{src/assets/logos/vscode_512x512.png}
-              \captionof{figure}{Logo of VSCode}
-          \end{minipage}
-    \item \textbf{Linux:} \newline A Unix-like operating system for common daily use and more commonly for servers. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3cm]{src/assets/logos/linux_512x512.png}
-              \captionof{figure}{Logo of Linux}
-          \end{minipage}
-    \item \textbf{Make:} \newline GNU Make is used extensively throughout the application to save useful commands for the ease of maintainability. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3cm]{src/assets/logos/makefile_512x512.png}
-              \captionof{figure}{Logo of Makefile}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{MicroK8s:} \newline \cite{microk8s} MicroK8s is a simple production-grade conformant K8s. It is Lightweight and focused. \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.8cm]{src/assets/logos/microk8s.png}
-              \captionof{figure}{Logo of MicroK8s}
-          \end{minipage}
-    \item \textbf{Kubernetes:} \newline The most powerful tool for managing containerized workloads in the cloud. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.5cm]{src/assets/logos/kubernetes_512x512.png}
-              \captionof{figure}{Logo of Kubernetes}
-          \end{minipage}
-    \item \textbf{Ansible:} \newline An open-source software for provisioning, configuring and managing infrastructure. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.5cm]{src/assets/logos/ansible_200x200.png}
-              \captionof{figure}{Logo of Ansible}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Squid Proxy:} \newline \cite{squid} Squid is a caching proxy for the Web that supports HTTP, HTTPS, FTP and more. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=6cm]{src/assets/logos/squid-proxy.png}
-              \captionof{figure}{Logo of Squid Proxy}
-          \end{minipage}
-    \item \textbf{GitLab agent for Kubernetes:} \newline \cite{kas-blog} A secure and reliable way to attach a Kubernetes cluster to GitLab. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.8cm]{src/assets/logos/gitlab-kubernetes-agent_512x512.png}
-              \captionof{figure}{Logo of GitLab Agent for Kubernetes}
-          \end{minipage}
-    \item \textbf{Helm:} \newline Helm is the most popular package manager for Kubernetes. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/helm_512x512.png}
-              \captionof{figure}{Logo of Helm}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Prometheus:} \newline Prometheus is a software application used for monitoring and alerting. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/prometheus_512x512.png}
-              \captionof{figure}{Logo of Prometheus}
-          \end{minipage}
-    \item \textbf{Grafana:} \newline Grafana is an open source solution for monitoring and analytics. \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.5cm]{src/assets/logos/grafana.png}
-              \captionof{figure}{Logo of Grafana}
-          \end{minipage}
-    \item \textbf{LaTeX:} \newline \cite{latex-project} A high-quality document preparation and typesetting system for technical grade documents. \newline \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/latex_200x200.png}
-              \captionof{figure}{Logo of The LaTeX Project}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Elasticsearch:} \newline Elasticsearch is a search engine based on the Lucene library. Is it often used as part of a stack alongside Kibana and other tools. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=7cm]{src/assets/logos/elasticsearch-logo.png}
-              \captionof{figure}{Logo of elasticsearch}
-          \end{minipage}
-    \item \textbf{Kibana:} \newline \cite{kibana} Kibana is an free and open frontend application that sits on top of the Elastic Stack, providing search and data visualization capabilities for data indexed in Elasticsearch. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=6.8cm]{src/assets/logos/kibana-logo.jpg}
-              \captionof{figure}{Logo of Kibana}
-          \end{minipage}
-    \item \textbf{Fluentd:} \newline \cite{fluentd} Fluentd is an open source data collector, which lets you unify the data collection and consumption for a better use and understanding of data. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4cm]{src/assets/logos/fluentd-logo.png}
-              \captionof{figure}{Logo of Fluentd}
-          \end{minipage}
-
-          \newpage
-    \item \textbf{Microsoft Teams:} \newline Microsoft Teams is a proprietary business communication platform developed by Microsoft. We use it to collaborate and share information. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=3.2cm]{src/assets/logos/ms-teams-logo.png}
-              \captionof{figure}{Logo of Microsoft Teams}
-          \end{minipage}
-    \item \textbf{Asana:} \newline Asana is a work management platform available on web and and mobile. It is used internally by Incedo for various work and project management. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=4.5cm]{src/assets/logos/asana-logo.png}
-              \captionof{figure}{Logo of Asana}
-          \end{minipage}
-    \item \textbf{Signal:} \newline Signal is a cross-platform centralized e2e encrypted instant messaging service. It is used by the team to share sensitive information. \newline
-          \begin{minipage}{\linewidth}
-              \centering
-              \includegraphics[width=6cm]{src/assets/logos/signal-logo.png}
-              \captionof{figure}{Logo of Signal}
-          \end{minipage}
-
-          \newpage
-\end{itemize}
-
-% ----------------------- Difficulties encountered ----------------------- %
-\section{Difficulties encountered}
-\subsection{Infrastructure as code}
-This not per say a technical difficulty as it is more of a limitation from the side of Ionos cloudpanel; the service of IONOS Cloud that we use the provision the needed resources.
-To have a full DevOps approach, even the infrastructure should be managed in code -also known as \glsxtrfull{iac}- using tools such as Terraform.
-However, Ionos cloudpanel does not provide that functionality.
-Therefore we had to scrape off the idea and simply create the virtual machines from the UI every time we need them.
-
-\subsection{Stateful Kubernetes}
-Another issue we had is data persistence in Kubernetes.
-Kubernetes is -by design- used for stateless applications.
-However, since we're using an Elasticsearch database, we definitely needed a way to persist our data across system reboots or crashes.
-
-First of all, we used IONOS -our cloud provider- to create the physical Block Storage in question that we used as the data source.
-We started with an SSD of 40 Gigabytes then scaled it up to 80 Gigs.
-
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth]{\includegraphics[width=\linewidth]{src/assets/images/ionos-block-storage.JPG}}
-    \caption{Creating a block storage in IONOS}
-    \label{fig:ionos-block-storage}
-\end{figure}
-
-\newpage
-
-Secondly, we had to logically mount the previously created block storage to a directory such as \textbf{/mnt/block} inside the controller virtual machine.
-
-From there, we create a self-managed NFS Server on the host system that we export to the private network or in other words to all of the cluster nodes.
-
-Now, for the stateful cluster components to use the NFS Server, we needed to setup an NFS client provisioner inside the Kubernetes cluster itself. This was as simple as using the \textbf{NFS Subdir External Provisioner} Helm Chart.
-
-Lastly, our cluster components are now allowed to provision persistent and dynamic storage resources whenever they need it.
-
 \setcounter{secnumdepth}{0} % Set the section counter to 0 so next section is not counted in toc
 % ----------------------- Conclusion ----------------------- %
 \section{Conclusion}
-A successful project comes from a successful development environment as well as a clean production environment with a good and well thought of monitoring solutions.
+A successful project comes from a successful development environment as well as a clean production environment with good and well thought of monitoring solutions.
 For this reason, we spent quite a good amount of time setting up the infrastructure in a clean and scalable way using various tools and scripts which all conform to the modern ways of how DevOps should be done.
+In the next chapter, we will list all of the technologies that we've used and also talk about the major difficulties that we've encountered in the whole making of the project.
