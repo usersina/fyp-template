@@ -1,8 +1,8 @@
 ### Useful shortcuts:
 
-- `Remote-Containers: Open Folder in Container...`
+- `Dev Containers: Open Folder in Container...`
 - `LaTeX Workshop: SyncTex from cursor` to go from `tex` to go to the corresponding page in `pdf`
-- From `pdf` to code: <kbd>ctrl</kbd>+<kbd>click</kbd>
+- From `pdf` to code: <kbd>CTRL</kbd>+<kbd>click</kbd>
 
 ### Source
 

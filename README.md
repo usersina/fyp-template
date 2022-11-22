@@ -1,31 +1,33 @@
-# End of Studies Project
+# Final Year Project - Template
 
-This is the end of studies project report for the Incedo Lead Generator Software as a Service.
+This is a starter TeX template with a [development container](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers) that can be run directly inside Docker.
 
-See the following links for all deployed services:
+That way, you don't have to deal with the dependency hell of configuring and compiling TeX, nor use third party tools that make you leave your editor.
 
-1. Production portal server: http://lead-generator.incedo.net/
-2. Staging portal server: http://staging.lead-generator.incedo.net/
-3. Kubernetes dashboard: https://ctl.ilg.incedo.net/dashboard/
-4. Grafana dashboard: https://ctl.ilg.incedo.net/grafana/
-5. Prometheus dashboard: Kubernetes dashboard: https://ctl.ilg.incedo.net/prometheus/targets
-6. Kibana dashboard: https://ctl.ilg.incedo.net/kibana/
+## Getting Started
 
-### Todo:
+Assuming you're using VSCode or codespaces
 
-- [x] Add the list of sections to the chapter's title page.
-- [x] Add the lines at the top to remind on which chapter the reader is on.
-- [x] Add non functional requirements (page 38 of old report).
-- [x] Add section about setting up the pipelines in functional requirements.
-- [x] Clean up the realization section that includes the dashboard.
-- [ ] (optional) Add figures of various meetings to appendix.
-- [ ] (optional) Create a final diagram with all software components, potentially incrementally for each realization section.
+1. You need to get the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-### Helpers:
+2. Show the command pallete (default shortcut is <kbd>Ctrl</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>) and run
+   > Dev Containers: Open Folder in Container...
+
+Depending on your internet speed, the build will take some minutes...
+
+3. After the dev container is opened, you can know do a build and open the compiled [out/main.pdf](out/main.pdf) to the side. You can do that in a number of ways, the easiest is by doing a `Save`. Here's a picture example.
+
+![alt](Extras/build-project.JPG)
+
+## Navigation Tips
+
+- Go from `PDF` to code: <kbd>CTRL</kbd>+<kbd>click</kbd>
+- Go from code to `PDF` with:
+  > LaTeX Workshop: SyncTex from cursor
+
+### **Helpers & References:**
 
 - [Word Counter Tool](https://string-functions.com/wordcount.aspx)
-
-### **References:**
-
+- [Original repo](https://github.com/usersina/isetn-end-of-studies-project)
 - https://www.overleaf.com/project/6213ba5a4d9e9a0b44ea27e0
 - https://www.overleaf.com/learn/latex/Bibtex_bibliography_styles#Table_of_stylename_values
